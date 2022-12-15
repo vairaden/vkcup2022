@@ -19,7 +19,7 @@ export default function LetterList() {
   console.log(data);
 
   return (
-    <section className="ml-[236px] mt-[56px] py-3 pr-3 max-w-[1122px]">
+    <section>
       <div className="bg-white rounded-xl">
         <ul>
           {data.map((letterData, index) => (

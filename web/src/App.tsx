@@ -4,12 +4,14 @@ import Navbar from "./components/Navbar";
 export default function App() {
   return (
     <>
-      <header className="fixed h-14 bg-white px-4 py-3 w-[100vw] shadow-sm">
+      <header className="fixed top-0 h-14 px-4 py-3 w-[100vw] bg-white shadow-sm">
         <img src="/mailru_logo.svg" alt="Mail ru logo"></img>
       </header>
-      <main className="flex">
+      <main>
         <Navbar />
-        <Outlet />
+        <div className="ml-[236px] w-[calc(100vh - 236px] mt-[68px] pr-[16px]">
+          <Outlet />
+        </div>
       </main>
     </>
   );

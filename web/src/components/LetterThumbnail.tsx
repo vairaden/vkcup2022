@@ -35,37 +35,37 @@ export default function LetterThumbnail({
     <li>
       <Link
         to={to}
-        className="flex justify-start px-4 h-12 rounded-xl hover:bg-grayHover"
+        className="flex h-12 rounded-xl hover:bg-grayHover whitespace-nowrap"
       >
-        <div className="w-[25%] flex items-center">
+        <div className="w-[16rem] flex items-center">
           <div
-            className={`mr-2 h-[6px] w-[6px] rounded-md ${
+            className={`mx-2 h-[6px] w-[6px] rounded-md ${
               data.read && "bg-electricBlue"
             }`}
           ></div>
           {data.author.avatar && (
             <img
-              className="h-8 w-8 rounded-2xl"
+              className="h-8 w-8 rounded-2xl mr-2"
               src={data.author.avatar}
               alt="avatar"
             />
           )}
-          <h2 className="mx-2">
+          <h2 className="mr-2 truncate">
             {data.author.name + " " + data.author.surname}
           </h2>
         </div>
-        <div className="flex items-center w-[3%]">
+        <div className="flex items-center min-w-[2rem]">
           {data.important ? (
             <img src="/important_20.svg" alt="Важное"></img>
           ) : (
             data.bookmark && <img src="/bookmark_20.svg" alt="Закладка"></img>
           )}
         </div>
-        <div className="flex items-center w-[60%]">
-          <p className="mr-3 font-bold whitespace-nowrap">{data.title}</p>
-          <p className="whitespace-nowrap truncate">{data.text}</p>
+        <div className="flex text-sm items-center min-w-[40rem]">
+          <p className="mr-3 font-bold">{data.title}</p>
+          <p className="truncate">{data.text}</p>
         </div>
-        <div className="flex items-center justify-end w-[5%] mr-4">
+        <div className="flex items-center justify-end min-w-[4rem] mr-4 ml-auto">
           {data.flag === "Заказы" ? (
             <img src="/shopping_cart_outline_20.svg" alt="Заказы"></img>
           ) : data.flag === "Финансы" ? (
@@ -83,9 +83,11 @@ export default function LetterThumbnail({
           )}
           {data.doc && <img src="/attach_outline_20.svg" alt="Файлы"></img>}
         </div>
-        <div className="flex items-center w-[7%]">{formatDate(data.date)}</div>
+        <div className="flex items-center justify-end min-w-[4rem] mr-4">
+          {formatDate(data.date)}
+        </div>
       </Link>
-      <div className="h-[1px] mx-auto w-[900px] bg-gray-200"></div>
+      <div className="h-[1px] mx-auto w-[85%] bg-gray-200"></div>
     </li>
   );
 }

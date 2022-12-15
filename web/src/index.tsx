@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         loader: folderLoader,
       },
       {
-        path: "/:folderName/:LetterId",
+        path: "/:folderName/:letterId",
         element: <LetterCard />,
         loader: letterLoader,
       },

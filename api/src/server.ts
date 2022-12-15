@@ -4,10 +4,6 @@ import http from "http";
 
 const PORT = 3000;
 
-interface IMimeTypes {
-  [key: string]: string;
-}
-
 interface Letter {
   author: {
     name: string;
@@ -34,7 +30,15 @@ interface Letter {
 }
 const data: Letter[] = require("./db.json");
 
-const MIME_TYPES: IMimeTypes = {
+const folders: { [key: string]: string } = {
+  sent: "Отправленные",
+  drafts: "Черновики",
+  archive: "Архив",
+  junk: "Спам",
+  trash: "Корзина",
+};
+
+const MIME_TYPES: { [key: string]: string } = {
   default: "application/octet-stream",
   html: "text/html; charset=UTF-8",
   js: "application/javascript; charset=UTF-8",
@@ -78,15 +82,17 @@ http
       return;
     }
 
-    if (req.url === "/api" && req.method === "GET") {
+    if (req.url === "/api/inbox" && req.method === "GET") {
+      const filteredData = data.filter(
+        (letter) => letter.folder !== "Отправленные"
+      );
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(data));
+      res.end(JSON.stringify(filteredData));
       return;
     }
 
-    if (req.url === "/api/inbox" && req.method === "GET") {
-      // folder name is not "sent"
-      const filteredData = data.filter((letter) => !letter.folder);
+    if (req.url === "/api/important" && req.method === "GET") {
+      const filteredData = data.filter((letter) => letter.important);
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(filteredData));
       return;
@@ -94,8 +100,36 @@ http
 
     if (req.url.startsWith("/api") && req.method === "GET") {
       const folderName = req.url.split("/")[2];
+      const letterId = req.url.split("/")[3];
+
+      if (letterId !== undefined) {
+        let filteredData: Letter[] = [];
+        switch (folderName) {
+          case "inbox":
+            filteredData = data.filter(
+              (letter) => letter.folder !== "Отправленные"
+            );
+            break;
+          case "important":
+            filteredData = data.filter((letter) => letter.important);
+            break;
+          default:
+            filteredData = data.filter(
+              (letter) => letter.folder === folders[folderName]
+            );
+        }
+
+        const letter = filteredData[parseInt(letterId)];
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(letter));
+        return;
+      }
+    }
+
+    if (req.url.startsWith("/api") && req.method === "GET") {
+      const folderName = req.url.split("/")[2];
       const filteredData = data.filter(
-        (letter) => letter.folder === folderName
+        (letter) => letter.folder === folders[folderName]
       );
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(filteredData));

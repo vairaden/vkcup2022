@@ -16,6 +16,7 @@ async function fetchLetter(folderName: string, letterId: string) {
     }
   );
   const letter = (await res.json()) as Letter;
+  console.log(letter);
   return letter;
 }
 
