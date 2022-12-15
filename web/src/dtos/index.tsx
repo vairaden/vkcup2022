@@ -17,6 +17,7 @@ interface Letter {
   important: boolean;
   read: boolean;
   folder?: string;
+  flag?: string;
   date: string;
   doc?: {
     img: string;

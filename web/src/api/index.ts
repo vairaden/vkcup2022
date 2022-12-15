@@ -8,4 +8,15 @@ async function fetchData(folderName: string) {
   return letters;
 }
 
-export default fetchData;
+async function fetchLetter(folderName: string, letterId: string) {
+  const res = await fetch(
+    `http://localhost:3000/api/${folderName}/${letterId}`,
+    {
+      method: "GET",
+    }
+  );
+  const letter = (await res.json()) as Letter;
+  return letter;
+}
+
+export { fetchData, fetchLetter };

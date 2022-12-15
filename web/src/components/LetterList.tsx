@@ -1,6 +1,6 @@
 import LetterThumbnail from "./LetterThumbnail";
 import { useLoaderData } from "react-router-dom";
-import fetchData from "../api";
+import { fetchData } from "../api";
 import Letter from "../dtos";
 
 export async function folderLoader({ params }: { params: any }) {
@@ -19,7 +19,7 @@ export default function LetterList() {
   console.log(data);
 
   return (
-    <section className="ml-[236px] mt-[56px] py-3 pr-3 w-[100%]">
+    <section className="ml-[236px] mt-[56px] py-3 pr-3 max-w-[1122px]">
       <div className="bg-white rounded-xl">
         <ul>
           {data.map((letterData, index) => (

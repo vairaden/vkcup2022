@@ -7,5 +7,5 @@
   }
 
 body {
-    @apply bg-lightGray;
+    @apply bg-grayBg;
 }

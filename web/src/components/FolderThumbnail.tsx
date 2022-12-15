@@ -19,10 +19,12 @@ export default function FolderThumbnail({
     <li onClick={onClick}>
       <Link to={to}>
         <div
-          className={`w-[200px] h-9 rounded-lg ${selected && "bg-[#00103D14]"}`}
+          className={`flex items-center w-[200px] h-9 px-4 rounded-lg ${
+            selected && "bg-[#00103D14]"
+          }`}
         >
-          <img className="mx-4 inline-block" src={imgSrc} alt={imgAlt}></img>
-          {children}
+          <img src={imgSrc} alt={imgAlt}></img>
+          <p className="ml-2">{children}</p>
         </div>
       </Link>
     </li>

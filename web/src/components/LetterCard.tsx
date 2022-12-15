@@ -8,6 +8,8 @@ export async function letterLoader({ params }: { params: any }) {
 export default function LetterCard() {
   const data = useLoaderData() as string;
   return (
-    <h1 className="ml-[236px] mt-[56px] py-3 pr-3 w-[100%]">Letter card</h1>
+    <section className="ml-[236px] mt-[68px] pr-3 w-[100%] rounded-xl bg-white">
+      <h2>{data}</h2>
+    </section>
   );
 }
