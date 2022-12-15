@@ -57,7 +57,6 @@ const prepareFile = async (url: string) => {
   const pathTraversal = !filePath.startsWith(STATIC_PATH);
   const exists = await fs.promises.access(filePath).then(...toBool);
   const found = !pathTraversal && exists;
-  console.log(filePath);
   const streamPath = found ? filePath : STATIC_PATH + "/404.html";
   const ext = path.extname(streamPath).substring(1).toLowerCase();
   const stream = fs.createReadStream(streamPath);
@@ -66,10 +65,12 @@ const prepareFile = async (url: string) => {
 
 http
   .createServer(async (req, res) => {
-    console.log(req.url);
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET");
     res.setHeader("Access-Control-Max-Age", 2592000); // 30 days
+
+    if (!req.url) throw new Error("No url");
+    console.log(`${req.method} ${req.url}`);
 
     if (req.url === "/" && req.method === "GET") {
       res.writeHead(200, { "Content-Type": "text/html; charset=UTF-8" });
@@ -83,7 +84,25 @@ http
       return;
     }
 
-    const file = await prepareFile(req.url as string);
+    if (req.url === "/api/inbox" && req.method === "GET") {
+      // folder name is not "sent"
+      const filteredData = data.filter((letter) => !letter.folder);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(filteredData));
+      return;
+    }
+
+    if (req.url.startsWith("/api") && req.method === "GET") {
+      const folderName = req.url.split("/")[2];
+      const filteredData = data.filter(
+        (letter) => letter.folder === folderName
+      );
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(filteredData));
+      return;
+    }
+
+    const file = await prepareFile(req.url);
     if (!file.found) {
       res.writeHead(404, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Route not found" }));
@@ -93,7 +112,6 @@ http
     const mimeType = MIME_TYPES[file.ext] || MIME_TYPES.default;
     res.writeHead(200, { "Content-Type": mimeType });
     file.stream.pipe(res);
-    // console.log(`${req.method} ${req.url} ${statusCode}`);
   })
   .listen(PORT);
 

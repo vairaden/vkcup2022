@@ -1,34 +1,11 @@
-interface Letter {
-  author: {
-    name: string;
-    surname: string;
-    email: string;
-    avatar?: string;
-  };
-  to: {
-    name: string;
-    surname: string;
-    email: string;
-    avatar?: string;
-  }[];
-  title: string;
-  text: string;
-  bookmark: boolean;
-  important: boolean;
-  read: boolean;
-  folder?: string;
-  date: string;
-  doc?: {
-    img: string;
-  };
-}
+import Letter from "../dtos";
 
-async function fetchData() {
-  const res = await fetch("http://localhost:3000/api", {
+async function fetchData(folderName: string) {
+  const res = await fetch(`http://localhost:3000/api/${folderName}`, {
     method: "GET",
   });
   const letters = (await res.json()) as Letter[];
   return letters;
 }
 
-export { fetchData };
+export default fetchData;
