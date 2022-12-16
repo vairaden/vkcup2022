@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function useTheme() {
   if (
     localStorage.theme === "dark" ||
@@ -11,17 +9,18 @@ export default function useTheme() {
     document.documentElement.classList.remove("dark");
   }
 
-  const [theme, setTheme] = useState(localStorage.theme);
-
   function changeTheme() {
-    if (theme === "light") {
-      localStorage.theme = "dark";
-      setTheme("dark");
+    if (localStorage.getItem("theme") === "light") {
+      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add("dark");
     } else {
-      localStorage.theme = "light";
-      setTheme("light");
+      localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove("dark");
     }
   }
 
-  return { theme, changeTheme };
+  return {
+    theme: localStorage.getItem("theme"),
+    changeTheme,
+  };
 }

@@ -34,13 +34,14 @@ export default function Navbar() {
             </FolderThumbnail>
           ))}
         </ul>
-        <button className="flex items-center sm:w-[200px] w-9 h-9 mt-5 sm:ml-2 ml-[2px]">
+        <div className="h-[1px] mx-auto w-[85%] bg-gray-200 my-2"></div>
+        <button className="flex items-center sm:w-[200px] w-8 h-9 mt-4 sm:ml-2 mx-auto rounded-lg hover:bg-grayHover">
           <img className="m-2" src="/plus_icon.svg" alt="Новая папка"></img>
           <p className="hidden sm:block">Новая папка</p>
         </button>
       </div>
       <button
-        className="flex items-center dark:text-white"
+        className="flex items-center dark:text-white rounded-lg hover:bg-grayHover"
         onClick={changeTheme}
       >
         <img

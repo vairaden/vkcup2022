@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Letter from "../dtos";
+import AttachmentIcon from "./AttachmentIcon";
 
 const months = [
   "янв",
@@ -26,7 +27,9 @@ export default function LetterThumbnail({
   function formatDate(date: string) {
     const dateObj = new Date(date);
     if (dateObj.toDateString() === new Date().toDateString()) {
-      return `${dateObj.getHours()}:${dateObj.getMinutes()}`;
+      return `${dateObj.getHours()}:${
+        dateObj.getMinutes() < 10 ? "0" : ""
+      }${dateObj.getMinutes()}`;
     }
     return `${dateObj.getDate()} ${months[dateObj.getMonth()]}`;
   }
@@ -37,7 +40,7 @@ export default function LetterThumbnail({
         to={to}
         className="flex h-12 rounded-xl hover:bg-grayHover whitespace-nowrap dark:text-white"
       >
-        <div className="w-[16rem] flex items-center">
+        <div className="flex items-center w-[16rem]">
           <div
             className={`mx-2 h-[6px] w-[6px] rounded-md ${
               data.read && "bg-electricBlue"
@@ -53,19 +56,19 @@ export default function LetterThumbnail({
           <h2 className="mr-2 truncate">
             {data.author.name + " " + data.author.surname}
           </h2>
+          <div className="ml-auto mr-2">
+            {data.important ? (
+              <img src="/important_20.svg" alt="Важное"></img>
+            ) : (
+              data.bookmark && <img src="/bookmark_20.svg" alt="Закладка"></img>
+            )}
+          </div>
         </div>
-        <div className="flex items-center min-w-[2rem]">
-          {data.important ? (
-            <img src="/important_20.svg" alt="Важное"></img>
-          ) : (
-            data.bookmark && <img src="/bookmark_20.svg" alt="Закладка"></img>
-          )}
+        <div className="flex text-sm items-center w-[40%]">
+          <p className="mr-3 font-bold truncate w-[60%]">{data.title}</p>
+          <p className="truncate w-[40%]">{data.text}</p>
         </div>
-        <div className="flex text-sm items-center min-w-[40rem]">
-          <p className="mr-3 font-bold">{data.title}</p>
-          <p className="truncate">{data.text}</p>
-        </div>
-        <div className="flex items-center justify-end min-w-[4rem] mr-4 ml-auto">
+        <div className="flex items-center justify-end mr-4 ml-auto w-12">
           {data.flag === "Заказы" ? (
             <img src="/shopping_cart_outline_20.svg" alt="Заказы"></img>
           ) : data.flag === "Финансы" ? (
@@ -81,9 +84,9 @@ export default function LetterThumbnail({
               <img src="/government_outline_20.svg" alt="Штрафы и налоги"></img>
             )
           )}
-          {data.doc && <img src="/attach_outline_20.svg" alt="Файлы"></img>}
+          {data.doc && <AttachmentIcon doc={data.doc} />}
         </div>
-        <div className="flex items-center justify-end min-w-[4rem] mr-4">
+        <div className="flex items-center justify-end mr-4 w-14">
           {formatDate(data.date)}
         </div>
       </Link>
