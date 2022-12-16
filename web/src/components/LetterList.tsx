@@ -2,6 +2,7 @@ import LetterThumbnail from "./LetterThumbnail";
 import { useLoaderData } from "react-router-dom";
 import { fetchData } from "../api";
 import Letter from "../dtos";
+import useTheme from "../hooks/useTheme";
 
 export async function folderLoader({ params }: { params: any }) {
   const folderName = params.folderName ?? "inbox";
@@ -16,21 +17,44 @@ export default function LetterList() {
     data: Letter[];
     folderName: string;
   };
-  console.log(data);
+
+  const { theme } = useTheme();
 
   return (
-    <section>
-      <div className="bg-white rounded-xl">
-        <ul>
-          {data.map((letterData, index) => (
-            <LetterThumbnail
-              to={`/${folderName}/${index}`}
-              key={letterData.text}
-              data={letterData}
-            />
-          ))}
-        </ul>
-      </div>
-    </section>
+    <>
+      <header className="fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
+        <img
+          className="block sm:hidden"
+          src="/mailru_logo_no_letters.svg"
+          alt="Mail ru logo"
+        ></img>
+        {theme === "light" ? (
+          <img
+            className="hidden sm:block"
+            src="/mailru_logo.svg"
+            alt="Mail ru logo"
+          ></img>
+        ) : (
+          <img
+            className="hidden sm:block"
+            src="/mailru_logo_dark.svg"
+            alt="Mail ru logo"
+          ></img>
+        )}
+      </header>
+      <section>
+        <div className="bg-white dark:bg-darkGray rounded-xl">
+          <ul>
+            {data.map((letterData, index) => (
+              <LetterThumbnail
+                to={`/${folderName}/${index}`}
+                key={letterData.text}
+                data={letterData}
+              />
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 }

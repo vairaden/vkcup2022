@@ -35,7 +35,7 @@ export default function LetterThumbnail({
     <li>
       <Link
         to={to}
-        className="flex h-12 rounded-xl hover:bg-grayHover whitespace-nowrap"
+        className="flex h-12 rounded-xl hover:bg-grayHover whitespace-nowrap dark:text-white"
       >
         <div className="w-[16rem] flex items-center">
           <div

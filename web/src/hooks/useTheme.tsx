@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function useTheme() {
   if (
     localStorage.theme === "dark" ||
@@ -9,12 +11,17 @@ export default function useTheme() {
     document.documentElement.classList.remove("dark");
   }
 
-  // Whenever the user explicitly chooses light mode
-  localStorage.theme = "light";
+  const [theme, setTheme] = useState(localStorage.theme);
 
-  // Whenever the user explicitly chooses dark mode
-  localStorage.theme = "dark";
+  function changeTheme() {
+    if (theme === "light") {
+      localStorage.theme = "dark";
+      setTheme("dark");
+    } else {
+      localStorage.theme = "light";
+      setTheme("light");
+    }
+  }
 
-  // Whenever the user explicitly chooses to respect the OS preference
-  localStorage.removeItem("theme");
+  return { theme, changeTheme };
 }

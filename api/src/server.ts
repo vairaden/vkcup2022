@@ -74,7 +74,6 @@ http
     res.setHeader("Access-Control-Max-Age", 2592000); // 30 days
 
     if (!req.url) throw new Error("No url");
-    console.log(`${req.method} ${req.url}`);
 
     if (req.url === "/" && req.method === "GET") {
       res.writeHead(200, { "Content-Type": "text/html; charset=UTF-8" });
