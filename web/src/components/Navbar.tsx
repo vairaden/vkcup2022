@@ -26,6 +26,7 @@ export default function Navbar() {
               key={folder.name}
               to={folder.route}
               imgSrc={folder.imgSrc}
+              darkImgSrc={folder.darkImgSrc}
               imgAlt={folder.imgAlt}
               onClick={() => setActiveFolder(folder.alias)}
               selected={folder.alias === activeFolder}
@@ -45,8 +46,13 @@ export default function Navbar() {
         onClick={changeTheme}
       >
         <img
-          className="m-2"
+          className="m-2 block dark:hidden"
           src="/palette_outline_20.svg"
+          alt="Theme icon"
+        ></img>
+        <img
+          className="m-2 hidden dark:inline-block"
+          src="/palette_outline_dark_20.svg"
           alt="Theme icon"
         ></img>
         <p className="hidden sm:block">

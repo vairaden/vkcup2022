@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 export default function FolderThumbnail({
   to,
   imgSrc,
+  darkImgSrc,
   imgAlt,
   selected,
   children,
@@ -10,6 +11,7 @@ export default function FolderThumbnail({
 }: {
   to: string;
   imgSrc: string;
+  darkImgSrc: string;
   imgAlt: string;
   selected: boolean;
   children: React.ReactNode;
@@ -23,7 +25,12 @@ export default function FolderThumbnail({
             selected && "bg-[#00103D14] dark:bg-darkGray"
           }`}
         >
-          <img src={imgSrc} alt={imgAlt}></img>
+          <img className="block dark:hidden" src={imgSrc} alt={imgAlt}></img>
+          <img
+            className="hidden dark:block"
+            src={darkImgSrc}
+            alt={imgAlt}
+          ></img>
           <p className="ml-2 dark:text-white hidden sm:block">{children}</p>
         </div>
       </Link>
