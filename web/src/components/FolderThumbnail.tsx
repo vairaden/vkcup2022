@@ -21,8 +21,8 @@ export default function FolderThumbnail({
     <li onClick={onClick}>
       <Link to={to}>
         <div
-          className={`flex items-center sm:w-[200px] h-9 sm:px-4 px-2 rounded-lg hover:bg-grayHover ${
-            selected && "bg-[#00103D14] dark:bg-darkGray"
+          className={`flex items-center sm:w-[200px] h-9 sm:px-4 px-2 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
+            selected && "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
           }`}
         >
           <img className="block dark:hidden" src={imgSrc} alt={imgAlt}></img>
@@ -31,7 +31,9 @@ export default function FolderThumbnail({
             src={darkImgSrc}
             alt={imgAlt}
           ></img>
-          <p className="ml-2 dark:text-white hidden sm:block">{children}</p>
+          <p className="ml-2 dark:text-textPrimaryWhite hidden sm:block">
+            {children}
+          </p>
         </div>
       </Link>
     </li>

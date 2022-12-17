@@ -64,37 +64,39 @@ export default function LetterCard() {
             src="/chevron_left_outline_dark_20.svg"
             alt="Вернуться"
           ></img>
-          <h1 className="dark:text-white hidden sm:block">Вернуться</h1>
+          <h1 className="dark:text-textPrimaryWhite hidden sm:block">
+            Вернуться
+          </h1>
         </Link>
       </header>
-      <section className="mb-3 rounded-xl bg-white dark:text-white">
+      <section className="mb-3 rounded-xl bg-white dark:text-textPrimaryWhite dark:bg-darkGray">
         <div className="flex items-center justify-between mr-4 ml-auto">
           <h1 className="font-bold text-2xl px-8 py-4">{data.title}</h1>
           <div className="flex items-center">
             {data.flag === "Заказы" ? (
               <>
                 <img src="/shopping_cart_outline_20.svg" alt="Заказы"></img>
-                {data.flag}
+                <p className="m-4 text-sm">{data.flag}</p>
               </>
             ) : data.flag === "Финансы" ? (
               <>
                 <img src="/money_ruble_outline_20.svg" alt="Финансы"></img>
-                {data.flag}
+                <p className="m-4 text-sm">{data.flag}</p>
               </>
             ) : data.flag === "Регистрации" ? (
               <>
                 <img src="/key_outline_20.svg" alt="Регистрации"></img>
-                {data.flag}
+                <p className="m-4 text-sm">{data.flag}</p>
               </>
             ) : data.flag === "Путешествия" ? (
               <>
                 <img src="/plane_outline_20.svg" alt="Путешествия"></img>
-                {data.flag}
+                <p className="m-4 text-sm">{data.flag}</p>
               </>
             ) : data.flag === "Билеты" ? (
               <>
                 <img src="/ticket_outline_20.svg" alt="Билеты"></img>
-                {data.flag}
+                <p className="m-4 text-sm">{data.flag}</p>
               </>
             ) : (
               data.flag === "Штрафы и налоги" && (
@@ -103,7 +105,7 @@ export default function LetterCard() {
                     src="/government_outline_20.svg"
                     alt="Штрафы и налоги"
                   ></img>
-                  {data.flag}
+                  <p className="m-4 text-sm">{data.flag}</p>
                 </>
               )
             )}
@@ -127,7 +129,7 @@ export default function LetterCard() {
               <h2 className="mr-2 whitespace-nowrap">
                 {data.author.name + " " + data.author.surname}
               </h2>
-              <p className="flex items-center justify-end min-w-[4rem] mr-4 whitespace-nowrap">
+              <p className="flex items-center justify-end min-w-[4rem] mr-4 whitespace-nowrap text-textGray text-sm">
                 {formatDate(data.date)}
               </p>
               {data.important ? (
@@ -138,7 +140,7 @@ export default function LetterCard() {
                 )
               )}
             </div>
-            <p className="whitespace-nowrap truncate w-96">
+            <p className="whitespace-nowrap truncate w-96 text-textGray text-sm">
               Кому:{" "}
               {data.to.map(
                 (receiver, index) =>
@@ -157,10 +159,16 @@ export default function LetterCard() {
                 src={data.doc.img}
                 alt="Attachment"
               ></img>
-              <a download="attachment.jpg" href={data.doc.img}>
+              <a
+                className="text-linkBlue"
+                download="attachment.jpg"
+                href={data.doc.img}
+              >
                 Скачать
               </a>
-              <p className="text-sm">({calculateFileSize(data.doc.img)})</p>
+              <p className="text-sm text-textGray inline-block ml-1">
+                ({calculateFileSize(data.doc.img)})
+              </p>
             </>
           )}
         </div>

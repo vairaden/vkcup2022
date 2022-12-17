@@ -11,14 +11,14 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
     <>
       <div className="group/list">
         <div className="fixed hidden group-hover/list:block w-[310px] translate-x-[-300px] translate-y-[-45%]">
-          <div className="w-[298px] p-2 bg-white rounded-xl shadow-md">
+          <div className="w-[298px] p-2 bg-white dark:bg-blackBg rounded-xl shadow-md">
             {Array(3)
               .fill(0)
               .map(() => (
                 <div className="flex items-center mb-2 last:mb-0">
                   <div className="group/image">
                     <div className="fixed hidden group-hover/image:block w-[272px] translate-x-[-264px] translate-y-[-45%]">
-                      <div className="w-[264px] h-[198px] p-1 rounded-xl bg-white shadow-md ">
+                      <div className="w-[264px] h-[198px] p-1 rounded-xl bg-white dark:bg-blackBg shadow-md">
                         <img
                           className="w-[256px] h-[190px] rounded-xl"
                           src={doc.img}

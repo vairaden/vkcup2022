@@ -38,9 +38,9 @@ export default function LetterThumbnail({
     <li>
       <Link
         to={to}
-        className="flex h-12 rounded-xl hover:bg-grayHover whitespace-nowrap dark:text-white"
+        className="flex h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover whitespace-nowrap dark:text-textPrimaryWhite"
       >
-        <div className="flex items-center w-[16rem]">
+        <div className="flex items-center w-[16rem] mr-2">
           <div
             className={`mx-2 h-[6px] w-[6px] rounded-md ${
               data.read && "bg-electricBlue"
@@ -56,7 +56,7 @@ export default function LetterThumbnail({
           <h2 className="mr-2 truncate">
             {data.author.name + " " + data.author.surname}
           </h2>
-          <div className="ml-auto mr-2">
+          <div className="ml-auto">
             {data.important ? (
               <img src="/important_20.svg" alt="Важное"></img>
             ) : (
@@ -90,7 +90,7 @@ export default function LetterThumbnail({
           {formatDate(data.date)}
         </div>
       </Link>
-      <div className="h-[1px] mx-auto w-[85%] bg-gray-200"></div>
+      <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
     </li>
   );
 }
