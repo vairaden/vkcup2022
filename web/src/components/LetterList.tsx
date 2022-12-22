@@ -39,11 +39,14 @@ export default function LetterList() {
       <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
         <ul>
           {data.map((letterData, index) => (
-            <LetterThumbnail
-              to={`/${folderName}/${index}`}
-              key={letterData.text}
-              data={letterData}
-            />
+            <>
+              <LetterThumbnail
+                to={`/${folderName}/${index}`}
+                key={letterData.text}
+                data={letterData}
+              />
+              <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black last:hidden"></div>
+            </>
           ))}
         </ul>
       </section>

@@ -43,7 +43,7 @@ export default function LetterThumbnail({
         <div className="flex items-center w-[16rem] mr-2">
           <div
             className={`mx-2 h-[6px] w-[6px] rounded-md ${
-              data.read && "bg-electricBlue"
+              !data.read && "bg-electricBlue"
             }`}
           ></div>
           {data.author.avatar && (
@@ -53,7 +53,7 @@ export default function LetterThumbnail({
               alt="avatar"
             />
           )}
-          <h2 className="mr-2 truncate">
+          <h2 className={`mr-2 truncate ${!data.read && "font-bold"}`}>
             {data.author.name + " " + data.author.surname}
           </h2>
           <div className="ml-auto">
@@ -64,9 +64,17 @@ export default function LetterThumbnail({
             )}
           </div>
         </div>
-        <div className="flex text-sm items-center w-[40%]">
-          <p className="mr-3 font-bold truncate w-[60%]">{data.title}</p>
-          <p className="truncate w-[40%]">{data.text}</p>
+        <div className="flex text-sm items-center w-[40%] sm:w-[60%] md:w-[65%]">
+          <p
+            className={`mr-3 truncate w-[60%] md:w-[40%] ${
+              !data.read && "font-bold"
+            }`}
+          >
+            {data.title}
+          </p>
+          <p className="truncate w-[40%] md:w-[60%] text-textGray">
+            {data.text}
+          </p>
         </div>
         <div className="flex items-center justify-end mr-4 ml-auto w-12">
           {data.flag === "Заказы" ? (
@@ -86,11 +94,10 @@ export default function LetterThumbnail({
           )}
           {data.doc && <AttachmentIcon doc={data.doc} />}
         </div>
-        <div className="flex items-center justify-end mr-4 w-14">
+        <div className="flex items-center justify-end mr-4 w-14 text-textGray">
           {formatDate(data.date)}
         </div>
       </Link>
-      <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
     </li>
   );
 }
