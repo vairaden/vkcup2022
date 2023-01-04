@@ -17,7 +17,7 @@ export function getLettersByFolderName(
 ) {
   if (!req.url) throw new Error("No url");
 
-  const pageNumber = parseInt(req.url.split("page=")[1]) ?? 0;
+  const pageNumber = parseInt(req.url.split("page=")[1].split("&")[0] ?? "0");
   const lettersOnPage = 5;
 
   const folderName = req.url.split("/")[2].split("?")[0];
@@ -34,6 +34,21 @@ export function getLettersByFolderName(
         (letter) => letter.folder === folders.get(folderName)
       );
       break;
+  }
+
+  const unread = req.url.split("unread=")[1].split("&")[0] ?? "false";
+  const bookmarked = req.url.split("bookmarked=")[1].split("&")[0] ?? "false";
+  const withAttachments =
+    req.url.split("withAttachments=")[1].split("&")[0] ?? "false";
+
+  if (unread === "true") {
+    filteredData = filteredData.filter((letter) => !letter.read);
+  }
+  if (bookmarked === "true") {
+    filteredData = filteredData.filter((letter) => letter.bookmark);
+  }
+  if (withAttachments === "true") {
+    filteredData = filteredData.filter((letter) => letter.doc !== undefined);
   }
 
   res.writeHead(200, { "Content-Type": "application/json" });
@@ -65,6 +80,21 @@ export function getLetterById(req: IncomingMessage, res: ServerResponse) {
         (letter) => letter.folder === folders.get(folderName)
       );
       break;
+  }
+
+  const unread = req.url.split("unread=")[1].split("&")[0] ?? "false";
+  const bookmarked = req.url.split("bookmarked=")[1].split("&")[0] ?? "false";
+  const withAttachments =
+    req.url.split("withAttachments=")[1].split("&")[0] ?? "false";
+
+  if (unread === "true") {
+    filteredData = filteredData.filter((letter) => !letter.read);
+  }
+  if (bookmarked === "true") {
+    filteredData = filteredData.filter((letter) => letter.bookmark);
+  }
+  if (withAttachments === "true") {
+    filteredData = filteredData.filter((letter) => letter.doc !== undefined);
   }
 
   const letter = filteredData[parseInt(letterId)];

@@ -1,14 +1,23 @@
 import Letter from "../dtos";
 
-async function fetchData(folderName: string) {
-  const res = await fetch(`http://localhost:3000/api/${folderName}`, {
-    method: "GET",
-  });
+export async function fetchData(
+  folderName: string,
+  pageNumber: number,
+  unread: boolean,
+  bookmarked: boolean,
+  withAttachments: boolean
+) {
+  const res = await fetch(
+    `http://localhost:3000/api/${folderName}?page=${pageNumber}&unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`,
+    {
+      method: "GET",
+    }
+  );
   const letters = (await res.json()) as Letter[];
   return letters;
 }
 
-async function fetchLetter(folderName: string, letterId: string) {
+export async function fetchLetterById(folderName: string, letterId: string) {
   const res = await fetch(
     `http://localhost:3000/api/${folderName}/${letterId}`,
     {
@@ -18,5 +27,3 @@ async function fetchLetter(folderName: string, letterId: string) {
   const letter = (await res.json()) as Letter;
   return letter;
 }
-
-export { fetchData, fetchLetter };

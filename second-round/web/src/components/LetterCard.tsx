@@ -1,5 +1,6 @@
-import { Link, useLoaderData } from "react-router-dom";
-import { fetchLetter } from "../api";
+import { useQuery } from "@tanstack/react-query";
+import { Link, useParams } from "react-router-dom";
+import { fetchLetterById } from "../api";
 import Letter from "../dtos";
 
 const months = [
@@ -17,40 +18,35 @@ const months = [
   "дек",
 ];
 
-export async function letterLoader({ params }: { params: any }) {
-  return {
-    data: await fetchLetter(params.folderName, params.letterId),
-    folderName: params.folderName,
-  };
+function calculateFileSize(file: string) {
+  const fileSize = file.length / 1024;
+
+  return fileSize < 1024
+    ? `${parseInt(fileSize.toFixed(2))}Kb`
+    : `${parseInt((fileSize / 1024).toFixed(2))}Mb`;
+}
+
+function formatDate(date: string) {
+  const dateObj = new Date(date);
+
+  return `${
+    dateObj.toDateString() === new Date().toDateString()
+      ? "Сегодня"
+      : `${dateObj.getDate()} ${months[dateObj.getMonth()]}`
+  }, ${dateObj.getHours()}:${
+    dateObj.getMinutes() < 10 ? "0" : ""
+  }${dateObj.getMinutes()}`;
 }
 
 export default function LetterCard() {
-  const { data, folderName } = useLoaderData() as {
-    data: Letter;
-    folderName: string;
-  };
+  const folderName = useParams().folderName || "inbox";
+  const letterId = useParams().letterId || "0";
 
-  function calculateFileSize(file: string) {
-    const fileSize = file.length / 1024;
+  const { data } = useQuery(["letter", folderName, letterId], () =>
+    fetchLetterById(folderName, letterId)
+  );
 
-    return fileSize < 1024
-      ? `${parseInt(fileSize.toFixed(2))}Kb`
-      : `${parseInt((fileSize / 1024).toFixed(2))}Mb`;
-  }
-
-  function formatDate(date: string) {
-    const dateObj = new Date(date);
-
-    return `${
-      dateObj.toDateString() === new Date().toDateString()
-        ? "Сегодня"
-        : `${dateObj.getDate()} ${months[dateObj.getMonth()]}`
-    }, ${dateObj.getHours()}:${
-      dateObj.getMinutes() < 10 ? "0" : ""
-    }${dateObj.getMinutes()}`;
-  }
-
-  return (
+  return data ? (
     <>
       <header className="fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
         <Link className="flex items-center w-9 ml-2 mt-1" to={"/" + folderName}>
@@ -175,5 +171,9 @@ export default function LetterCard() {
         <p className="text-sm px-8 py-4">{data.text}</p>
       </section>
     </>
+  ) : (
+    <div className="flex justify-center items-center h-screen">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+    </div>
   );
 }
