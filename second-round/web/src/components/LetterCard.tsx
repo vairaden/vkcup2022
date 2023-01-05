@@ -1,7 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
+import { useAtom } from "jotai";
 import { Link, useParams } from "react-router-dom";
 import { fetchLetterById } from "../api";
 import Letter from "../dtos";
+import {
+  filterBookmarkedAtom,
+  filterUnreadAtom,
+  filterWithAttachmentsAtom,
+} from "../store";
 
 const months = [
   "янв",
@@ -41,9 +47,27 @@ function formatDate(date: string) {
 export default function LetterCard() {
   const folderName = useParams().folderName || "inbox";
   const letterId = useParams().letterId || "0";
+  const [filterUnread] = useAtom(filterUnreadAtom);
+  const [filterBookmarked] = useAtom(filterBookmarkedAtom);
+  const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
 
-  const { data } = useQuery(["letter", folderName, letterId], () =>
-    fetchLetterById(folderName, letterId)
+  const { data } = useQuery(
+    [
+      "letter",
+      folderName,
+      letterId,
+      filterUnread,
+      filterBookmarked,
+      filterWithAttachments,
+    ],
+    () =>
+      fetchLetterById(
+        folderName,
+        letterId,
+        filterUnread,
+        filterBookmarked,
+        filterWithAttachments
+      )
   );
 
   return data ? (

@@ -2,57 +2,84 @@ import LetterThumbnail from "./LetterThumbnail";
 import { fetchData } from "../api";
 import Letter from "../dtos";
 import { useParams } from "react-router-dom";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useRef } from "react";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { useAtom } from "jotai";
+import {
+  filterBookmarkedAtom,
+  filterUnreadAtom,
+  filterWithAttachmentsAtom,
+} from "../store";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
 
+  const [pageNumber, setPageNumber] = useState(0);
+  const [filterUnread, setFilterUnread] = useAtom(filterUnreadAtom);
+  const [filterBookmarked, setFilterBookmarked] = useAtom(filterBookmarkedAtom);
+  const [filterWithAttachments, setFilterWithAttachments] = useAtom(
+    filterWithAttachmentsAtom
+  );
+  const queryClient = useQueryClient();
+
   const { isLoading, data, error, fetchNextPage, hasNextPage } =
-    useInfiniteQuery(["letters", folderName], fetchData, {
-      getNextPageParam: (lastPage) =>
-        lastPage.nextCursor
-          ? {
-              limit,
-              cursor: lastPage.nextCursor,
-              authorId,
-            }
-          : undefined,
-    });
+    useInfiniteQuery(
+      [
+        "letters",
+        folderName,
+        filterUnread,
+        filterBookmarked,
+        filterWithAttachments,
+      ],
+      ({
+        pageParam = {
+          folderName,
+          pageNumber: 0,
+          unread: false,
+          bookmarked: false,
+          withAttachments: false,
+        },
+      }) => fetchData(pageParam),
+      {
+        getNextPageParam: (lastPage, pages) => {
+          return lastPage.hasMore
+            ? {
+                folderName,
+                pageNumber: pages.length + 1,
+                unread: false,
+                bookmarked: false,
+                withAttachments: false,
+              }
+            : undefined;
+        },
+      }
+    );
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastPostRef = useCallback(
-    (node: HTMLElement) => {
+    (node: HTMLDivElement) => {
       if (isLoading) return;
 
       if (observer.current) observer.current.disconnect();
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasNextPage) {
-          queryClient.setQueryData(["posts", authorId], (data: any) =>
-            data.pages.length === pagesToKeep
-              ? {
-                  pages: data.pages.slice(1),
-                  pageParams: data.pageParams.slice(1),
-                }
-              : data
-          );
           fetchNextPage();
         }
       });
       if (node) observer.current.observe(node);
     },
-    [fetchNextPage, hasNextPage, isLoading, pagesToKeep, authorId, queryClient]
+    [fetchNextPage, hasNextPage, isLoading, folderName, queryClient]
   );
 
-  const posts = useMemo(() => {
-    let postList: IPost[] = [];
+  const letters = useMemo(() => {
+    let letterList: Letter[] = [];
     if (data) {
       for (let page of data.pages) {
-        postList = [...postList, ...page.posts];
+        letterList = [...letterList, ...page.pageData];
       }
     }
-    return postList;
+    return letterList;
   }, [data]);
 
   return data ? (
@@ -76,18 +103,15 @@ export default function LetterList() {
       </header>
       <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
         <ul>
-          {data.map((letterData, index) => (
+          {letters.map((letterData, index) => (
             <>
               <LetterThumbnail
                 to={`/${folderName}/${index}`}
-                key={letterData.text}
+                key={index}
                 data={letterData}
               />
-              {index === data.length - 1 ? (
-                <div
-                  ref={lastPostRef}
-                  className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black last:hidden"
-                ></div>
+              {index === letters.length - 1 ? (
+                <div ref={lastPostRef}></div>
               ) : (
                 <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
               )}

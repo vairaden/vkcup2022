@@ -12,43 +12,39 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
       <div className="group/list">
         <div className="fixed hidden group-hover/list:block w-[310px] translate-x-[-300px] translate-y-[-45%]">
           <div className="w-[298px] p-2 bg-white dark:bg-blackBg rounded-xl shadow-md">
-            {Array(3)
-              .fill(0)
-              .map(() => (
-                <div className="flex items-center mb-2 last:mb-0">
-                  <div className="group/image">
-                    <div className="fixed hidden group-hover/image:block w-[272px] translate-x-[-264px] translate-y-[-45%]">
-                      <div className="w-[264px] h-[198px] p-1 rounded-xl bg-white dark:bg-blackBg shadow-md group/download">
-                        <img
-                          className="w-[256px] h-[190px] rounded-xl"
-                          src={doc.img}
-                          alt="Attachment"
-                        ></img>
-                        <a
-                          className="items-center text-textPrimaryWhite shadow-lg hidden group-hover/download:flex absolute bottom-2 right-[50%] transform translate-x-1/2"
-                          download="attachment.jpg"
-                          href={doc.img}
-                        >
-                          <img
-                            className="mr-2"
-                            src="/download_outline.svg"
-                            alt="Скачать"
-                          ></img>
-                          Скачать
-                        </a>
-                      </div>
-                    </div>
+            <div className="flex items-center mb-2 last:mb-0">
+              <div className="group/image">
+                <div className="fixed hidden group-hover/image:block w-[272px] translate-x-[-264px] translate-y-[-45%]">
+                  <div className="w-[264px] h-[198px] p-1 rounded-xl bg-white dark:bg-blackBg shadow-md group/download">
                     <img
-                      className="w-8 h-8 rounded"
+                      className="w-[256px] h-[190px] rounded-xl"
                       src={doc.img}
-                      alt="Файлы"
+                      alt="Attachment"
                     ></img>
+                    <a
+                      className="items-center text-textPrimaryWhite shadow-lg hidden group-hover/download:flex absolute bottom-2 right-[50%] transform translate-x-1/2"
+                      download="attachment.jpg"
+                      href={doc.img}
+                    >
+                      <img
+                        className="mr-2"
+                        src="/download_outline.svg"
+                        alt="Скачать"
+                      ></img>
+                      Скачать
+                    </a>
                   </div>
-                  <p className="text-sm ml-2">
-                    attachment.jpg {calculateFileSize(doc.img)}
-                  </p>
                 </div>
-              ))}
+                <img
+                  className="w-8 h-8 rounded"
+                  src={doc.img}
+                  alt="Файлы"
+                ></img>
+              </div>
+              <p className="text-sm ml-2">
+                attachment.jpg {calculateFileSize(doc.img)}
+              </p>
+            </div>
           </div>
         </div>
         <img
