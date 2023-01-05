@@ -3,23 +3,21 @@ import { fetchData } from "../api";
 import Letter from "../dtos";
 import { useParams } from "react-router-dom";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { useAtom } from "jotai";
 import {
   filterBookmarkedAtom,
   filterUnreadAtom,
   filterWithAttachmentsAtom,
 } from "../store";
+import LetterListHeader from "./LetterListHeader";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
 
-  const [pageNumber, setPageNumber] = useState(0);
-  const [filterUnread, setFilterUnread] = useAtom(filterUnreadAtom);
-  const [filterBookmarked, setFilterBookmarked] = useAtom(filterBookmarkedAtom);
-  const [filterWithAttachments, setFilterWithAttachments] = useAtom(
-    filterWithAttachmentsAtom
-  );
+  const [filterUnread] = useAtom(filterUnreadAtom);
+  const [filterBookmarked] = useAtom(filterBookmarkedAtom);
+  const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
   const queryClient = useQueryClient();
 
   const { isLoading, data, error, fetchNextPage, hasNextPage } =
@@ -35,9 +33,9 @@ export default function LetterList() {
         pageParam = {
           folderName,
           pageNumber: 0,
-          unread: false,
-          bookmarked: false,
-          withAttachments: false,
+          unread: filterUnread,
+          bookmarked: filterBookmarked,
+          withAttachments: filterWithAttachments,
         },
       }) => fetchData(pageParam),
       {
@@ -45,10 +43,10 @@ export default function LetterList() {
           return lastPage.hasMore
             ? {
                 folderName,
-                pageNumber: pages.length + 1,
-                unread: false,
-                bookmarked: false,
-                withAttachments: false,
+                pageNumber: pages.length,
+                unread: filterUnread,
+                bookmarked: filterBookmarked,
+                withAttachments: filterWithAttachments,
               }
             : undefined;
         },
@@ -84,23 +82,7 @@ export default function LetterList() {
 
   return data ? (
     <>
-      <header className="fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
-        <img
-          className="block sm:hidden"
-          src="/mailru_logo_no_letters.svg"
-          alt="Mail ru logo"
-        ></img>
-        <img
-          className="hidden sm:block dark:hidden"
-          src="/mailru_logo.svg"
-          alt="Mail ru logo"
-        ></img>
-        <img
-          className="hidden sm:dark:block"
-          src="/mailru_logo_dark.svg"
-          alt="Mail ru logo"
-        ></img>
-      </header>
+      <LetterListHeader />
       <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
         <ul>
           {letters.map((letterData, index) => (
