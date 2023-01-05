@@ -3,11 +3,11 @@ import FolderThumbnail from "./FolderThumbnail";
 
 import folderList from "../data/folderList";
 import { useState } from "react";
-import useTheme from "../hooks/useTheme";
+import Settings from "./settingsMenu/Settings";
 
 export default function Navbar() {
   const [activeFolder, setActiveFolder] = useState("");
-  const { theme, changeTheme } = useTheme();
+  const [showSettings, setShowSettings] = useState(false);
 
   return (
     <nav className="fixed top-14 flex flex-col justify-between px-4 py-3 sm:w-[232px] w-[68px] h-[calc(100vh-56px)]">
@@ -45,7 +45,7 @@ export default function Navbar() {
       </div>
       <button
         className="flex items-center dark:text-textPrimaryWhite rounded-lg hover:bg-grayHover dark:hover:bg-darkHover"
-        onClick={changeTheme}
+        onClick={() => setShowSettings(true)}
       >
         <img
           className="m-2 block dark:hidden"
@@ -57,10 +57,11 @@ export default function Navbar() {
           src="/palette_outline_dark_20.svg"
           alt="Theme icon"
         ></img>
-        <p className="hidden sm:block">
-          Тема: {theme === "light" ? "Светлая" : "Тёмная"}
-        </p>
+        <p className="hidden sm:block">Настройки</p>
       </button>
+      {showSettings && (
+        <Settings closeCallback={() => setShowSettings(false)} />
+      )}
     </nav>
   );
 }
