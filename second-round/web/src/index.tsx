@@ -1,9 +1,11 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import LetterCard from "./components/LetterCard";
-import LetterList from "./components/LetterList";
+import LetterCard from "./components/letterView/LetterCard";
+import LetterList from "./components/letterList/LetterList";
 import "./index.css";
+import LetterListHeader from "./components/letterList/LetterListHeader";
+import LetterCardHeader from "./components/letterView/LetterCardHeader";
 
 const router = createBrowserRouter([
   {
@@ -12,15 +14,30 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <LetterList />,
+        element: (
+          <>
+            <LetterListHeader />
+            <LetterList />
+          </>
+        ),
       },
       {
         path: "/:folderName",
-        element: <LetterList />,
+        element: (
+          <>
+            <LetterListHeader />
+            <LetterList />
+          </>
+        ),
       },
       {
         path: "/:folderName/:letterId",
-        element: <LetterCard />,
+        element: (
+          <>
+            <LetterCardHeader />
+            <LetterCard />
+          </>
+        ),
       },
     ],
   },

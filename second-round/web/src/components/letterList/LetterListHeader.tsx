@@ -4,8 +4,8 @@ import {
   filterBookmarkedAtom,
   filterUnreadAtom,
   filterWithAttachmentsAtom,
-} from "../store";
-import FilterButton from "./FilterButton";
+} from "../../store";
+import FilterButton from "../FilterButton";
 
 export default function LetterListHeader() {
   const [filtersOpen, setFiltersOpen] = useState(false);

@@ -1,6 +1,6 @@
 import LetterThumbnail from "./LetterThumbnail";
-import { fetchData } from "../api";
-import Letter from "../dtos";
+import { fetchData } from "../../api";
+import Letter from "../../dtos";
 import { useParams } from "react-router-dom";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo, useRef } from "react";
@@ -9,8 +9,7 @@ import {
   filterBookmarkedAtom,
   filterUnreadAtom,
   filterWithAttachmentsAtom,
-} from "../store";
-import LetterListHeader from "./LetterListHeader";
+} from "../../store";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
@@ -81,27 +80,24 @@ export default function LetterList() {
   }, [data]);
 
   return data ? (
-    <>
-      <LetterListHeader />
-      <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
-        <ul>
-          {letters.map((letterData, index) => (
-            <>
-              <LetterThumbnail
-                to={`/${folderName}/${index}`}
-                key={index}
-                data={letterData}
-              />
-              {index === letters.length - 1 ? (
-                <div ref={lastPostRef}></div>
-              ) : (
-                <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
-              )}
-            </>
-          ))}
-        </ul>
-      </section>
-    </>
+    <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
+      <ul>
+        {letters.map((letterData, index) => (
+          <>
+            <LetterThumbnail
+              to={`/${folderName}/${index}`}
+              key={index}
+              data={letterData}
+            />
+            {index === letters.length - 1 ? (
+              <div ref={lastPostRef}></div>
+            ) : (
+              <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
+            )}
+          </>
+        ))}
+      </ul>
+    </section>
   ) : (
     <div className="flex justify-center items-center h-screen">
       <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Letter from "../dtos";
+import Letter from "../../dtos";
 import AttachmentIcon from "./AttachmentIcon";
 
 const months = [

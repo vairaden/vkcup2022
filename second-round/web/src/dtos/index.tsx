@@ -1,4 +1,4 @@
-interface Letter {
+export default interface Letter {
   author: {
     name: string;
     surname: string;
@@ -23,5 +23,3 @@ interface Letter {
     img: string;
   };
 }
-
-export default Letter;
