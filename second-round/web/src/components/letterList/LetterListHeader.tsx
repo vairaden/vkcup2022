@@ -18,17 +18,17 @@ export default function LetterListHeader() {
   return (
     <header className="flex justify-between fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
       <img
-        className="block sm:hidden"
+        className="block md:hidden"
         src="/mailru_logo_no_letters.svg"
         alt="Mail ru logo"
       ></img>
       <img
-        className="hidden sm:block dark:hidden"
+        className="hidden md:block dark:hidden"
         src="/mailru_logo.svg"
         alt="Mail ru logo"
       ></img>
       <img
-        className="hidden sm:dark:block"
+        className="hidden md:dark:block"
         src="/mailru_logo_dark.svg"
         alt="Mail ru logo"
       ></img>

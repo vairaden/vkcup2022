@@ -11,6 +11,8 @@ const folders = new Map([
   ["trash", "Корзина"],
 ]);
 
+const LETTERS_ON_PAGE = 30;
+
 export function getLettersByFolderName(
   req: IncomingMessage,
   res: ServerResponse
@@ -18,7 +20,6 @@ export function getLettersByFolderName(
   if (!req.url) throw new Error("No url");
 
   const pageNumber = parseInt(req.url.split("page=")[1].split("&")[0] ?? "0");
-  const lettersOnPage = 5;
 
   const folderName = req.url.split("/")[2].split("?")[0];
   let filteredData: Letter[] = [];
@@ -53,10 +54,10 @@ export function getLettersByFolderName(
 
   res.writeHead(200, { "Content-Type": "application/json" });
   const pageData = filteredData.slice(
-    pageNumber * lettersOnPage,
-    (pageNumber + 1) * lettersOnPage
+    pageNumber * LETTERS_ON_PAGE,
+    (pageNumber + 1) * LETTERS_ON_PAGE
   );
-  const hasMore = filteredData.length > (pageNumber + 1) * lettersOnPage;
+  const hasMore = filteredData.length > (pageNumber + 1) * LETTERS_ON_PAGE;
   res.end(JSON.stringify({ pageData, hasMore }));
 }
 

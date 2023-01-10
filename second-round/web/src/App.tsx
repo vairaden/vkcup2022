@@ -10,11 +10,11 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <main>
         <Navbar />
-        <div className="sm:ml-[236px] ml-[68px] w-[calc(100vh - 236px] mt-[68px] pr-[16px]">
+        <div className="ml-[68px] md:ml-[236px]  w-[calc(100vh - 236px] mt-[68px] pr-[16px]">
           <Outlet />
         </div>
       </main>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
     </QueryClientProvider>
   );
 }

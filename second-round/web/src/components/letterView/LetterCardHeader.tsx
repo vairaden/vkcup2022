@@ -15,7 +15,7 @@ export default function LetterCardHeader() {
           src="/chevron_left_outline_dark_20.svg"
           alt="Вернуться"
         ></img>
-        <h1 className="dark:text-textPrimaryWhite hidden sm:block">
+        <h1 className="dark:text-textPrimaryWhite hidden md:block">
           Вернуться
         </h1>
       </Link>

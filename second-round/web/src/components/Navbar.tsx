@@ -10,12 +10,12 @@ export default function Navbar() {
   const [showSettings, setShowSettings] = useState(false);
 
   return (
-    <nav className="fixed top-14 flex flex-col justify-between px-4 py-3 sm:w-[232px] w-[68px] h-[calc(100vh-56px)]">
+    <nav className="fixed top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
       <div>
-        <Button className="mb-3 hidden sm:block font-bold">
+        <Button onClick={() => null} className="mb-3 hidden md:block font-bold">
           Написать письмо
         </Button>
-        <Button className="mb-3 block sm:hidden w-9">
+        <Button onClick={() => null} className="mb-3 block md:hidden w-9">
           <img
             className="m-2"
             src="/compose_outline_20.svg"
@@ -38,9 +38,9 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black my-2"></div>
-        <button className="flex items-center sm:w-[200px] w-8 h-9 mt-4 sm:ml-2 mx-auto rounded-lg hover:bg-grayHover dark:hover:bg-darkHover">
+        <button className="flex items-center md:w-[200px] w-8 h-9 mt-4 md:ml-2 mx-auto rounded-lg hover:bg-grayHover dark:hover:bg-darkHover">
           <img className="m-2" src="/plus_icon.svg" alt="Новая папка"></img>
-          <p className="hidden sm:block text-[#74767A]">Новая папка</p>
+          <p className="hidden md:block text-[#74767A]">Новая папка</p>
         </button>
       </div>
       <button
@@ -57,7 +57,7 @@ export default function Navbar() {
           src="/palette_outline_dark_20.svg"
           alt="Theme icon"
         ></img>
-        <p className="hidden sm:block">Настройки</p>
+        <p className="hidden md:block">Настройки</p>
       </button>
       {showSettings && (
         <Settings closeCallback={() => setShowSettings(false)} />

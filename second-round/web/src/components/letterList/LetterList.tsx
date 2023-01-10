@@ -89,10 +89,13 @@ export default function LetterList() {
               key={index}
               data={letterData}
             />
-            {index === letters.length - 1 ? (
-              <div ref={lastPostRef}></div>
+            {index === letters.length - 2 ? (
+              <div
+                ref={lastPostRef}
+                className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"
+              ></div>
             ) : (
-              <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
+              <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black last:hidden"></div>
             )}
           </>
         ))}
