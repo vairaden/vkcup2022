@@ -1,49 +1,72 @@
-const colors = [
-  "#35385A",
-  "#388E3C",
-  "#424242",
-  "#4A352F",
-  "#5A355A",
-  "#646ECB",
-  "#81D8D0",
-  "#C9D0FB",
-  "#D0F0F7",
-  "#DDF3FF",
-  "#E2DCD2",
-  "#E73672",
-  "#E7EED2",
-  "#F0F0F0",
-  "#F44336",
-  "#FFEBCD",
-];
+import { useAtom } from "jotai";
+import { themeColors, themeNumberAtom } from "../../store/theme";
 
 export default function ThemeMenu() {
+  const [themeNumber, setThemeNumber] = useAtom(themeNumberAtom);
+
   return (
     <div className="flex flex-col">
       <h2>Настройки внешнего вида вашей почты и темы оформления</h2>
       <div className="grid grid-cols-8">
-        {Array.from({ length: 16 }, (_, i) => i).map((i) => (
+        {themeColors.slice(3).map((color, index) => (
           <label>
-            <input type="radio" name="theme" value={i} />
-            <div className="w-10 h-10" style={{ background: colors[i] }} />
+            <div className="w-10 h-10" style={{ background: color }} />
+            <input
+              className="hidden"
+              type="radio"
+              name="theme"
+              value={index + 3}
+              checked={themeNumber === index + 3}
+              onChange={() => setThemeNumber(index + 3)}
+            />
           </label>
         ))}
       </div>
-      <img
-        className="w-20 h-12"
-        src="/dark-theme-image.svg"
-        alt="Темная тема"
-      ></img>
-      <img
-        className="w-20 h-12"
-        src="/light-theme-image.svg"
-        alt="Светлая тема"
-      ></img>
-      <img
-        className="w-20 h-12"
-        src="/image-theme.svg"
-        alt="Тема с изображением"
-      ></img>
+      <label>
+        <img
+          className="w-20 h-12"
+          src="/dark-theme-image.svg"
+          alt="Темная тема"
+        ></img>
+        <input
+          className="hidden"
+          type="radio"
+          name="theme"
+          value="0"
+          checked={themeNumber === 0}
+          onChange={() => setThemeNumber(0)}
+        />
+      </label>
+      <label>
+        <img
+          className="w-20 h-12"
+          src="/light-theme-image.svg"
+          alt="Светлая тема"
+        ></img>
+        <input
+          className="hidden"
+          type="radio"
+          name="theme"
+          value="1"
+          checked={themeNumber === 1}
+          onChange={() => setThemeNumber(1)}
+        />
+      </label>
+      <label>
+        <img
+          className="w-20 h-12"
+          src="/image-theme.svg"
+          alt="Тема с изображением"
+        ></img>
+        <input
+          className="hidden"
+          type="radio"
+          name="theme"
+          value="2"
+          checked={themeNumber === 2}
+          onChange={() => setThemeNumber(2)}
+        />
+      </label>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { languageAtom } from "../../store";
+import { languageAtom } from "../../store/filters";
 import Button from "../Button";
 
 export default function LanguageMenu() {

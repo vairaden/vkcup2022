@@ -9,7 +9,7 @@ import {
   filterBookmarkedAtom,
   filterUnreadAtom,
   filterWithAttachmentsAtom,
-} from "../../store";
+} from "../../store/filters";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";

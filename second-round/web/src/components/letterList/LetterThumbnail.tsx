@@ -61,7 +61,7 @@ export default function LetterThumbnail({
             )}
           </div>
         </div>
-        <div className="flex text-sm w-[40vw] items-center whitespace-nowrap">
+        <div className="flex text-sm w-[30vw] md:w-[40vw] items-center whitespace-nowrap">
           <p className={`mr-3 truncate w-[40%] ${!data.read && "font-bold"}`}>
             {data.title}
           </p>

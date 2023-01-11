@@ -4,7 +4,7 @@ import {
   filterBookmarkedAtom,
   filterUnreadAtom,
   filterWithAttachmentsAtom,
-} from "../../store";
+} from "../../store/filters";
 import FilterButton from "../FilterButton";
 
 export default function LetterListHeader() {

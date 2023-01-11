@@ -6,7 +6,7 @@ import {
   filterBookmarkedAtom,
   filterUnreadAtom,
   filterWithAttachmentsAtom,
-} from "../../store";
+} from "../../store/filters";
 
 const months = [
   "янв",
