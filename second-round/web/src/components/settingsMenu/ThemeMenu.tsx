@@ -29,6 +29,21 @@ export default function ThemeMenu() {
           </label>
         ))}
       </div>
+      <img
+        className="w-20 h-12"
+        src="/dark-theme-image.svg"
+        alt="Темная тема"
+      ></img>
+      <img
+        className="w-20 h-12"
+        src="/light-theme-image.svg"
+        alt="Светлая тема"
+      ></img>
+      <img
+        className="w-20 h-12"
+        src="/image-theme.svg"
+        alt="Тема с изображением"
+      ></img>
     </div>
   );
 }

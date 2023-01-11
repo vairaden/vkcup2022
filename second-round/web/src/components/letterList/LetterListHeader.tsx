@@ -36,11 +36,31 @@ export default function LetterListHeader() {
         className="flex items-center"
         onClick={() => setFiltersOpen((prev) => !prev)}
       >
+        {filterBookmarked && <img src="/bookmark_20.svg" alt="Закладка"></img>}
+        {filterUnread && (
+          <div
+            className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
+          ></div>
+        )}
+        {filterWithAttachments && (
+          <>
+            <img
+              className="ml-1 block dark:hidden"
+              src="/attach_outline_20.svg"
+              alt="Файлы"
+            ></img>
+            <img
+              className="ml-1 hidden dark:block"
+              src="/attach_outline_dark_20.svg"
+              alt="Файлы"
+            ></img>
+          </>
+        )}
         Фильтр
         <img src="/chevron_down_outline_20.svg" alt="Filter dropdown"></img>
       </button>
       {filtersOpen && (
-        <div className="flex flex-col fixed top-12 right-6 w-60 h-60 bg-white shadow-md rounded-xl">
+        <div className="flex flex-col fixed top-12 right-6 w-60 bg-white shadow-md rounded-xl">
           <FilterButton
             active={
               !filterUnread && !filterBookmarked && !filterWithAttachments

@@ -23,7 +23,7 @@ export default function Settings({
       ></div>
       <div className="flex absolute bottom-0 left-0 w-[100vw] h-[400px] bg-white shadow-[0px_-3px_48px_0px_rgba(0,16,61,0.28)]">
         <div className="flex flex-col items-center w-[260px] py-5 border-r-[1px] border-black">
-          <div
+          <button
             onClick={() => setSelectedMenu("theme")}
             className={`flex items-center md:w-[200px] h-9 md:px-4 px-2 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
               selectedMenu == "theme" &&
@@ -33,8 +33,8 @@ export default function Settings({
             <p className="ml-2 dark:text-textPrimaryWhite hidden md:block">
               Внешний вид
             </p>
-          </div>
-          <div
+          </button>
+          <button
             onClick={() => setSelectedMenu("language")}
             className={`flex items-center md:w-[200px] h-9 md:px-4 px-2 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
               selectedMenu === "language" &&
@@ -44,7 +44,7 @@ export default function Settings({
             <p className="ml-2 dark:text-textPrimaryWhite hidden md:block">
               Язык: {language == "ru" ? "Русский" : "English"}
             </p>
-          </div>
+          </button>
         </div>
         {selectedMenu === "theme" && <ThemeMenu />}
         {selectedMenu === "language" && <LanguageMenu />}

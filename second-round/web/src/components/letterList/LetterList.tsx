@@ -83,12 +83,8 @@ export default function LetterList() {
     <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
       <ul>
         {letters.map((letterData, index) => (
-          <>
-            <LetterThumbnail
-              to={`/${folderName}/${index}`}
-              key={index}
-              data={letterData}
-            />
+          <article key={index}>
+            <LetterThumbnail to={`/${folderName}/${index}`} data={letterData} />
             {index === letters.length - 2 ? (
               <div
                 ref={lastPostRef}
@@ -97,13 +93,13 @@ export default function LetterList() {
             ) : (
               <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black last:hidden"></div>
             )}
-          </>
+          </article>
         ))}
       </ul>
     </section>
   ) : (
     <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+      <h2>Загрузка...</h2>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
 
   return (
     <>
-      <div className="group/list">
+      <div className="group/list my-auto">
         <div className="fixed hidden group-hover/list:block w-[310px] translate-x-[-300px] translate-y-[-45%]">
           <div className="w-[298px] p-2 bg-white dark:bg-blackBg rounded-xl shadow-md">
             <div className="flex items-center mb-2 last:mb-0">

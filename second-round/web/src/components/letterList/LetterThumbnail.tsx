@@ -35,12 +35,9 @@ export default function LetterThumbnail({
   }
 
   return (
-    <li>
-      <Link
-        to={to}
-        className="flex h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover whitespace-nowrap dark:text-textPrimaryWhite"
-      >
-        <div className="flex items-center w-[16rem] mr-2">
+    <li className="flex justify-between h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover dark:text-textPrimaryWhite">
+      <Link to={to} className="flex">
+        <div className="flex items-center h-12 w-[16rem] mr-2">
           <div
             className={`mx-2 h-[6px] w-[6px] rounded-md ${
               !data.read && "bg-electricBlue"
@@ -64,19 +61,15 @@ export default function LetterThumbnail({
             )}
           </div>
         </div>
-        <div className="flex text-sm items-center w-[40%] md:w-[60%] md:w-[65%]">
-          <p
-            className={`mr-3 truncate w-[60%] md:w-[40%] ${
-              !data.read && "font-bold"
-            }`}
-          >
+        <div className="flex text-sm w-[40vw] items-center whitespace-nowrap">
+          <p className={`mr-3 truncate w-[40%] ${!data.read && "font-bold"}`}>
             {data.title}
           </p>
-          <p className="truncate w-[40%] md:w-[60%] text-textGray">
-            {data.text}
-          </p>
+          <p className="truncate w-[60%] text-textGray">{data.text}</p>
         </div>
-        <div className="flex items-center justify-end mr-4 ml-auto w-12">
+      </Link>
+      <div className="flex">
+        <div className="flex items-center">
           {data.flag === "Заказы" ? (
             <img src="/shopping_cart_outline_20.svg" alt="Заказы"></img>
           ) : data.flag === "Финансы" ? (
@@ -92,12 +85,12 @@ export default function LetterThumbnail({
               <img src="/government_outline_20.svg" alt="Штрафы и налоги"></img>
             )
           )}
-          {data.doc && <AttachmentIcon doc={data.doc} />}
         </div>
-        <div className="flex items-center justify-end mr-4 w-14 text-textGray">
+        {data.doc && <AttachmentIcon doc={data.doc} />}
+        <div className="my-auto p-3 w-20 text-right text-textGray">
           {formatDate(data.date)}
         </div>
-      </Link>
+      </div>
     </li>
   );
 }
