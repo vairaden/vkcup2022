@@ -45,7 +45,9 @@ export default function LetterListHeader() {
         className="flex items-center"
         onClick={() => setFiltersOpen((prev) => !prev)}
       >
-        {filterBookmarked && <img src="/bookmark_20.svg" alt="Закладка"></img>}
+        {filterBookmarked && (
+          <img src="/letter_indicators/bookmark_20.svg" alt="Закладка"></img>
+        )}
         {filterUnread && (
           <div
             className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
@@ -55,12 +57,12 @@ export default function LetterListHeader() {
           <>
             <img
               className="ml-1 block dark:hidden"
-              src="/attach_outline_20.svg"
+              src="/icons/light/attach_outline_20.svg"
               alt="Файлы"
             ></img>
             <img
               className="ml-1 hidden dark:block"
-              src="/attach_outline_dark_20.svg"
+              src="/icons/dark/attach_outline_dark_20.svg"
               alt="Файлы"
             ></img>
           </>

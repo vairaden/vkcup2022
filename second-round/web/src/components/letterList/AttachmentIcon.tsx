@@ -27,7 +27,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
                   loading="lazy"
                 ></img>
                 <a
-                  className="shadow-lg hidden group-hover/download:flex absolute bottom-2 left-[50%] translate-x-[-50%]"
+                  className="hidden group-hover/download:flex absolute bottom-2 left-[50%] translate-x-[-50%]"
                   download="attachment.jpg"
                   href={doc.img}
                 >

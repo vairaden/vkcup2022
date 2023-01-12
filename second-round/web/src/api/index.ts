@@ -14,12 +14,16 @@ export async function fetchData({
   bookmarked: boolean;
   withAttachments: boolean;
 }) {
-  const res = await fetch(
-    `http://localhost:3000/api/${folderName}?page=${pageNumber}&unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`,
-    {
-      method: "GET",
-    }
-  );
+  let url = "";
+  if (import.meta.env.DEV) {
+    url = `http://localhost:3000/api/${folderName}?page=${pageNumber}&unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`;
+  } else {
+    url = `api/${folderName}?page=${pageNumber}&unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`;
+  }
+
+  const res = await fetch(url, {
+    method: "GET",
+  });
   const data = (await res.json()) as { pageData: Letter[]; hasMore: boolean };
   return data;
 }
@@ -31,12 +35,15 @@ export async function fetchLetterById(
   bookmarked: boolean,
   withAttachments: boolean
 ) {
-  const res = await fetch(
-    `http://localhost:3000/api/${folderName}/${letterId}?unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`,
-    {
-      method: "GET",
-    }
-  );
+  let url = "";
+  if (import.meta.env.DEV) {
+    url = `http://localhost:3000/api/${folderName}/${letterId}?unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`;
+  } else {
+    url = `api/${folderName}/${letterId}?unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`;
+  }
+  const res = await fetch(url, {
+    method: "GET",
+  });
   const letter = (await res.json()) as Letter;
   return letter;
 }

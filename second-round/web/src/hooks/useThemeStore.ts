@@ -15,7 +15,6 @@ const useThemeStore = create<ThemeStore>()((set) => ({
     const body = document.querySelector("body");
     if (!body) return;
 
-    localStorage.setItem("theme", themeNumber.toString());
     body.style.background = theme.bgColor;
 
     if (theme.isDark) {
