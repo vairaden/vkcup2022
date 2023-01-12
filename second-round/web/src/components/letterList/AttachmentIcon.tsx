@@ -9,7 +9,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
       : `${parseInt((fileSize / 1024).toFixed(2))} Mb`;
   }
 
-  const text = useTranslation();
+  const { text } = useTranslation();
 
   return (
     <>

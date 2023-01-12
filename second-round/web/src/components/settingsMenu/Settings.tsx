@@ -11,7 +11,7 @@ export default function Settings({
   closeCallback: () => void;
 }) {
   const [language] = useAtom(languageAtom);
-  const text = useTranslation();
+  const { text } = useTranslation();
   const [selectedMenu, setSelectedMenu] = useState<"theme" | "language">(
     "theme"
   );

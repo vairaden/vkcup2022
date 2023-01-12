@@ -10,7 +10,7 @@ export default function LetterThumbnail({
   data: Letter;
   to: string;
 }) {
-  const text = useTranslation();
+  const { text } = useTranslation();
 
   function formatDate(date: string) {
     const dateObj = new Date(date);

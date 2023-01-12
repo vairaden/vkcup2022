@@ -4,13 +4,13 @@ import { themeColors, themeNumberAtom } from "../../store/theme";
 
 export default function ThemeMenu() {
   const [themeNumber, setThemeNumber] = useAtom(themeNumberAtom);
-  const text = useTranslation();
+  const { text } = useTranslation();
   return (
     <div className="flex flex-col">
       <h2>{text.themeMenu}</h2>
       <div className="grid grid-cols-8">
         {themeColors.slice(3).map((color, index) => (
-          <label>
+          <label key={index}>
             <div className="w-10 h-10" style={{ background: color }} />
             <input
               className="hidden"

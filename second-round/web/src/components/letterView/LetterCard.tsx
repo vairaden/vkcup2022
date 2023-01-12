@@ -24,7 +24,7 @@ export default function LetterCard() {
   const [filterBookmarked] = useAtom(filterBookmarkedAtom);
   const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
 
-  const text = useTranslation();
+  const { text } = useTranslation();
 
   function formatDate(date: string) {
     const dateObj = new Date(date);

@@ -16,7 +16,7 @@ export default function LetterListHeader() {
     filterWithAttachmentsAtom
   );
 
-  const text = useTranslation();
+  const { text } = useTranslation();
 
   return (
     <header className="flex justify-between fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">

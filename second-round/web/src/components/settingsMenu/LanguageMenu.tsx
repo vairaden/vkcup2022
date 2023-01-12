@@ -8,7 +8,7 @@ export default function LanguageMenu() {
   const [language, setLanguage] = useAtom(languageAtom);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
 
-  const text = useTranslation();
+  const { text } = useTranslation();
 
   return (
     <div className="flex flex-col">

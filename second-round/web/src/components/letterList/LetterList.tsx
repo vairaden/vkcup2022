@@ -20,7 +20,7 @@ export default function LetterList() {
   const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
   const queryClient = useQueryClient();
 
-  const text = useTranslation();
+  const { text } = useTranslation();
 
   const { isLoading, data, error, fetchNextPage, hasNextPage } =
     useInfiniteQuery(

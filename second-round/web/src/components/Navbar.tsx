@@ -10,7 +10,7 @@ export default function Navbar() {
   const [activeFolder, setActiveFolder] = useState("inbox");
   const [showSettings, setShowSettings] = useState(false);
 
-  const text = useTranslation();
+  const { text } = useTranslation();
 
   return (
     <nav className="fixed top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
