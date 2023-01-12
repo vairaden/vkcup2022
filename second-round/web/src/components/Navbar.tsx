@@ -13,12 +13,12 @@ export default function Navbar() {
   const { text } = useTranslation();
 
   return (
-    <nav className="fixed top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
+    <nav className="fixed z-10 top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
       <div>
         <Button onClick={() => null} className="mb-3 w-9 md:w-full font-bold">
           <img
             className="m-2 md:hidden"
-            src="/compose_outline_20.svg"
+            src="/icons/compose_outline_20.svg"
             alt="Написать письмо"
           ></img>
           <p className="hidden md:inline">{text.writeLetter}</p>
@@ -40,7 +40,11 @@ export default function Navbar() {
         </ul>
         <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black my-2"></div>
         <button className="flex items-center md:w-[200px] w-8 h-9 mt-4 md:ml-2 mx-auto rounded-lg hover:bg-grayHover dark:hover:bg-darkHover">
-          <img className="m-2" src="/plus_icon.svg" alt="Новая папка"></img>
+          <img
+            className="m-2"
+            src="/icons/plus_icon.svg"
+            alt="Новая папка"
+          ></img>
           <p className="hidden md:block text-[#74767A]">{text.newFolder}</p>
         </button>
       </div>

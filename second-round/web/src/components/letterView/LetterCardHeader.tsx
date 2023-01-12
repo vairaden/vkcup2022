@@ -10,12 +10,12 @@ export default function LetterCardHeader() {
       <Link className="flex items-center w-9 ml-2 mt-1" to={"/" + folderName}>
         <img
           className="block dark:hidden"
-          src="/chevron_left_outline_20.svg"
+          src="/icons/light/chevron_left_outline_20.svg"
           alt="Вернуться"
         ></img>
         <img
           className="hidden dark:block"
-          src="/chevron_left_outline_dark_20.svg"
+          src="/icons/dark/chevron_left_outline_dark_20.svg"
           alt="Вернуться"
         ></img>
         <h1 className="dark:text-textPrimaryWhite hidden md:block">

@@ -21,7 +21,11 @@ export default function LanguageMenu() {
           checked={selectedLanguage === "ru"}
           onChange={() => setSelectedLanguage("ru")}
         />
-        <img className="m-3" src="/ru_flag.svg" alt="Российский флаг"></img>
+        <img
+          className="m-3"
+          src="/flags/ru_flag.svg"
+          alt="Российский флаг"
+        ></img>
         Русский
       </label>
       <label className="flex items-center">
@@ -32,7 +36,7 @@ export default function LanguageMenu() {
           checked={selectedLanguage === "en"}
           onChange={() => setSelectedLanguage("en")}
         />
-        <img className="m-3" src="/us_flag.svg" alt="US flag"></img>
+        <img className="m-3" src="/flags/us_flag.svg" alt="US flag"></img>
         English
       </label>
       <Button onClick={() => setLanguage(selectedLanguage)}>

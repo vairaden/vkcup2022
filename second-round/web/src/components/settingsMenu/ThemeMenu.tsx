@@ -1,4 +1,5 @@
-import useThemeStore, { themeColors } from "../../hooks/useThemeStore";
+import { themeColors } from "../../data/themes";
+import useThemeStore from "../../hooks/useThemeStore";
 import useTranslation from "../../hooks/useTranslation";
 
 export default function ThemeMenu() {

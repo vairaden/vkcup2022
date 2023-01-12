@@ -43,9 +43,14 @@ export default function LetterThumbnail({
           </h2>
           <div className="ml-auto">
             {data.important ? (
-              <img src="/important_20.svg" alt="Важное"></img>
+              <img src="/letter_indicators/important_20.svg" alt="Важное"></img>
             ) : (
-              data.bookmark && <img src="/bookmark_20.svg" alt="Закладка"></img>
+              data.bookmark && (
+                <img
+                  src="/letter_indicators/bookmark_20.svg"
+                  alt="Закладка"
+                ></img>
+              )
             )}
           </div>
         </div>
@@ -57,20 +62,38 @@ export default function LetterThumbnail({
         </div>
       </Link>
       <div className="flex">
-        <div className="flex items-center">
+        <div className="mr-1 flex items-center">
           {data.flag === "Заказы" ? (
-            <img src="/shopping_cart_outline_20.svg" alt="Заказы"></img>
+            <img
+              src="/letter_indicators/shopping_cart_outline_20.svg"
+              alt="Заказы"
+            ></img>
           ) : data.flag === "Финансы" ? (
-            <img src="/money_ruble_outline_20.svg" alt="Финансы"></img>
+            <img
+              src="/letter_indicators/money_ruble_outline_20.svg"
+              alt="Финансы"
+            ></img>
           ) : data.flag === "Регистрации" ? (
-            <img src="/key_outline_20.svg" alt="Регистрации"></img>
+            <img
+              src="/letter_indicators/key_outline_20.svg"
+              alt="Регистрации"
+            ></img>
           ) : data.flag === "Путешествия" ? (
-            <img src="/plane_outline_20.svg" alt="Путешествия"></img>
+            <img
+              src="/letter_indicators/plane_outline_20.svg"
+              alt="Путешествия"
+            ></img>
           ) : data.flag === "Билеты" ? (
-            <img src="/ticket_outline_20.svg" alt="Билеты"></img>
+            <img
+              src="/letter_indicators/ticket_outline_20.svg"
+              alt="Билеты"
+            ></img>
           ) : (
             data.flag === "Штрафы и налоги" && (
-              <img src="/government_outline_20.svg" alt="Штрафы и налоги"></img>
+              <img
+                src="/letter_indicators/government_outline_20.svg"
+                alt="Штрафы и налоги"
+              ></img>
             )
           )}
         </div>

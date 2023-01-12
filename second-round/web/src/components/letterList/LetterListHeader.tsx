@@ -25,20 +25,20 @@ export default function LetterListHeader() {
   const { text } = useTranslation();
 
   return (
-    <header className="flex justify-between fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
+    <header className="fixed z-10 flex justify-between left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
       <img
         className="block md:hidden"
-        src="/mailru_logo_no_letters.svg"
+        src="/mailru_logo/mailru_logo_no_letters.svg"
         alt="Mail ru logo"
       ></img>
       <img
         className="hidden md:block dark:hidden"
-        src="/mailru_logo.svg"
+        src="/mailru_logo/mailru_logo.svg"
         alt="Mail ru logo"
       ></img>
       <img
         className="hidden md:dark:block"
-        src="/mailru_logo_dark.svg"
+        src="/mailru_logo/mailru_logo_dark.svg"
         alt="Mail ru logo"
       ></img>
       <button
@@ -66,7 +66,10 @@ export default function LetterListHeader() {
           </>
         )}
         {text.filter}
-        <img src="/chevron_down_outline_20.svg" alt="Filter dropdown"></img>
+        <img
+          src="/icons/light/chevron_down_outline_20.svg"
+          alt="Filter dropdown"
+        ></img>
       </button>
       {filtersOpen && (
         <div className="flex flex-col fixed top-12 right-6 w-60 bg-white shadow-md rounded-xl">
@@ -88,7 +91,7 @@ export default function LetterListHeader() {
             active={filterBookmarked}
             onClick={toggleFilterBookmarked}
           >
-            <img src="/bookmark_20.svg" alt="Закладка"></img>
+            <img src="/letter_indicators/bookmark_20.svg" alt="Закладка"></img>
             {text.filterBookmarked}
           </FilterButton>
           <FilterButton
@@ -97,12 +100,12 @@ export default function LetterListHeader() {
           >
             <img
               className="ml-1 block dark:hidden"
-              src="/attach_outline_20.svg"
+              src="/icons/light/attach_outline_20.svg"
               alt="Файлы"
             ></img>
             <img
               className="ml-1 hidden dark:block"
-              src="/attach_outline_dark_20.svg"
+              src="/icons/dark/attach_outline_dark_20.svg"
               alt="Файлы"
             ></img>
             {text.filterWithAttachments}
