@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { languageAtom } from "../../store/filters";
+import useTranslation from "../../hooks/useTranslation";
+import { languageAtom } from "../../store/language";
 import LanguageMenu from "./LanguageMenu";
 import ThemeMenu from "./ThemeMenu";
 
@@ -10,7 +11,7 @@ export default function Settings({
   closeCallback: () => void;
 }) {
   const [language] = useAtom(languageAtom);
-
+  const text = useTranslation();
   const [selectedMenu, setSelectedMenu] = useState<"theme" | "language">(
     "theme"
   );
@@ -31,7 +32,7 @@ export default function Settings({
             }`}
           >
             <p className="ml-2 dark:text-textPrimaryWhite hidden md:block">
-              Внешний вид
+              {text.theme}
             </p>
           </button>
           <button
@@ -42,7 +43,7 @@ export default function Settings({
             }`}
           >
             <p className="ml-2 dark:text-textPrimaryWhite hidden md:block">
-              Язык: {language == "ru" ? "Русский" : "English"}
+              {text.language}: {language == "ru" ? "Русский" : "English"}
             </p>
           </button>
         </div>

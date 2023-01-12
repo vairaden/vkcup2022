@@ -1,15 +1,18 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { languageAtom } from "../../store/filters";
+import useTranslation from "../../hooks/useTranslation";
+import { languageAtom } from "../../store/language";
 import Button from "../Button";
 
 export default function LanguageMenu() {
   const [language, setLanguage] = useAtom(languageAtom);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
 
+  const text = useTranslation();
+
   return (
     <div className="flex flex-col">
-      <h2>Изменить язык</h2>
+      <h2>{text.changeLanguage}</h2>
       <label className="flex items-center">
         <input
           type="radio"
@@ -33,7 +36,7 @@ export default function LanguageMenu() {
         English
       </label>
       <Button onClick={() => setLanguage(selectedLanguage)}>
-        Выбрать язык
+        {text.selectLanguage}
       </Button>
     </div>
   );

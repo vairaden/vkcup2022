@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
+import useTranslation from "../../hooks/useTranslation";
 import {
   filterBookmarkedAtom,
   filterUnreadAtom,
@@ -14,6 +15,8 @@ export default function LetterListHeader() {
   const [filterWithAttachments, setFilterWithAttachments] = useAtom(
     filterWithAttachmentsAtom
   );
+
+  const text = useTranslation();
 
   return (
     <header className="flex justify-between fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
@@ -56,7 +59,7 @@ export default function LetterListHeader() {
             ></img>
           </>
         )}
-        Фильтр
+        {text.filter}
         <img src="/chevron_down_outline_20.svg" alt="Filter dropdown"></img>
       </button>
       {filtersOpen && (
@@ -71,7 +74,7 @@ export default function LetterListHeader() {
               setFilterWithAttachments(false);
             }}
           >
-            Все письма
+            {text.filterAll}
           </FilterButton>
           <FilterButton
             active={filterUnread}
@@ -80,13 +83,14 @@ export default function LetterListHeader() {
             <div
               className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
             ></div>
-            Непрочитанные
+            {text.filterUnread}
           </FilterButton>
           <FilterButton
             active={filterBookmarked}
             onClick={() => setFilterBookmarked((prev) => !prev)}
           >
-            <img src="/bookmark_20.svg" alt="Закладка"></img>С флажком
+            <img src="/bookmark_20.svg" alt="Закладка"></img>
+            {text.filterBookmarked}
           </FilterButton>
           <FilterButton
             active={filterWithAttachments}
@@ -102,7 +106,7 @@ export default function LetterListHeader() {
               src="/attach_outline_dark_20.svg"
               alt="Файлы"
             ></img>
-            С вложениями
+            {text.filterWithAttachments}
           </FilterButton>
         </div>
       )}

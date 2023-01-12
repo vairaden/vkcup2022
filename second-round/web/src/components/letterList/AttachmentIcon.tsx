@@ -1,3 +1,5 @@
+import useTranslation from "../../hooks/useTranslation";
+
 export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
   function calculateFileSize(file: string) {
     const fileSize = file.length / 1024;
@@ -6,6 +8,8 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
       ? `${parseInt(fileSize.toFixed(2))} Kb`
       : `${parseInt((fileSize / 1024).toFixed(2))} Mb`;
   }
+
+  const text = useTranslation();
 
   return (
     <>
@@ -31,7 +35,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
                         src="/download_outline.svg"
                         alt="Скачать"
                       ></img>
-                      Скачать
+                      {text.download}
                     </a>
                   </div>
                 </div>

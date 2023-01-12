@@ -1,21 +1,7 @@
 import { Link } from "react-router-dom";
 import Letter from "../../dtos";
+import useTranslation from "../../hooks/useTranslation";
 import AttachmentIcon from "./AttachmentIcon";
-
-const months = [
-  "янв",
-  "фев",
-  "мар",
-  "апр",
-  "май",
-  "июн",
-  "июл",
-  "авг",
-  "сен",
-  "окт",
-  "ноя",
-  "дек",
-];
 
 export default function LetterThumbnail({
   data,
@@ -24,6 +10,8 @@ export default function LetterThumbnail({
   data: Letter;
   to: string;
 }) {
+  const text = useTranslation();
+
   function formatDate(date: string) {
     const dateObj = new Date(date);
     if (dateObj.toDateString() === new Date().toDateString()) {
@@ -31,7 +19,7 @@ export default function LetterThumbnail({
         dateObj.getMinutes() < 10 ? "0" : ""
       }${dateObj.getMinutes()}`;
     }
-    return `${dateObj.getDate()} ${months[dateObj.getMonth()]}`;
+    return `${dateObj.getDate()} ${text.months[dateObj.getMonth()]}`;
   }
 
   return (

@@ -10,6 +10,7 @@ import {
   filterUnreadAtom,
   filterWithAttachmentsAtom,
 } from "../../store/filters";
+import useTranslation from "../../hooks/useTranslation";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
@@ -18,6 +19,8 @@ export default function LetterList() {
   const [filterBookmarked] = useAtom(filterBookmarkedAtom);
   const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
   const queryClient = useQueryClient();
+
+  const text = useTranslation();
 
   const { isLoading, data, error, fetchNextPage, hasNextPage } =
     useInfiniteQuery(
@@ -99,7 +102,7 @@ export default function LetterList() {
     </section>
   ) : (
     <div className="flex justify-center items-center h-screen">
-      <h2>Загрузка...</h2>
+      <h2>{text.loading}</h2>
     </div>
   );
 }

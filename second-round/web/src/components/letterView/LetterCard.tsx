@@ -2,26 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { useParams } from "react-router-dom";
 import { fetchLetterById } from "../../api";
+import useTranslation from "../../hooks/useTranslation";
 import {
   filterBookmarkedAtom,
   filterUnreadAtom,
   filterWithAttachmentsAtom,
 } from "../../store/filters";
-
-const months = [
-  "янв",
-  "фев",
-  "мар",
-  "апр",
-  "май",
-  "июн",
-  "июл",
-  "авг",
-  "сен",
-  "окт",
-  "ноя",
-  "дек",
-];
 
 function calculateFileSize(file: string) {
   const fileSize = file.length / 1024;
@@ -31,24 +17,26 @@ function calculateFileSize(file: string) {
     : `${parseInt((fileSize / 1024).toFixed(2))}Mb`;
 }
 
-function formatDate(date: string) {
-  const dateObj = new Date(date);
-
-  return `${
-    dateObj.toDateString() === new Date().toDateString()
-      ? "Сегодня"
-      : `${dateObj.getDate()} ${months[dateObj.getMonth()]}`
-  }, ${dateObj.getHours()}:${
-    dateObj.getMinutes() < 10 ? "0" : ""
-  }${dateObj.getMinutes()}`;
-}
-
 export default function LetterCard() {
   const folderName = useParams().folderName || "inbox";
   const letterId = useParams().letterId || "0";
   const [filterUnread] = useAtom(filterUnreadAtom);
   const [filterBookmarked] = useAtom(filterBookmarkedAtom);
   const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
+
+  const text = useTranslation();
+
+  function formatDate(date: string) {
+    const dateObj = new Date(date);
+
+    return `${
+      dateObj.toDateString() === new Date().toDateString()
+        ? "Сегодня"
+        : `${dateObj.getDate()} ${text.months[dateObj.getMonth()]}`
+    }, ${dateObj.getHours()}:${
+      dateObj.getMinutes() < 10 ? "0" : ""
+    }${dateObj.getMinutes()}`;
+  }
 
   const { data } = useQuery(
     [
@@ -163,7 +151,7 @@ export default function LetterCard() {
               download="attachment.jpg"
               href={data.doc.img}
             >
-              Скачать
+              {text.download}
             </a>
             <p className="text-sm text-textGray inline-block ml-1">
               ({calculateFileSize(data.doc.img)})
@@ -175,7 +163,7 @@ export default function LetterCard() {
     </section>
   ) : (
     <div className="flex justify-center items-center h-screen">
-      <h2>Загрузка...</h2>
+      <h2>{text.loading}</h2>
     </div>
   );
 }

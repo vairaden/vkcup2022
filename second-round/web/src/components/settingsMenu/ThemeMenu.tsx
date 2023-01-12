@@ -1,12 +1,13 @@
 import { useAtom } from "jotai";
+import useTranslation from "../../hooks/useTranslation";
 import { themeColors, themeNumberAtom } from "../../store/theme";
 
 export default function ThemeMenu() {
   const [themeNumber, setThemeNumber] = useAtom(themeNumberAtom);
-
+  const text = useTranslation();
   return (
     <div className="flex flex-col">
-      <h2>Настройки внешнего вида вашей почты и темы оформления</h2>
+      <h2>{text.themeMenu}</h2>
       <div className="grid grid-cols-8">
         {themeColors.slice(3).map((color, index) => (
           <label>
