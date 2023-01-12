@@ -1,9 +1,8 @@
-import { useAtom } from "jotai";
-import { languageAtom } from "../store/language";
 import enAlt from "../translation/alt/en";
 import ruAlt from "../translation/alt/ru";
 import textEn from "../translation/text/en";
 import textRu from "../translation/text/ru";
+import useLanguageStore from "./useLanguageStore";
 
 export default function useTranslation() {
   const text = {
@@ -16,7 +15,7 @@ export default function useTranslation() {
     en: enAlt,
   };
 
-  const [language] = useAtom(languageAtom);
+  const language = useLanguageStore((state) => state.language);
 
   return {
     text: (text[language] || text.ru) as typeof text.ru,

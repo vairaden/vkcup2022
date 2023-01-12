@@ -4,20 +4,17 @@ import Letter from "../../dtos";
 import { useParams } from "react-router-dom";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo, useRef } from "react";
-import { useAtom } from "jotai";
-import {
-  filterBookmarkedAtom,
-  filterUnreadAtom,
-  filterWithAttachmentsAtom,
-} from "../../store/filters";
 import useTranslation from "../../hooks/useTranslation";
+import useFilterStore from "../../hooks/useFilterStore";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
+  const filterUnread = useFilterStore((state) => state.filterUnread);
+  const filterBookmarked = useFilterStore((state) => state.filterBookmarked);
+  const filterWithAttachments = useFilterStore(
+    (state) => state.filterWithAttachments
+  );
 
-  const [filterUnread] = useAtom(filterUnreadAtom);
-  const [filterBookmarked] = useAtom(filterBookmarkedAtom);
-  const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
   const queryClient = useQueryClient();
 
   const { text } = useTranslation();
@@ -94,7 +91,9 @@ export default function LetterList() {
                 className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"
               ></div>
             ) : (
-              <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black last:hidden"></div>
+              index !== letters.length - 1 && (
+                <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
+              )
             )}
           </article>
         ))}

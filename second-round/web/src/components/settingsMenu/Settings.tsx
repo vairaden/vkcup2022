@@ -1,7 +1,6 @@
-import { useAtom } from "jotai";
 import { useState } from "react";
+import useLanguageStore from "../../hooks/useLanguageStore";
 import useTranslation from "../../hooks/useTranslation";
-import { languageAtom } from "../../store/language";
 import LanguageMenu from "./LanguageMenu";
 import ThemeMenu from "./ThemeMenu";
 
@@ -10,7 +9,7 @@ export default function Settings({
 }: {
   closeCallback: () => void;
 }) {
-  const [language] = useAtom(languageAtom);
+  const language = useLanguageStore((state) => state.language);
   const { text } = useTranslation();
   const [selectedMenu, setSelectedMenu] = useState<"theme" | "language">(
     "theme"

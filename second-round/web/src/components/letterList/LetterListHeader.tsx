@@ -1,20 +1,26 @@
-import { useAtom } from "jotai";
 import { useState } from "react";
+import useFilterStore from "../../hooks/useFilterStore";
 import useTranslation from "../../hooks/useTranslation";
-import {
-  filterBookmarkedAtom,
-  filterUnreadAtom,
-  filterWithAttachmentsAtom,
-} from "../../store/filters";
 import FilterButton from "../FilterButton";
 
 export default function LetterListHeader() {
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [filterUnread, setFilterUnread] = useAtom(filterUnreadAtom);
-  const [filterBookmarked, setFilterBookmarked] = useAtom(filterBookmarkedAtom);
-  const [filterWithAttachments, setFilterWithAttachments] = useAtom(
-    filterWithAttachmentsAtom
+
+  const filterBookmarked = useFilterStore((state) => state.filterBookmarked);
+  const filterUnread = useFilterStore((state) => state.filterUnread);
+  const filterWithAttachments = useFilterStore(
+    (state) => state.filterWithAttachments
   );
+  const toggleFilterBookmarked = useFilterStore(
+    (state) => state.toggleFilterBookmarked
+  );
+  const toggleFilterUnread = useFilterStore(
+    (state) => state.toggleFilterUnread
+  );
+  const toggleFilterWithAttachments = useFilterStore(
+    (state) => state.toggleFilterWithAttachments
+  );
+  const resetFilters = useFilterStore((state) => state.resetFilters);
 
   const { text } = useTranslation();
 
@@ -68,18 +74,11 @@ export default function LetterListHeader() {
             active={
               !filterUnread && !filterBookmarked && !filterWithAttachments
             }
-            onClick={() => {
-              setFilterUnread(false);
-              setFilterBookmarked(false);
-              setFilterWithAttachments(false);
-            }}
+            onClick={resetFilters}
           >
             {text.filterAll}
           </FilterButton>
-          <FilterButton
-            active={filterUnread}
-            onClick={() => setFilterUnread((prev) => !prev)}
-          >
+          <FilterButton active={filterUnread} onClick={toggleFilterUnread}>
             <div
               className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
             ></div>
@@ -87,14 +86,14 @@ export default function LetterListHeader() {
           </FilterButton>
           <FilterButton
             active={filterBookmarked}
-            onClick={() => setFilterBookmarked((prev) => !prev)}
+            onClick={toggleFilterBookmarked}
           >
             <img src="/bookmark_20.svg" alt="Закладка"></img>
             {text.filterBookmarked}
           </FilterButton>
           <FilterButton
             active={filterWithAttachments}
-            onClick={() => setFilterWithAttachments((prev) => !prev)}
+            onClick={toggleFilterWithAttachments}
           >
             <img
               className="ml-1 block dark:hidden"

@@ -1,4 +1,4 @@
-import { atom } from "jotai";
+import { create } from "zustand";
 
 const themes = [
   { bgColor: "#19191A", headerColor: "", isDark: true }, // dark
@@ -22,35 +22,57 @@ const themes = [
   { bgColor: "#FFEBCD", headerColor: "", isDark: false },
 ];
 
-export const themeNumberAtom = atom(
-  () => {
-    if (localStorage.getItem("theme") === null) {
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        localStorage.setItem("theme", "0");
-        return 0;
-      } else {
-        localStorage.setItem("theme", "1");
-        return 1;
-      }
-    }
-    return parseInt(localStorage.getItem("theme") || "0");
-  },
-  (get, set, themeNumber: number) => {
+export const themeColors = themes.map((t) => t.bgColor);
+// () => {
+//   if (localStorage.getItem("theme") === null) {
+//     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+//       localStorage.setItem("theme", "0");
+//       return 0;
+//     } else {
+//       localStorage.setItem("theme", "1");
+//       return 1;
+//     }
+//   }
+//   return parseInt(localStorage.getItem("theme") || "0");
+// },
+// (get, set, themeNumber: number) => {
+//   const theme = themes[themeNumber];
+//   const body = document.querySelector("body");
+//   if (!body) return;
+
+//   localStorage.setItem("theme", themeNumber.toString());
+//   body.style.background = theme.bgColor;
+//   if (theme.isDark) {
+//     document.documentElement.classList.add("dark");
+//   } else {
+//     document.documentElement.classList.remove("dark");
+
+//     set(themeNumberAtom, themeNumber);
+//   }
+// }
+
+interface ThemeStore {
+  themeNumber: number;
+  setThemeNumber: (themeNumber: number) => void;
+}
+
+const useThemeStore = create<ThemeStore>()((set) => ({
+  themeNumber: 0,
+  setThemeNumber: (themeNumber: number) => {
     const theme = themes[themeNumber];
     const body = document.querySelector("body");
     if (!body) return;
 
     localStorage.setItem("theme", themeNumber.toString());
     body.style.background = theme.bgColor;
+
     if (theme.isDark) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
-
-      set(themeNumberAtom, themeNumber);
     }
-  }
-);
+    set({ themeNumber });
+  },
+}));
 
-export const themeColors = themes.map((t) => t.bgColor);
-export const themeAtom = atom((get) => themes[get(themeNumberAtom)]);
+export default useThemeStore;

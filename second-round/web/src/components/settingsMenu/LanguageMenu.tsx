@@ -1,11 +1,11 @@
-import { useAtom } from "jotai";
 import { useState } from "react";
+import useLanguageStore from "../../hooks/useLanguageStore";
 import useTranslation from "../../hooks/useTranslation";
-import { languageAtom } from "../../store/language";
 import Button from "../Button";
 
 export default function LanguageMenu() {
-  const [language, setLanguage] = useAtom(languageAtom);
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
 
   const { text } = useTranslation();

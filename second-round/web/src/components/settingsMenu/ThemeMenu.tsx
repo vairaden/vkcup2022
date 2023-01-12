@@ -1,10 +1,12 @@
-import { useAtom } from "jotai";
+import useThemeStore, { themeColors } from "../../hooks/useThemeStore";
 import useTranslation from "../../hooks/useTranslation";
-import { themeColors, themeNumberAtom } from "../../store/theme";
 
 export default function ThemeMenu() {
-  const [themeNumber, setThemeNumber] = useAtom(themeNumberAtom);
+  const themeNumber = useThemeStore((state) => state.themeNumber);
+  const setThemeNumber = useThemeStore((state) => state.setThemeNumber);
+
   const { text } = useTranslation();
+
   return (
     <div className="flex flex-col">
       <h2>{text.themeMenu}</h2>

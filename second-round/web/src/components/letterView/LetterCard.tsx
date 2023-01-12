@@ -1,13 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAtom } from "jotai";
 import { useParams } from "react-router-dom";
 import { fetchLetterById } from "../../api";
+import useFilterStore from "../../hooks/useFilterStore";
 import useTranslation from "../../hooks/useTranslation";
-import {
-  filterBookmarkedAtom,
-  filterUnreadAtom,
-  filterWithAttachmentsAtom,
-} from "../../store/filters";
 
 function calculateFileSize(file: string) {
   const fileSize = file.length / 1024;
@@ -20,9 +15,12 @@ function calculateFileSize(file: string) {
 export default function LetterCard() {
   const folderName = useParams().folderName || "inbox";
   const letterId = useParams().letterId || "0";
-  const [filterUnread] = useAtom(filterUnreadAtom);
-  const [filterBookmarked] = useAtom(filterBookmarkedAtom);
-  const [filterWithAttachments] = useAtom(filterWithAttachmentsAtom);
+
+  const filterUnread = useFilterStore((state) => state.filterUnread);
+  const filterBookmarked = useFilterStore((state) => state.filterBookmarked);
+  const filterWithAttachments = useFilterStore(
+    (state) => state.filterWithAttachments
+  );
 
   const { text } = useTranslation();
 
