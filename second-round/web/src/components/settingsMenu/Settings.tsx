@@ -30,7 +30,7 @@ export default function Settings({
                 "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
               }`}
             >
-              <p className="ml-2 dark:text-textPrimaryWhite hidden md:block">
+              <p className="dark:text-textPrimaryWhite hidden md:block">
                 {text.theme}
               </p>
             </button>
@@ -41,9 +41,15 @@ export default function Settings({
                 "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
               }`}
             >
-              <p className="ml-2 dark:text-textPrimaryWhite hidden md:block">
+              <p className="mr-2 dark:text-textPrimaryWhite hidden md:block">
                 {text.language}: {language == "ru" ? "Русский" : "English"}
               </p>
+              {language == "ru" && (
+                <img src="/flags/ru_flag.svg" alt="Российский флаг"></img>
+              )}
+              {language == "en" && (
+                <img src="/flags/us_flag.svg" alt="US flag"></img>
+              )}
             </button>
           </div>
           {selectedMenu === "theme" && <ThemeMenu />}

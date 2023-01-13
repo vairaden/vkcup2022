@@ -10,13 +10,15 @@ export default function FilterButton({
   className?: string;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={`flex items-center px-6 py-2 ${className}`}
-    >
-      {active && (
-        <img src="/icons/light/checkmark_outline.svg" alt="Filter active"></img>
-      )}
+    <button onClick={onClick} className={`flex items-center p-2 ${className}`}>
+      <div className="w-5">
+        {active && (
+          <img
+            src="/icons/light/checkmark_outline.svg"
+            alt="Filter active"
+          ></img>
+        )}
+      </div>
       {children}
     </button>
   );

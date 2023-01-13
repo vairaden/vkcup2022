@@ -49,9 +49,19 @@ export default function Navbar() {
         </button>
       </div>
       <button
-        className="flex items-center dark:text-textPrimaryWhite rounded-lg hover:bg-grayHover dark:hover:bg-darkHover"
+        className="flex items-center p-2 dark:text-textPrimaryWhite rounded-lg hover:bg-grayHover dark:hover:bg-darkHover"
         onClick={() => setShowSettings(true)}
       >
+        <img
+          className="block dark:hidden mx-2"
+          src="/icons/light/gear_outline_20.svg"
+          alt="Настройки"
+        ></img>
+        <img
+          className="hidden dark:block mx-2"
+          src="/icons/dark/gear_outline_dark_20.svg"
+          alt="Настройки"
+        ></img>
         <p className="hidden md:block">{text.settings}</p>
       </button>
       {showSettings && (

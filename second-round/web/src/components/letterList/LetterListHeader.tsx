@@ -56,25 +56,25 @@ export default function LetterListHeader() {
         {filterWithAttachments && (
           <>
             <img
-              className="ml-1 block dark:hidden"
+              className="block dark:hidden"
               src="/icons/light/attach_outline_20.svg"
               alt="Файлы"
             ></img>
             <img
-              className="ml-1 hidden dark:block"
+              className="hidden dark:block"
               src="/icons/dark/attach_outline_dark_20.svg"
               alt="Файлы"
             ></img>
           </>
         )}
-        {text.filter}
+        <p className="ml-1">{text.filter}</p>
         <img
           src="/icons/light/chevron_down_outline_20.svg"
           alt="Filter dropdown"
         ></img>
       </button>
       {filtersOpen && (
-        <div className="flex flex-col fixed top-12 right-6 w-60 bg-white shadow-md rounded-xl">
+        <div className="flex flex-col fixed top-12 right-6 w-60 py-2 bg-white shadow-md rounded-xl">
           <FilterButton
             active={
               !filterUnread && !filterBookmarked && !filterWithAttachments
@@ -84,32 +84,41 @@ export default function LetterListHeader() {
             {text.filterAll}
           </FilterButton>
           <FilterButton active={filterUnread} onClick={toggleFilterUnread}>
-            <div
-              className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
-            ></div>
+            <div className="w-6">
+              <div
+                className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
+              ></div>
+            </div>
             {text.filterUnread}
           </FilterButton>
           <FilterButton
             active={filterBookmarked}
             onClick={toggleFilterBookmarked}
           >
-            <img src="/letter_indicators/bookmark_20.svg" alt="Закладка"></img>
+            <div className="w-6">
+              <img
+                src="/letter_indicators/bookmark_20.svg"
+                alt="Закладка"
+              ></img>
+            </div>
             {text.filterBookmarked}
           </FilterButton>
           <FilterButton
             active={filterWithAttachments}
             onClick={toggleFilterWithAttachments}
           >
-            <img
-              className="ml-1 block dark:hidden"
-              src="/icons/light/attach_outline_20.svg"
-              alt="Файлы"
-            ></img>
-            <img
-              className="ml-1 hidden dark:block"
-              src="/icons/dark/attach_outline_dark_20.svg"
-              alt="Файлы"
-            ></img>
+            <div className="w-6">
+              <img
+                className="block dark:hidden"
+                src="/icons/light/attach_outline_20.svg"
+                alt="Файлы"
+              ></img>
+              <img
+                className="hidden dark:block"
+                src="/icons/dark/attach_outline_dark_20.svg"
+                alt="Файлы"
+              ></img>
+            </div>
             {text.filterWithAttachments}
           </FilterButton>
         </div>

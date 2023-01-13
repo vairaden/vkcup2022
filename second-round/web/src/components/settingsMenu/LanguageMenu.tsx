@@ -11,35 +11,40 @@ export default function LanguageMenu() {
   const { text } = useTranslation();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-8 py-[26px]">
       <h2>{text.changeLanguage}</h2>
-      <label className="flex items-center">
-        <input
-          type="radio"
-          name="language"
-          value="ru"
-          checked={selectedLanguage === "ru"}
-          onChange={() => setSelectedLanguage("ru")}
-        />
-        <img
-          className="m-3"
-          src="/flags/ru_flag.svg"
-          alt="Российский флаг"
-        ></img>
-        Русский
-      </label>
-      <label className="flex items-center">
-        <input
-          type="radio"
-          name="language"
-          value="en"
-          checked={selectedLanguage === "en"}
-          onChange={() => setSelectedLanguage("en")}
-        />
-        <img className="m-3" src="/flags/us_flag.svg" alt="US flag"></img>
-        English
-      </label>
-      <Button onClick={() => setLanguage(selectedLanguage)}>
+      <div className="my-4">
+        <label className="flex items-center">
+          <input
+            type="radio"
+            name="language"
+            value="ru"
+            checked={selectedLanguage === "ru"}
+            onChange={() => setSelectedLanguage("ru")}
+          />
+          <img
+            className="m-3"
+            src="/flags/ru_flag.svg"
+            alt="Российский флаг"
+          ></img>
+          Русский
+        </label>
+        <label className="flex items-center">
+          <input
+            type="radio"
+            name="language"
+            value="en"
+            checked={selectedLanguage === "en"}
+            onChange={() => setSelectedLanguage("en")}
+          />
+          <img className="m-3" src="/flags/us_flag.svg" alt="US flag"></img>
+          English
+        </label>
+      </div>
+      <Button
+        className="w-36 bg-electricBlue text-textPrimaryWhite"
+        onClick={() => setLanguage(selectedLanguage)}
+      >
         {text.selectLanguage}
       </Button>
     </div>
