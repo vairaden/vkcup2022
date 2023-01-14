@@ -83,7 +83,7 @@ export default function LetterList() {
     <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
       <ul>
         {letters.map((letterData, index) => (
-          <article key={index}>
+          <li key={index}>
             <LetterThumbnail to={`/${folderName}/${index}`} data={letterData} />
             {index === letters.length - 2 ? (
               <div
@@ -95,7 +95,7 @@ export default function LetterList() {
                 <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
               )
             )}
-          </article>
+          </li>
         ))}
       </ul>
     </section>

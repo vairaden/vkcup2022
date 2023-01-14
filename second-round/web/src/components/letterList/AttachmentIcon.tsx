@@ -9,7 +9,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
       : `${parseInt((fileSize / 1024).toFixed(2))} Mb`;
   }
 
-  const { text } = useTranslation();
+  const { text, alt } = useTranslation();
 
   return (
     <div className="z-0 relative group/list my-auto">
@@ -23,8 +23,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
                 <img
                   className="w-[256px] h-[190px] rounded-xl"
                   src={doc.img}
-                  alt="Attachment"
-                  loading="lazy"
+                  alt={alt.attachment}
                 ></img>
                 <a
                   className="hidden group-hover/download:flex absolute bottom-2 left-[50%] translate-x-[-50%]"
@@ -34,14 +33,17 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
                   <img
                     className="mr-2"
                     src="/icons/light/download_outline.svg"
-                    alt="Скачать"
-                    loading="lazy"
+                    alt={alt.download}
                   ></img>
                   {text.download}
                 </a>
               </div>
             </div>
-            <img className="w-8 h-8 rounded" src={doc.img} alt="Файлы"></img>
+            <img
+              className="w-8 h-8 rounded"
+              src={doc.img}
+              alt={alt.attachment}
+            ></img>
           </div>
           <p className="text-sm ml-2">
             attachment.jpg {calculateFileSize(doc.img)}
@@ -52,12 +54,12 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
         <img
           className="block dark:hidden"
           src="/icons/light/attach_outline_20.svg"
-          alt="Файлы"
+          alt={alt.attachment}
         ></img>
         <img
           className="hidden dark:block"
           src="/icons/dark/attach_outline_dark_20.svg"
-          alt="Файлы"
+          alt={alt.attachment}
         ></img>
       </div>
     </div>

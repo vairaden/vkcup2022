@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useFilterStore from "../../hooks/useFilterStore";
+import useThemeStore from "../../hooks/useThemeStore";
 import useTranslation from "../../hooks/useTranslation";
 import FilterButton from "../FilterButton";
 
@@ -22,31 +23,39 @@ export default function LetterListHeader() {
   );
   const resetFilters = useFilterStore((state) => state.resetFilters);
 
-  const { text } = useTranslation();
+  const theme = useThemeStore((state) => state.theme);
+
+  const { text, alt } = useTranslation();
 
   return (
-    <header className="fixed z-10 flex justify-between left-0 top-0 h-14 px-4 py-3 w-[100vw] bg-white dark:bg-darkGray shadow-sm">
+    <header
+      className="fixed z-10 flex justify-between left-0 top-0 h-14 px-4 py-3 w-[100vw] shadow-sm"
+      style={{ backgroundColor: theme.headerColor }}
+    >
       <img
         className="block md:hidden"
         src="/mailru_logo/mailru_logo_no_letters.svg"
-        alt="Mail ru logo"
+        alt={alt.mailRuLogo}
       ></img>
       <img
         className="hidden md:block dark:hidden"
         src="/mailru_logo/mailru_logo.svg"
-        alt="Mail ru logo"
+        alt={alt.mailRuLogo}
       ></img>
       <img
         className="hidden md:dark:block"
         src="/mailru_logo/mailru_logo_dark.svg"
-        alt="Mail ru logo"
+        alt={alt.mailRuLogo}
       ></img>
       <button
         className="flex items-center"
         onClick={() => setFiltersOpen((prev) => !prev)}
       >
         {filterBookmarked && (
-          <img src="/letter_indicators/bookmark_20.svg" alt="Закладка"></img>
+          <img
+            src="/letter_indicators/bookmark_20.svg"
+            alt={alt.bookmark}
+          ></img>
         )}
         {filterUnread && (
           <div
@@ -58,19 +67,19 @@ export default function LetterListHeader() {
             <img
               className="block dark:hidden"
               src="/icons/light/attach_outline_20.svg"
-              alt="Файлы"
+              alt={alt.attachment}
             ></img>
             <img
               className="hidden dark:block"
               src="/icons/dark/attach_outline_dark_20.svg"
-              alt="Файлы"
+              alt={alt.attachment}
             ></img>
           </>
         )}
         <p className="ml-1">{text.filter}</p>
         <img
           src="/icons/light/chevron_down_outline_20.svg"
-          alt="Filter dropdown"
+          alt={alt.filterSelect}
         ></img>
       </button>
       {filtersOpen && (
@@ -98,7 +107,7 @@ export default function LetterListHeader() {
             <div className="w-6">
               <img
                 src="/letter_indicators/bookmark_20.svg"
-                alt="Закладка"
+                alt={alt.bookmark}
               ></img>
             </div>
             {text.filterBookmarked}
@@ -111,12 +120,12 @@ export default function LetterListHeader() {
               <img
                 className="block dark:hidden"
                 src="/icons/light/attach_outline_20.svg"
-                alt="Файлы"
+                alt={alt.attachment}
               ></img>
               <img
                 className="hidden dark:block"
                 src="/icons/dark/attach_outline_dark_20.svg"
-                alt="Файлы"
+                alt={alt.attachment}
               ></img>
             </div>
             {text.filterWithAttachments}

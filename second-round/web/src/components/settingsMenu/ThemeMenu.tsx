@@ -6,12 +6,12 @@ export default function ThemeMenu() {
   const themeNumber = useThemeStore((state) => state.themeNumber);
   const setThemeNumber = useThemeStore((state) => state.setThemeNumber);
 
-  const { text } = useTranslation();
+  const { text, alt } = useTranslation();
 
   return (
     <div className="flex flex-col px-8 py-[26px]">
       <h2>{text.themeMenu}</h2>
-      <div className="grid grid-cols-8 gap-x-3 gap-y-2">
+      <div className="grid grid-cols-4 md:grid-cols-8 gap-x-3 gap-y-2">
         {themeColors.slice(3).map((color, index) => (
           <label key={index}>
             <div className="w-16 h-10" style={{ background: color }} />
@@ -31,7 +31,7 @@ export default function ThemeMenu() {
           <img
             className="w-20 h-12"
             src="/dark-theme-image.svg"
-            alt="Темная тема"
+            alt={alt.darkTheme}
           ></img>
           <input
             className="hidden"
@@ -46,7 +46,7 @@ export default function ThemeMenu() {
           <img
             className="w-20 h-12"
             src="/light-theme-image.svg"
-            alt="Светлая тема"
+            alt={alt.lightTheme}
           ></img>
           <input
             className="hidden"
@@ -61,7 +61,7 @@ export default function ThemeMenu() {
           <img
             className="w-20 h-12"
             src="/image-theme.svg"
-            alt="Тема с изображением"
+            alt={alt.imageTheme}
           ></img>
           <input
             className="hidden"

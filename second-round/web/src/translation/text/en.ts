@@ -22,7 +22,7 @@ const textEn = {
   filterBookmarked: "Bookmarked",
   filterWithAttachments: "With attachments",
   // folders
-  writeLetter: "Write a letter",
+  composeLetter: "Compose a letter",
   inboxFolder: "Inbox",
   importantFolder: "Important",
   sentFolder: "Sent",

@@ -8,7 +8,7 @@ export default function LanguageMenu() {
   const setLanguage = useLanguageStore((state) => state.setLanguage);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
 
-  const { text } = useTranslation();
+  const { text, alt } = useTranslation();
 
   return (
     <div className="flex flex-col px-8 py-[26px]">
@@ -22,11 +22,7 @@ export default function LanguageMenu() {
             checked={selectedLanguage === "ru"}
             onChange={() => setSelectedLanguage("ru")}
           />
-          <img
-            className="m-3"
-            src="/flags/ru_flag.svg"
-            alt="Российский флаг"
-          ></img>
+          <img className="m-3" src="/flags/ru_flag.svg" alt={alt.ruFlag}></img>
           Русский
         </label>
         <label className="flex items-center">
@@ -37,7 +33,7 @@ export default function LanguageMenu() {
             checked={selectedLanguage === "en"}
             onChange={() => setSelectedLanguage("en")}
           />
-          <img className="m-3" src="/flags/us_flag.svg" alt="US flag"></img>
+          <img className="m-3" src="/flags/us_flag.svg" alt={alt.usFlag}></img>
           English
         </label>
       </div>

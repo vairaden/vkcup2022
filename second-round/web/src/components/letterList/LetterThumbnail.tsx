@@ -10,7 +10,7 @@ export default function LetterThumbnail({
   data: Letter;
   to: string;
 }) {
-  const { text } = useTranslation();
+  const { text, alt } = useTranslation();
 
   function formatDate(date: string) {
     const dateObj = new Date(date);
@@ -23,7 +23,7 @@ export default function LetterThumbnail({
   }
 
   return (
-    <li className="flex justify-between h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover dark:text-textPrimaryWhite">
+    <article className="flex justify-between h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover dark:text-textPrimaryWhite">
       <Link to={to} className="flex">
         <div className="flex items-center h-12 w-[16rem] mr-2">
           <div
@@ -31,24 +31,31 @@ export default function LetterThumbnail({
               !data.read && "bg-electricBlue"
             }`}
           ></div>
-          {data.author.avatar && (
+          {data.author.avatar ? (
             <img
               className="h-8 w-8 rounded-2xl mr-2"
               src={data.author.avatar}
-              alt="avatar"
+              alt={alt.avatar}
             />
+          ) : (
+            <div className="flex items-center justify-center h-8 w-8 rounded-2xl mr-2 bg-[#FFB980] text-[#C25C21] text-center text-[12px]">
+              {data.author.name[0]}
+            </div>
           )}
           <h2 className={`mr-2 truncate ${!data.read && "font-bold"}`}>
             {data.author.name + " " + data.author.surname}
           </h2>
           <div className="ml-auto">
             {data.important ? (
-              <img src="/letter_indicators/important_20.svg" alt="Важное"></img>
+              <img
+                src="/letter_indicators/important_20.svg"
+                alt={alt.important}
+              ></img>
             ) : (
               data.bookmark && (
                 <img
                   src="/letter_indicators/bookmark_20.svg"
-                  alt="Закладка"
+                  alt={alt.bookmark}
                 ></img>
               )
             )}
@@ -66,33 +73,33 @@ export default function LetterThumbnail({
           {data.flag === "Заказы" ? (
             <img
               src="/letter_indicators/shopping_cart_outline_20.svg"
-              alt="Заказы"
+              alt={alt.orders}
             ></img>
           ) : data.flag === "Финансы" ? (
             <img
               src="/letter_indicators/money_ruble_outline_20.svg"
-              alt="Финансы"
+              alt={alt.finance}
             ></img>
           ) : data.flag === "Регистрации" ? (
             <img
               src="/letter_indicators/key_outline_20.svg"
-              alt="Регистрации"
+              alt={alt.registrations}
             ></img>
           ) : data.flag === "Путешествия" ? (
             <img
               src="/letter_indicators/plane_outline_20.svg"
-              alt="Путешествия"
+              alt={alt.travels}
             ></img>
           ) : data.flag === "Билеты" ? (
             <img
               src="/letter_indicators/ticket_outline_20.svg"
-              alt="Билеты"
+              alt={alt.tickets}
             ></img>
           ) : (
             data.flag === "Штрафы и налоги" && (
               <img
                 src="/letter_indicators/government_outline_20.svg"
-                alt="Штрафы и налоги"
+                alt={alt.finesAndTaxes}
               ></img>
             )
           )}
@@ -102,6 +109,6 @@ export default function LetterThumbnail({
           {formatDate(data.date)}
         </div>
       </div>
-    </li>
+    </article>
   );
 }

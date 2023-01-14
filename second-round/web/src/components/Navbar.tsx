@@ -19,9 +19,9 @@ export default function Navbar() {
           <img
             className="m-2 md:hidden"
             src="/icons/compose_outline_20.svg"
-            alt="Написать письмо"
+            alt={text.composeLetter}
           ></img>
-          <p className="hidden md:inline">{text.writeLetter}</p>
+          <p className="hidden md:inline">{text.composeLetter}</p>
         </Button>
         <ul>
           {folderList.map((folder) => (
@@ -43,7 +43,7 @@ export default function Navbar() {
           <img
             className="m-2"
             src="/icons/plus_icon.svg"
-            alt="Новая папка"
+            alt={text.newFolder}
           ></img>
           <p className="hidden md:block text-[#74767A]">{text.newFolder}</p>
         </button>
@@ -55,12 +55,12 @@ export default function Navbar() {
         <img
           className="block dark:hidden mx-2"
           src="/icons/light/gear_outline_20.svg"
-          alt="Настройки"
+          alt={text.settings}
         ></img>
         <img
           className="hidden dark:block mx-2"
           src="/icons/dark/gear_outline_dark_20.svg"
-          alt="Настройки"
+          alt={text.settings}
         ></img>
         <p className="hidden md:block">{text.settings}</p>
       </button>

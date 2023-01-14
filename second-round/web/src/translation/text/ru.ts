@@ -22,7 +22,7 @@ const textRu = {
   filterBookmarked: "С флажком",
   filterWithAttachments: "С вложениями",
   // folders
-  writeLetter: "Написать письмо",
+  composeLetter: "Написать письмо",
   inboxFolder: "Входящие",
   importantFolder: "Важные",
   sentFolder: "Отправленные",

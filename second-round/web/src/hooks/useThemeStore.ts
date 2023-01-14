@@ -8,8 +8,8 @@ interface ThemeStore {
 }
 
 const useThemeStore = create<ThemeStore>()((set) => ({
-  themeNumber: 0,
-  theme: themes[0],
+  themeNumber: 1,
+  theme: themes[1],
   setThemeNumber: (themeNumber: number) => {
     const theme = themes[themeNumber];
     const body = document.querySelector("body");
@@ -22,7 +22,7 @@ const useThemeStore = create<ThemeStore>()((set) => ({
     } else {
       document.documentElement.classList.remove("dark");
     }
-    set({ themeNumber });
+    set({ themeNumber, theme: themes[themeNumber] });
   },
 }));
 

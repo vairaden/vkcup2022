@@ -22,7 +22,7 @@ export default function LetterCard() {
     (state) => state.filterWithAttachments
   );
 
-  const { text } = useTranslation();
+  const { text, alt } = useTranslation();
 
   function formatDate(date: string) {
     const dateObj = new Date(date);
@@ -64,7 +64,7 @@ export default function LetterCard() {
             <>
               <img
                 src="/letter_indicators/shopping_cart_outline_20.svg"
-                alt="Заказы"
+                alt={alt.orders}
               ></img>
               <p className="m-4 text-sm">{data.flag}</p>
             </>
@@ -72,7 +72,7 @@ export default function LetterCard() {
             <>
               <img
                 src="/letter_indicators/money_ruble_outline_20.svg"
-                alt="Финансы"
+                alt={alt.finance}
               ></img>
               <p className="m-4 text-sm">{data.flag}</p>
             </>
@@ -80,7 +80,7 @@ export default function LetterCard() {
             <>
               <img
                 src="/letter_indicators/key_outline_20.svg"
-                alt="Регистрации"
+                alt={alt.registrations}
               ></img>
               <p className="m-4 text-sm">{data.flag}</p>
             </>
@@ -88,7 +88,7 @@ export default function LetterCard() {
             <>
               <img
                 src="/letter_indicators/plane_outline_20.svg"
-                alt="Путешествия"
+                alt={alt.travels}
               ></img>
               <p className="m-4 text-sm">{data.flag}</p>
             </>
@@ -96,7 +96,7 @@ export default function LetterCard() {
             <>
               <img
                 src="/letter_indicators/ticket_outline_20.svg"
-                alt="Билеты"
+                alt={alt.tickets}
               ></img>
               <p className="m-4 text-sm">{data.flag}</p>
             </>
@@ -105,7 +105,7 @@ export default function LetterCard() {
               <>
                 <img
                   src="/letter_indicators/government_outline_20.svg"
-                  alt="Штрафы и налоги"
+                  alt={alt.finesAndTaxes}
                 ></img>
                 <p className="m-4 text-sm">{data.flag}</p>
               </>
@@ -123,7 +123,7 @@ export default function LetterCard() {
           <img
             className="h-8 w-8 rounded-2xl mr-2"
             src={data.author.avatar}
-            alt="avatar"
+            alt={alt.avatar}
           ></img>
         )}
         <div>
@@ -135,12 +135,15 @@ export default function LetterCard() {
               {formatDate(data.date)}
             </p>
             {data.important ? (
-              <img src="/letter_indicators/important_20.svg" alt="Важное"></img>
+              <img
+                src="/letter_indicators/important_20.svg"
+                alt={alt.important}
+              ></img>
             ) : (
               data.bookmark && (
                 <img
                   src="/letter_indicators/bookmark_20.svg"
-                  alt="Закладка"
+                  alt={alt.bookmark}
                 ></img>
               )
             )}
@@ -162,7 +165,7 @@ export default function LetterCard() {
             <img
               className="w-[256px] h-[190px] rounded-xl"
               src={data.doc.img}
-              alt="Attachment"
+              alt={alt.attachment}
             ></img>
             <a
               className="text-linkBlue"
