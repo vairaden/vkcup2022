@@ -23,8 +23,8 @@ export default function LetterThumbnail({
   }
 
   return (
-    <article className="grid grid-cols-[20rem_auto_auto_auto_5rem] w-full h-12 rounded-xl hover:bg-hover text-primaryText">
-      <Link to={to} className="flex">
+    <article className="grid grid-cols-[auto_minmax(4rem,auto)_5rem] w-full h-12 rounded-xl hover:bg-hover text-primaryText">
+      <Link to={to} className="grid grid-cols-[16rem_2rem_auto_auto] w-full">
         <div className="flex items-center h-12 mr-2">
           <div
             className={`mx-2 h-[6px] w-[6px] rounded-md ${
@@ -42,37 +42,37 @@ export default function LetterThumbnail({
               {data.author.name[0]}
             </div>
           )}
-          <h2 className={`mr-2 truncate w-48 ${!data.read && "font-bold"}`}>
+          <h2 className={`mr-2 truncate ${!data.read && "font-bold"}`}>
             {data.author.name + " " + data.author.surname}
           </h2>
-          <div className="ml-auto w-5">
-            {data.important ? (
-              <img
-                src="/letter_indicators/important_20.svg"
-                alt={alt.important}
-              ></img>
-            ) : (
-              data.bookmark && (
-                <img
-                  src="/letter_indicators/bookmark_20.svg"
-                  alt={alt.bookmark}
-                ></img>
-              )
-            )}
-          </div>
         </div>
+        <div className="flex items-center w-10">
+          {data.important ? (
+            <img
+              src="/letter_indicators/important_20.svg"
+              alt={alt.important}
+            ></img>
+          ) : (
+            data.bookmark && (
+              <img
+                src="/letter_indicators/bookmark_20.svg"
+                alt={alt.bookmark}
+              ></img>
+            )
+          )}
+        </div>
+        <p
+          className={`leading-[48px] align-middle mr-3 truncate ${
+            !data.read && "font-bold"
+          }`}
+        >
+          {data.title}
+        </p>
+        <p className="leading-[48px] align-middle truncate text-textGray">
+          {data.text}
+        </p>
       </Link>
-      <p
-        className={`leading-[48px] align-middle mr-3 truncate ${
-          !data.read && "font-bold"
-        }`}
-      >
-        {data.title}
-      </p>
-      <p className="leading-[48px] align-middle truncate text-textGray">
-        {data.text}
-      </p>
-      <div className="mr-1 flex items-center">
+      <div className="flex items-center justify-end min-w-15">
         {data.flag === "Заказы" ? (
           <img
             src="/letter_indicators/shopping_cart_outline_20.svg"

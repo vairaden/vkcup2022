@@ -24,7 +24,6 @@ export default function LetterListHeader() {
   const resetFilters = useFilterStore((state) => state.resetFilters);
 
   const theme = useThemeStore((state) => state.theme);
-
   const { text, alt } = useTranslation();
 
   return (

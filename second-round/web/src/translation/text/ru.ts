@@ -16,6 +16,8 @@ const textRu = {
     "ноя",
     "дек",
   ],
+  today: "Сегодня",
+  to: "Кому",
   // filters
   filter: "Фильтр",
   filterAll: "Все письма",

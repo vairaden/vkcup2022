@@ -14,14 +14,14 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
   const theme = useThemeStore((state) => state.theme);
 
   return (
-    <div className="z-0 relative group/list my-auto">
+    <div className="z-0 relative group/list">
       {/* attachment list */}
       <div className="absolute bottom-[-50%] left-0 translate-x-[-302px] w-[320px] hidden group-hover/list:block">
-        <div className="flex items-center w-[298px] p-2 bg-white dark:bg-blackBg rounded-xl shadow-md">
+        <div className="flex items-center w-[298px] p-2 bg-elementBg rounded-xl shadow-md">
           {/* attachment image */}
           <div className="group/image">
             <div className="absolute bottom-0 left-0 translate-x-[-268px] hidden group-hover/image:block w-[286px]">
-              <div className="w-[264px] h-[198px] p-1 rounded-2xl bg-white dark:bg-blackBg shadow-md group/download">
+              <div className="w-[264px] h-[198px] p-1 rounded-2xl bg-elementBg shadow-md group/download">
                 <img
                   className="w-[256px] h-[190px] rounded-xl"
                   src={doc.img}
@@ -52,7 +52,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
           </p>
         </div>
       </div>
-      <div className="rounded-lg group-hover/list:bg-[#00103D14]  dark:group-hover/list:dark:bg-[#FFFFFF14]">
+      <div className="rounded-lg group-hover/list:bg-hover ml-2">
         {theme.isDark ? (
           <img
             src="/icons/dark/attach_outline_dark_20.svg"

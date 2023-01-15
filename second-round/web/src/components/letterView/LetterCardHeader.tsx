@@ -4,6 +4,7 @@ import useTranslation from "../../hooks/useTranslation";
 
 export default function LetterCardHeader() {
   const folderName = useParams().folderName || "inbox";
+
   const theme = useThemeStore((state) => state.theme);
   const { text, alt } = useTranslation();
 

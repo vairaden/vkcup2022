@@ -16,6 +16,8 @@ const textEn = {
     "Nov",
     "Dec",
   ],
+  today: "Today",
+  to: "To",
   // filters
   filter: "Filter",
   filterAll: "All letters",

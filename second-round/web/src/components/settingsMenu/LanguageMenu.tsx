@@ -6,6 +6,7 @@ import Button from "../Button";
 export default function LanguageMenu() {
   const language = useLanguageStore((state) => state.language);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
+
   const [selectedLanguage, setSelectedLanguage] = useState(language);
 
   const { text, alt } = useTranslation();

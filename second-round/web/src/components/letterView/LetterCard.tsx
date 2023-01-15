@@ -29,7 +29,7 @@ export default function LetterCard() {
 
     return `${
       dateObj.toDateString() === new Date().toDateString()
-        ? "Сегодня"
+        ? text.today
         : `${dateObj.getDate()} ${text.months[dateObj.getMonth()]}`
     }, ${dateObj.getHours()}:${
       dateObj.getMinutes() < 10 ? "0" : ""
@@ -74,7 +74,7 @@ export default function LetterCard() {
                 src="/letter_indicators/shopping_cart_outline_20.svg"
                 alt={alt.orders}
               ></img>
-              <p className="m-4 text-sm">{data.flag}</p>
+              <p className="ml-2 mr-4 text-sm">{alt.orders}</p>
             </>
           ) : data.flag === "Финансы" ? (
             <>
@@ -82,7 +82,7 @@ export default function LetterCard() {
                 src="/letter_indicators/money_ruble_outline_20.svg"
                 alt={alt.finance}
               ></img>
-              <p className="m-4 text-sm">{data.flag}</p>
+              <p className="ml-2 mr-4 text-sm">{alt.finance}</p>
             </>
           ) : data.flag === "Регистрации" ? (
             <>
@@ -90,7 +90,7 @@ export default function LetterCard() {
                 src="/letter_indicators/key_outline_20.svg"
                 alt={alt.registrations}
               ></img>
-              <p className="m-4 text-sm">{data.flag}</p>
+              <p className="ml-2 mr-4 text-sm">{alt.registrations}</p>
             </>
           ) : data.flag === "Путешествия" ? (
             <>
@@ -98,7 +98,7 @@ export default function LetterCard() {
                 src="/letter_indicators/plane_outline_20.svg"
                 alt={alt.travels}
               ></img>
-              <p className="m-4 text-sm">{data.flag}</p>
+              <p className="ml-2 mr-4 text-sm">{alt.travels}</p>
             </>
           ) : data.flag === "Билеты" ? (
             <>
@@ -106,7 +106,7 @@ export default function LetterCard() {
                 src="/letter_indicators/ticket_outline_20.svg"
                 alt={alt.tickets}
               ></img>
-              <p className="m-4 text-sm">{data.flag}</p>
+              <p className="ml-2 mr-4 text-sm">{alt.tickets}</p>
             </>
           ) : (
             data.flag === "Штрафы и налоги" && (
@@ -115,7 +115,7 @@ export default function LetterCard() {
                   src="/letter_indicators/government_outline_20.svg"
                   alt={alt.finesAndTaxes}
                 ></img>
-                <p className="m-4 text-sm">{data.flag}</p>
+                <p className="ml-2 mr-4 text-sm">{alt.finesAndTaxes}</p>
               </>
             )
           )}
@@ -157,7 +157,7 @@ export default function LetterCard() {
             )}
           </div>
           <p className="whitespace-nowrap truncate w-96 text-textGray text-sm">
-            Кому:{" "}
+            {text.to + ": "}
             {data.to.map(
               (receiver, index) =>
                 `${receiver.name} ${receiver.surname}${

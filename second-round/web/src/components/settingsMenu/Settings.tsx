@@ -9,11 +9,12 @@ export default function Settings({
 }: {
   closeCallback: () => void;
 }) {
-  const language = useLanguageStore((state) => state.language);
-  const { text, alt } = useTranslation();
   const [selectedMenu, setSelectedMenu] = useState<"theme" | "language">(
     "theme"
   );
+
+  const language = useLanguageStore((state) => state.language);
+  const { text, alt } = useTranslation();
 
   return (
     <div onClick={closeCallback} className="fixed top-0 left-0 h-full w-full">
