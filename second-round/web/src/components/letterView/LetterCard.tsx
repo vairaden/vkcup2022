@@ -127,12 +127,16 @@ export default function LetterCard() {
             data.read && "bg-electricBlue"
           }`}
         ></div>
-        {data.author.avatar && (
+        {data.author.avatar ? (
           <img
             className="h-8 w-8 rounded-2xl mr-2"
             src={data.author.avatar}
             alt={alt.avatar}
-          ></img>
+          />
+        ) : (
+          <div className="flex items-center justify-center h-8 w-8 rounded-2xl mr-2 bg-[#FFB980] text-[#C25C21] text-center text-[12px]">
+            {data.author.name[0]}
+          </div>
         )}
         <div>
           <div className="flex items-center">

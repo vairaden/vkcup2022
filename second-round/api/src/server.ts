@@ -36,25 +36,25 @@ http
 
     if (!req.url) throw new Error("No url");
 
-    // Serving letter by id (/api/:folderName/:letterId)
+    // Serving letter by id (.../api/:folderName/:letterId?...)
     if (
-      req.url.startsWith("/api") &&
+      req.url.includes("/api/") &&
       req.url.split("/")[3] &&
       req.method === "GET"
     ) {
       return getLetterById(req, res);
     }
 
-    // Serving letters in folder (/api/:folderName)
+    // Serving letters in folder (.../api/:folderName?...)
     if (
-      req.url.startsWith("/api") &&
+      req.url.includes("/api") &&
       req.url.split("/")[2] &&
       req.method === "GET"
     ) {
       return getLettersByFolderName(req, res);
     }
 
-    // Serving html
+    // Serving index.html
     if (req.url === "/" && req.method === "GET") {
       res.writeHead(200, { "Content-Type": "text/html; charset=UTF-8" });
       fs.createReadStream(path.resolve(__dirname, "index.html")).pipe(res);

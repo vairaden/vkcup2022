@@ -63,9 +63,10 @@ export function getLettersByFolderName(
 
 export function getLetterById(req: IncomingMessage, res: ServerResponse) {
   if (!req.url) throw new Error("No url");
+  // /inbox/api/inbox/1?unread=false&bookmarked=false&withAttachments=false
 
-  const folderName = req.url.split("/")[2].split("?")[0];
-  const letterId = req.url.split("/")[3];
+  const folderName = req.url.split("/api/")[1].split("/")[0];
+  const letterId = req.url.split("/api/")[1].split("/")[1].split("?")[0];
 
   let filteredData: Letter[] = [];
 
