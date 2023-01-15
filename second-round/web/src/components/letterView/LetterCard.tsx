@@ -64,7 +64,7 @@ export default function LetterCard() {
       <h2>{text.letterNotFound}</h2>
     </div>
   ) : (
-    <section className="mb-3 rounded-xl bg-white dark:text-textPrimaryWhite dark:bg-darkGray">
+    <section className="mb-3 rounded-xl bg-elementBg text-primaryText">
       <div className="flex items-center justify-between mr-4 ml-auto">
         <h1 className="font-bold text-2xl px-8 py-4">{data.title}</h1>
         <div className="flex items-center">

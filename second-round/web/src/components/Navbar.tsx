@@ -40,7 +40,7 @@ export default function Navbar() {
             </FolderThumbnail>
           ))}
         </ul>
-        <div className="h-[1px] mx-auto w-[85%] bg-separator my-2"></div>
+        <div className="h-[1px] mx-auto w-[85%] bg-menuSeparator my-2"></div>
         <button className="flex items-center md:w-[200px] w-8 h-9 mt-4 md:ml-2 mx-auto rounded-lg hover:bg-grayHover dark:hover:bg-darkHover">
           <img
             className="m-2"
@@ -51,7 +51,7 @@ export default function Navbar() {
         </button>
       </div>
       <button
-        className="flex items-center p-2 dark:text-textPrimaryWhite rounded-lg hover:bg-grayHover dark:hover:bg-darkHover"
+        className="flex items-center p-2 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover"
         onClick={() => setShowSettings(true)}
       >
         {theme.darkThemeIcons ? (

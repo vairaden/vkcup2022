@@ -11,7 +11,7 @@ export default function LanguageMenu() {
   const { text, alt } = useTranslation();
 
   return (
-    <div className="flex flex-col px-8 py-[26px]">
+    <div className="flex flex-col px-8 py-[26px] text-primaryText">
       <h2>{text.changeLanguage}</h2>
       <div className="my-4">
         <label className="flex items-center">
@@ -38,7 +38,7 @@ export default function LanguageMenu() {
         </label>
       </div>
       <Button
-        className="w-36 bg-electricBlue text-white"
+        className="w-36 bg-electricBlue text-white border-none"
         onClick={() => setLanguage(selectedLanguage)}
       >
         {text.selectLanguage}

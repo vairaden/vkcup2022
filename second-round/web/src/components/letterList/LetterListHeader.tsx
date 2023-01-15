@@ -34,7 +34,7 @@ export default function LetterListHeader() {
         src="/mailru_logo/mailru_logo_no_letters.svg"
         alt={alt.mailRuLogo}
       ></img>
-      {theme.darkThemeIcons ? (
+      {theme.name !== "light" ? (
         <img
           className="hidden md:block"
           src="/mailru_logo/mailru_logo_dark.svg"
@@ -74,8 +74,14 @@ export default function LetterListHeader() {
               alt={alt.attachment}
             ></img>
           ))}
-        <p className="ml-1 text-menuText">{text.filter}</p>
-        {theme.darkThemeIcons ? (
+        <p
+          className={`ml-1 ${
+            theme.name === "light" ? "text-black" : "text-white"
+          }`}
+        >
+          {text.filter}
+        </p>
+        {theme.name !== "light" ? (
           <img
             src="/icons/dark/chevron_down_outline_dark_20.svg"
             alt={alt.filterSelect}
@@ -88,7 +94,7 @@ export default function LetterListHeader() {
         )}
       </button>
       {filtersOpen && (
-        <div className="flex flex-col fixed top-12 right-6 w-60 py-2 bg-white shadow-md rounded-xl">
+        <div className="flex flex-col fixed top-12 right-6 w-60 py-2 bg-elementBg text-primaryText shadow-md rounded-xl">
           <FilterButton
             active={
               !filterUnread && !filterBookmarked && !filterWithAttachments
@@ -122,14 +128,14 @@ export default function LetterListHeader() {
             onClick={toggleFilterWithAttachments}
           >
             <div className="w-6">
-              {theme.darkThemeIcons ? (
+              {theme.isDark ? (
                 <img
-                  src="/icons/light/attach_outline_20.svg"
+                  src="/icons/dark/attach_outline_dark_20.svg"
                   alt={alt.attachment}
                 ></img>
               ) : (
                 <img
-                  src="/icons/dark/attach_outline_dark_20.svg"
+                  src="/icons/light/attach_outline_20.svg"
                   alt={alt.attachment}
                 ></img>
               )}

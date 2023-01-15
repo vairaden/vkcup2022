@@ -17,6 +17,7 @@ body {
     --color-headerBg: 35 35 36;
     --color-primaryText: 231 232 234;
     --color-menuText: 231 232 234;
+    --color-menuSeparator: 0 0 0;
     --color-separator: 0 0 0;
   }
 
@@ -26,6 +27,7 @@ body {
     --color-headerBg: 255 255 255;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
+    --color-menuSeparator: 218 220 224;
     --color-separator: 218 220 224;
   }
 
@@ -35,7 +37,8 @@ body {
     --color-headerBg: 107 19 68;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 107 19 68;
+    --color-menuSeparator: 107 19 68;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="darkBrown"] {
@@ -43,7 +46,8 @@ body {
     --color-elementBg: 255 255 255;
     --color-headerBg: 41 27 24;
     --color-menuText: 231 232 234;
-    --color-separator: 41 27 24;
+    --color-menuSeparator: 41 27 24;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="darkGray"] {
@@ -52,7 +56,8 @@ body {
     --color-headerBg: 36 36 36;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 36 36 36;
+    --color-menuSeparator: 36 36 36;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="darkPurple"] {
@@ -61,7 +66,8 @@ body {
     --color-headerBg: 51 29 51;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 51 29 51;
+    --color-menuSeparator: 51 29 51;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="darkBlue"] {
@@ -70,7 +76,8 @@ body {
     --color-headerBg: 23 25 40;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 23 25 40;
+    --color-menuSeparator: 23 25 40;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="blue"] {
@@ -79,7 +86,8 @@ body {
     --color-headerBg: 67 76 152;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 67 76 152;
+    --color-menuSeparator: 67 76 152;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="pink"] {
@@ -88,7 +96,8 @@ body {
     --color-headerBg: 178 28 79;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 178 28 79;
+    --color-menuSeparator: 178 28 79;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="grange"] {
@@ -97,7 +106,8 @@ body {
     --color-headerBg: 183 47 39;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 183 47 39;
+    --color-menuSeparator: 183 47 39;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="green"] {
@@ -106,7 +116,8 @@ body {
     --color-headerBg: 39 102 41;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-separator: 39 102 41;
+    --color-menuSeparator: 39 102 41;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="cyan"] {
@@ -115,7 +126,8 @@ body {
     --color-headerBg: 60 146 138;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 60 146 138;
+    --color-menuSeparator: 60 146 138;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="gray"] {
@@ -124,7 +136,8 @@ body {
     --color-headerBg: 131 126 120;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 131 126 120;
+    --color-menuSeparator: 131 126 120;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="lightOrange"] {
@@ -133,7 +146,8 @@ body {
     --color-headerBg: 140 131 126;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 140 131 126;
+    --color-menuSeparator: 140 131 126;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="lightGreen"] {
@@ -142,16 +156,18 @@ body {
     --color-headerBg: 116 122 99;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 116 122 99;
+    --color-menuSeparator: 116 122 99;
+    --color-separator: 218 220 224;
   }
 
-  [data-theme="LightCyan"] {
+  [data-theme="lightCyan"] {
     --color-primaryBg: 208 240 247;
     --color-elementBg: 255 255 255;
     --color-headerBg: 84 111 116;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 84 111 116;
+    --color-menuSeparator: 84 111 116;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="lightPurple"] {
@@ -160,7 +176,8 @@ body {
     --color-headerBg: 90 94 118;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 90 94 118;
+    --color-menuSeparator: 90 94 118;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="lightBlue"] {
@@ -169,7 +186,8 @@ body {
     --color-headerBg: 82 95 107;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 82 95 107;
+    --color-menuSeparator: 82 95 107;
+    --color-separator: 218 220 224;
   }
 
   [data-theme="lightGray"] {
@@ -178,6 +196,7 @@ body {
     --color-headerBg: 128 128 128;
     --color-primaryText: 0 0 0;
     --color-menuText: 0 0 0;
-    --color-separator: 128 128 128;
+    --color-menuSeparator: 128 128 128;
+    --color-separator: 218 220 224;
   }
 }

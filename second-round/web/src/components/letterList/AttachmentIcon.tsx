@@ -1,3 +1,4 @@
+import useThemeStore from "../../hooks/useThemeStore";
 import useTranslation from "../../hooks/useTranslation";
 
 export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
@@ -10,6 +11,7 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
   }
 
   const { text, alt } = useTranslation();
+  const theme = useThemeStore((state) => state.theme);
 
   return (
     <div className="z-0 relative group/list my-auto">
@@ -51,16 +53,17 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
         </div>
       </div>
       <div className="rounded-lg group-hover/list:bg-[#00103D14]  dark:group-hover/list:dark:bg-[#FFFFFF14]">
-        <img
-          className="block dark:hidden"
-          src="/icons/light/attach_outline_20.svg"
-          alt={alt.attachment}
-        ></img>
-        <img
-          className="hidden dark:block"
-          src="/icons/dark/attach_outline_dark_20.svg"
-          alt={alt.attachment}
-        ></img>
+        {theme.isDark ? (
+          <img
+            src="/icons/dark/attach_outline_dark_20.svg"
+            alt={alt.attachment}
+          ></img>
+        ) : (
+          <img
+            src="/icons/light/attach_outline_20.svg"
+            alt={alt.attachment}
+          ></img>
+        )}
       </div>
     </div>
   );

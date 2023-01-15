@@ -10,7 +10,7 @@ export default function ThemeMenu() {
 
   return (
     <div className="flex flex-col px-8 py-[26px]">
-      <h2 className="mb-5">{text.themeMenu}</h2>
+      <h2 className="mb-5 text-primaryText">{text.themeMenu}</h2>
       <div className="flex flex-wrap max-w-[700px]">
         {colorThemes.map((theme) => (
           <label key={theme.name}>
