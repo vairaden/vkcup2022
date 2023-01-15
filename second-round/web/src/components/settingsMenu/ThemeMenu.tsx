@@ -1,10 +1,10 @@
-import { themeColors } from "../../data/themes";
 import useThemeStore from "../../hooks/useThemeStore";
 import useTranslation from "../../hooks/useTranslation";
 
 export default function ThemeMenu() {
   const themeNumber = useThemeStore((state) => state.themeNumber);
   const setThemeNumber = useThemeStore((state) => state.setThemeNumber);
+  const allThemes = useThemeStore((state) => state.allThemes);
 
   const { text, alt } = useTranslation();
 
@@ -12,16 +12,19 @@ export default function ThemeMenu() {
     <div className="flex flex-col px-8 py-[26px]">
       <h2>{text.themeMenu}</h2>
       <div className="grid grid-cols-4 md:grid-cols-8 gap-x-3 gap-y-2">
-        {themeColors.slice(3).map((color, index) => (
+        {allThemes.map((theme, index) => (
           <label key={index}>
-            <div className="w-16 h-10" style={{ background: color }} />
+            <div
+              className="w-16 h-10"
+              style={{ background: theme.previewColor }}
+            />
             <input
               className="hidden"
               type="radio"
               name="theme"
-              value={index + 3}
-              checked={themeNumber === index + 3}
-              onChange={() => setThemeNumber(index + 3)}
+              value={index}
+              checked={themeNumber === index}
+              onChange={() => setThemeNumber(index)}
             />
           </label>
         ))}

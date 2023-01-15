@@ -1,23 +1,116 @@
 export const themes = [
-  { bgColor: "#19191A", headerColor: "#232324", isDark: true }, // dark
-  { bgColor: "#F6F7F8", headerColor: "#FFFFFF", isDark: false }, // light
-  { bgColor: "#6B1344", headerColor: "#6B1344", isDark: false }, // image
-  { bgColor: "#4A352F", headerColor: "#291B18", isDark: false },
-  { bgColor: "#424242", headerColor: "#242424", isDark: false },
-  { bgColor: "#5A355A", headerColor: "#331D33", isDark: false },
-  { bgColor: "#35385A", headerColor: "#171928", isDark: false },
-  { bgColor: "#646ECB", headerColor: "#434C98", isDark: false },
-  { bgColor: "#E73672", headerColor: "#B21C4F", isDark: false },
-  { bgColor: "#F44336", headerColor: "#B72F27", isDark: false },
-  { bgColor: "#388E3C", headerColor: "#276629", isDark: false },
-  { bgColor: "#81D8D0", headerColor: "#3C928A", isDark: false },
-  { bgColor: "#E2DCD2", headerColor: "#837e78", isDark: false },
-  { bgColor: "#FFEBCD", headerColor: "#8c837e", isDark: false },
-  { bgColor: "#E7EED2", headerColor: "#747a63", isDark: false },
-  { bgColor: "#D0F0F7", headerColor: "#546f74", isDark: false },
-  { bgColor: "#C9D0FB", headerColor: "#5a5e76", isDark: false },
-  { bgColor: "#DDF3FF", headerColor: "#525f6b", isDark: false },
-  { bgColor: "#F0F0F0", headerColor: "#808080", isDark: false },
+  {
+    name: "dark",
+    previewColor: "#19191A",
+    darkThemeIcons: true,
+    isDark: true,
+  },
+  {
+    name: "light",
+    previewColor: "#F6F7F8",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "image",
+    previewColor: "#6B1344",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "darkBrown",
+    previewColor: "#4A352F",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "darkGray",
+    previewColor: "#424242",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "darkPurple",
+    previewColor: "#5A355A",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "darkBlue",
+    previewColor: "#35385A",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "blue",
+    previewColor: "#646ECB",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "pink",
+    previewColor: "#E73672",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "grange",
+    previewColor: "#F44336",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "green",
+    previewColor: "#388E3C",
+    darkThemeIcons: true,
+    isDark: false,
+  },
+  {
+    name: "cyan",
+    previewColor: "#81D8D0",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "gray",
+    previewColor: "#E2DCD2",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "lightOrange",
+    previewColor: "#FFEBCD",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "lightGreen",
+    previewColor: "#E7EED2",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "lightCyan",
+    previewColor: "#D0F0F7",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "lightPurple",
+    previewColor: "#C9D0FB",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "lightBlue",
+    previewColor: "#DDF3FF",
+    darkThemeIcons: false,
+    isDark: false,
+  },
+  {
+    name: "lightGray",
+    previewColor: "#F0F0F0",
+    darkThemeIcons: false,
+    isDark: false,
+  },
 ];
-
-export const themeColors = themes.map((t) => t.bgColor);

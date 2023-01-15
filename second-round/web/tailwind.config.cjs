@@ -2,10 +2,12 @@
 
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
+        primaryBg: "rgb(var(--color-primaryBg) / <alpha-value>)",
+        headerBg: "rgb(var(--color-headerBg) / <alpha-value>)",
+        menuText: "rgb(var(--color-menuText) / <alpha-value>)",
         blackBg: "#19191A",
         darkGray: "#232324",
         grayBg: "#F6F7F8",

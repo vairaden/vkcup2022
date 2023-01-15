@@ -7,5 +7,121 @@
   }
 
 body {
-    @apply bg-grayBg dark:bg-blackBg;
+    @apply bg-primaryBg;
+}
+
+@layer base {
+  [data-theme="dark"] {
+    --color-primaryBg: 25 25 26;
+    --color-headerBg: 35 35 36;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="light"] {
+    --color-primaryBg: 246 247 248;
+    --color-headerBg: 255 255 255;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="image"] {
+    --color-primaryBg: 107 19 68;
+    --color-headerBg: 107 19 68;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="darkBrown"] {
+    --color-primaryBg: 74 53 47;
+    --color-headerBg: 41 27 24;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="darkGray"] {
+    --color-primaryBg: 66 66 66;
+    --color-headerBg: 36 36 36;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="darkPurple"] {
+    --color-primaryBg: 90 53 90;
+    --color-headerBg: 51 29 51;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="darkBlue"] {
+    --color-primaryBg: 53 56 90;
+    --color-headerBg: 23 25 40;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="blue"] {
+    --color-primaryBg: 100 110 203;
+    --color-headerBg: 67 76 152;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="pink"] {
+    --color-primaryBg: 231 54 114;
+    --color-headerBg: 178 28 79;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="grange"] {
+    --color-primaryBg: 244 67 54;
+    --color-headerBg: 183 47 39;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="green"] {
+    --color-primaryBg: 56 142 60;
+    --color-headerBg: 39 102 41;
+    --color-menuText: 231 232 234;
+  }
+
+  [data-theme="cyan"] {
+    --color-primaryBg: 129 216 208;
+    --color-headerBg: 60 146 138;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="gray"] {
+    --color-primaryBg: 226 220 210;
+    --color-headerBg: 131 126 120;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="lightOrange"] {
+    --color-primaryBg: 255 235 205;
+    --color-headerBg: 140 131 126;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="lightGreen"] {
+    --color-primaryBg: 231 238 210;
+    --color-headerBg: 116 122 99;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="LightCyan"] {
+    --color-primaryBg: 208 240 247;
+    --color-headerBg: 84 111 116;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="lightPurple"] {
+    --color-primaryBg: 201 208 251;
+    --color-headerBg: 90 94 118;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="lightBlue"] {
+    --color-primaryBg: 221 243 255;
+    --color-headerBg: 82 95 107;
+    --color-menuText: 0 0 0;
+  }
+
+  [data-theme="lightGray"] {
+    --color-primaryBg: 240 240 240;
+    --color-headerBg: 128 128 128;
+    --color-menuText: 0 0 0;
+  }
 }

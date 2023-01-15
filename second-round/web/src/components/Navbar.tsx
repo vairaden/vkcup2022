@@ -5,12 +5,14 @@ import folderList from "../data/folderList";
 import { useState } from "react";
 import Settings from "./settingsMenu/Settings";
 import useTranslation from "../hooks/useTranslation";
+import useThemeStore from "../hooks/useThemeStore";
 
 export default function Navbar() {
   const [activeFolder, setActiveFolder] = useState("inbox");
   const [showSettings, setShowSettings] = useState(false);
 
   const { text } = useTranslation();
+  const theme = useThemeStore((state) => state.theme);
 
   return (
     <nav className="fixed z-10 top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
@@ -52,17 +54,20 @@ export default function Navbar() {
         className="flex items-center p-2 dark:text-textPrimaryWhite rounded-lg hover:bg-grayHover dark:hover:bg-darkHover"
         onClick={() => setShowSettings(true)}
       >
-        <img
-          className="block dark:hidden mx-2"
-          src="/icons/light/gear_outline_20.svg"
-          alt={text.settings}
-        ></img>
-        <img
-          className="hidden dark:block mx-2"
-          src="/icons/dark/gear_outline_dark_20.svg"
-          alt={text.settings}
-        ></img>
-        <p className="hidden md:block">{text.settings}</p>
+        {theme.darkThemeIcons ? (
+          <img
+            className="mr-2"
+            src="/icons/dark/gear_outline_dark_20.svg"
+            alt={text.settings}
+          ></img>
+        ) : (
+          <img
+            className="mr-2"
+            src="/icons/light/gear_outline_20.svg"
+            alt={text.settings}
+          ></img>
+        )}
+        <p className="hidden md:block text-menuText">{text.settings}</p>
       </button>
       {showSettings && (
         <Settings closeCallback={() => setShowSettings(false)} />

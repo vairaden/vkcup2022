@@ -23,9 +23,9 @@ export default function LetterThumbnail({
   }
 
   return (
-    <article className="flex justify-between h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover dark:text-textPrimaryWhite">
+    <article className="grid grid-cols-[20rem_auto_auto_auto_5rem] w-full h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover dark:text-textPrimaryWhite">
       <Link to={to} className="flex">
-        <div className="flex items-center h-12 w-[16rem] mr-2">
+        <div className="flex items-center h-12 mr-2">
           <div
             className={`mx-2 h-[6px] w-[6px] rounded-md ${
               !data.read && "bg-electricBlue"
@@ -42,10 +42,10 @@ export default function LetterThumbnail({
               {data.author.name[0]}
             </div>
           )}
-          <h2 className={`mr-2 truncate ${!data.read && "font-bold"}`}>
+          <h2 className={`mr-2 truncate w-48 ${!data.read && "font-bold"}`}>
             {data.author.name + " " + data.author.surname}
           </h2>
-          <div className="ml-auto">
+          <div className="ml-auto w-5">
             {data.important ? (
               <img
                 src="/letter_indicators/important_20.svg"
@@ -61,53 +61,49 @@ export default function LetterThumbnail({
             )}
           </div>
         </div>
-        <div className="flex text-sm w-[30vw] md:w-[40vw] items-center whitespace-nowrap">
-          <p className={`mr-3 truncate w-[40%] ${!data.read && "font-bold"}`}>
-            {data.title}
-          </p>
-          <p className="truncate w-[60%] text-textGray">{data.text}</p>
-        </div>
       </Link>
-      <div className="flex">
-        <div className="mr-1 flex items-center">
-          {data.flag === "Заказы" ? (
+      <p className={`mr-3 truncate ${!data.read && "font-bold"}`}>
+        {data.title}
+      </p>
+      <p className="truncate text-textGray">{data.text}</p>
+      <div className="mr-1 flex items-center">
+        {data.flag === "Заказы" ? (
+          <img
+            src="/letter_indicators/shopping_cart_outline_20.svg"
+            alt={alt.orders}
+          ></img>
+        ) : data.flag === "Финансы" ? (
+          <img
+            src="/letter_indicators/money_ruble_outline_20.svg"
+            alt={alt.finance}
+          ></img>
+        ) : data.flag === "Регистрации" ? (
+          <img
+            src="/letter_indicators/key_outline_20.svg"
+            alt={alt.registrations}
+          ></img>
+        ) : data.flag === "Путешествия" ? (
+          <img
+            src="/letter_indicators/plane_outline_20.svg"
+            alt={alt.travels}
+          ></img>
+        ) : data.flag === "Билеты" ? (
+          <img
+            src="/letter_indicators/ticket_outline_20.svg"
+            alt={alt.tickets}
+          ></img>
+        ) : (
+          data.flag === "Штрафы и налоги" && (
             <img
-              src="/letter_indicators/shopping_cart_outline_20.svg"
-              alt={alt.orders}
+              src="/letter_indicators/government_outline_20.svg"
+              alt={alt.finesAndTaxes}
             ></img>
-          ) : data.flag === "Финансы" ? (
-            <img
-              src="/letter_indicators/money_ruble_outline_20.svg"
-              alt={alt.finance}
-            ></img>
-          ) : data.flag === "Регистрации" ? (
-            <img
-              src="/letter_indicators/key_outline_20.svg"
-              alt={alt.registrations}
-            ></img>
-          ) : data.flag === "Путешествия" ? (
-            <img
-              src="/letter_indicators/plane_outline_20.svg"
-              alt={alt.travels}
-            ></img>
-          ) : data.flag === "Билеты" ? (
-            <img
-              src="/letter_indicators/ticket_outline_20.svg"
-              alt={alt.tickets}
-            ></img>
-          ) : (
-            data.flag === "Штрафы и налоги" && (
-              <img
-                src="/letter_indicators/government_outline_20.svg"
-                alt={alt.finesAndTaxes}
-              ></img>
-            )
-          )}
-        </div>
+          )
+        )}
         {data.doc && <AttachmentIcon doc={data.doc} />}
-        <div className="my-auto p-3 w-20 text-right text-textGray">
-          {formatDate(data.date)}
-        </div>
+      </div>
+      <div className="my-auto p-3 w-20 text-right text-textGray">
+        {formatDate(data.date)}
       </div>
     </article>
   );

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import useThemeStore from "../hooks/useThemeStore";
 
 export default function FolderThumbnail({
   to,
@@ -17,6 +18,8 @@ export default function FolderThumbnail({
   children: React.ReactNode;
   onClick: () => void;
 }) {
+  const theme = useThemeStore((state) => state.theme);
+
   return (
     <li onClick={onClick}>
       <Link to={to}>
@@ -25,15 +28,12 @@ export default function FolderThumbnail({
             selected && "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
           }`}
         >
-          <img className="block dark:hidden" src={imgSrc} alt={imgAlt}></img>
-          <img
-            className="hidden dark:block"
-            src={darkImgSrc}
-            alt={imgAlt}
-          ></img>
-          <p className="ml-2 dark:text-textPrimaryWhite hidden md:block">
-            {children}
-          </p>
+          {theme.darkThemeIcons ? (
+            <img src={darkImgSrc} alt={imgAlt}></img>
+          ) : (
+            <img src={imgSrc} alt={imgAlt}></img>
+          )}
+          <p className="ml-2 hidden md:block text-menuText">{children}</p>
         </div>
       </Link>
     </li>

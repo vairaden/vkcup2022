@@ -28,25 +28,25 @@ export default function LetterListHeader() {
   const { text, alt } = useTranslation();
 
   return (
-    <header
-      className="fixed z-10 flex justify-between left-0 top-0 h-14 px-4 py-3 w-[100vw] shadow-sm"
-      style={{ backgroundColor: theme.headerColor }}
-    >
+    <header className="fixed z-10 flex justify-between left-0 top-0 h-14 px-4 py-3 w-[100vw] shadow-sm bg-headerBg">
       <img
         className="block md:hidden"
         src="/mailru_logo/mailru_logo_no_letters.svg"
         alt={alt.mailRuLogo}
       ></img>
-      <img
-        className="hidden md:block dark:hidden"
-        src="/mailru_logo/mailru_logo.svg"
-        alt={alt.mailRuLogo}
-      ></img>
-      <img
-        className="hidden md:dark:block"
-        src="/mailru_logo/mailru_logo_dark.svg"
-        alt={alt.mailRuLogo}
-      ></img>
+      {theme.darkThemeIcons ? (
+        <img
+          className="hidden md:block"
+          src="/mailru_logo/mailru_logo_dark.svg"
+          alt={alt.mailRuLogo}
+        ></img>
+      ) : (
+        <img
+          className="hidden md:block"
+          src="/mailru_logo/mailru_logo.svg"
+          alt={alt.mailRuLogo}
+        ></img>
+      )}
       <button
         className="flex items-center"
         onClick={() => setFiltersOpen((prev) => !prev)}
@@ -62,25 +62,32 @@ export default function LetterListHeader() {
             className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
           ></div>
         )}
-        {filterWithAttachments && (
-          <>
+        {filterWithAttachments &&
+          (theme.darkThemeIcons ? (
             <img
-              className="block dark:hidden"
-              src="/icons/light/attach_outline_20.svg"
-              alt={alt.attachment}
-            ></img>
-            <img
-              className="hidden dark:block"
               src="/icons/dark/attach_outline_dark_20.svg"
               alt={alt.attachment}
             ></img>
-          </>
+          ) : (
+            <img
+              src="/icons/light/attach_outline_20.svg"
+              alt={alt.attachment}
+            ></img>
+          ))}
+        <p className="ml-1" style={{ color: theme.menuText }}>
+          {text.filter}
+        </p>
+        {theme.darkThemeIcons ? (
+          <img
+            src="/icons/dark/chevron_down_outline_dark_20.svg"
+            alt={alt.filterSelect}
+          ></img>
+        ) : (
+          <img
+            src="/icons/light/chevron_down_outline_20.svg"
+            alt={alt.filterSelect}
+          ></img>
         )}
-        <p className="ml-1">{text.filter}</p>
-        <img
-          src="/icons/light/chevron_down_outline_20.svg"
-          alt={alt.filterSelect}
-        ></img>
       </button>
       {filtersOpen && (
         <div className="flex flex-col fixed top-12 right-6 w-60 py-2 bg-white shadow-md rounded-xl">
@@ -117,16 +124,17 @@ export default function LetterListHeader() {
             onClick={toggleFilterWithAttachments}
           >
             <div className="w-6">
-              <img
-                className="block dark:hidden"
-                src="/icons/light/attach_outline_20.svg"
-                alt={alt.attachment}
-              ></img>
-              <img
-                className="hidden dark:block"
-                src="/icons/dark/attach_outline_dark_20.svg"
-                alt={alt.attachment}
-              ></img>
+              {theme.darkThemeIcons ? (
+                <img
+                  src="/icons/light/attach_outline_20.svg"
+                  alt={alt.attachment}
+                ></img>
+              ) : (
+                <img
+                  src="/icons/dark/attach_outline_dark_20.svg"
+                  alt={alt.attachment}
+                ></img>
+              )}
             </div>
             {text.filterWithAttachments}
           </FilterButton>
