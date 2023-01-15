@@ -12,6 +12,11 @@ const useThemeStore = create<ThemeStore>()((set) => ({
   colorThemes: themes.slice(3),
   setTheme: (name: string) => {
     document.documentElement.setAttribute("data-theme", name);
+    if (name === "image") {
+      document.body.style.backgroundImage = "url(/image-background.png)";
+    } else {
+      document.body.style.backgroundImage = "none";
+    }
 
     set({ theme: themes.find((theme) => theme.name === name) });
   },

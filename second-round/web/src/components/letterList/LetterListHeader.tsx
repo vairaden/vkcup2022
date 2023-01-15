@@ -63,7 +63,7 @@ export default function LetterListHeader() {
           ></div>
         )}
         {filterWithAttachments &&
-          (theme.darkThemeIcons ? (
+          (theme.name !== "light" ? (
             <img
               src="/icons/dark/attach_outline_dark_20.svg"
               alt={alt.attachment}
