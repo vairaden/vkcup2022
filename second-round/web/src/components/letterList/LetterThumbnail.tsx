@@ -23,7 +23,7 @@ export default function LetterThumbnail({
   }
 
   return (
-    <article className="grid grid-cols-[20rem_auto_auto_auto_5rem] w-full h-12 rounded-xl hover:bg-grayHover dark:hover:bg-darkHover dark:text-textPrimaryWhite">
+    <article className="grid grid-cols-[20rem_auto_auto_auto_5rem] w-full h-12 rounded-xl hover:bg-hover text-primaryText">
       <Link to={to} className="flex">
         <div className="flex items-center h-12 mr-2">
           <div
@@ -62,10 +62,16 @@ export default function LetterThumbnail({
           </div>
         </div>
       </Link>
-      <p className={`mr-3 truncate ${!data.read && "font-bold"}`}>
+      <p
+        className={`leading-[48px] align-middle mr-3 truncate ${
+          !data.read && "font-bold"
+        }`}
+      >
         {data.title}
       </p>
-      <p className="truncate text-textGray">{data.text}</p>
+      <p className="leading-[48px] align-middle truncate text-textGray">
+        {data.text}
+      </p>
       <div className="mr-1 flex items-center">
         {data.flag === "Заказы" ? (
           <img

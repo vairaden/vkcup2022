@@ -24,7 +24,7 @@ export default function FolderThumbnail({
     <li onClick={onClick}>
       <Link to={to}>
         <div
-          className={`flex items-center md:w-[200px] h-9 md:px-4 px-2 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
+          className={`flex items-center md:w-[200px] h-9 md:px-4 px-2 rounded-lg hover:bg-grayHover ${
             selected && "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
           }`}
         >

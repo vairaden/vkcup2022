@@ -1,5 +1,6 @@
 const textEn = {
   // general
+  letterNotFound: "Letter not found",
   loading: "Loading...",
   months: [
     "Jan",

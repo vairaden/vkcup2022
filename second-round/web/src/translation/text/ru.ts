@@ -1,5 +1,6 @@
 const textRu = {
   // general
+  letterNotFound: "Письмо не найдено",
   loading: "Загрузка...",
   months: [
     "янв",

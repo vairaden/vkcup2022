@@ -3,6 +3,7 @@ const enAlt = {
   filterActive: "Filter active",
   mailRuLogo: "Mail.ru logo",
   avatar: "Avatar",
+  noLetters: "No letters",
   // buttons
   back: "Back",
   download: "Download",
@@ -24,6 +25,7 @@ const enAlt = {
   darkTheme: "Dark theme",
   lightTheme: "Light theme",
   imageTheme: "Image theme",
+  themeSelected: "Theme selected",
 };
 
 export default enAlt;

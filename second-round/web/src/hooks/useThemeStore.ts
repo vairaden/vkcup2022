@@ -2,22 +2,18 @@ import { create } from "zustand";
 import { themes } from "../data/themes";
 
 interface ThemeStore {
-  themeNumber: number;
-  allThemes: typeof themes;
-  theme: typeof themes[0];
-  setThemeNumber: (themeNumber: number) => void;
+  theme: typeof themes[1];
+  colorThemes: typeof themes;
+  setTheme: (name: string) => void;
 }
 
 const useThemeStore = create<ThemeStore>()((set) => ({
-  themeNumber: 1,
-  allThemes: themes.slice(3),
   theme: themes[1],
-  setThemeNumber: (themeNumber: number) => {
-    const theme = themes[themeNumber];
+  colorThemes: themes.slice(3),
+  setTheme: (name: string) => {
+    document.documentElement.setAttribute("data-theme", name);
 
-    document.documentElement.setAttribute("data-theme", theme.name);
-
-    set({ themeNumber, theme: themes[themeNumber] });
+    set({ theme: themes.find((theme) => theme.name === name) });
   },
 }));
 

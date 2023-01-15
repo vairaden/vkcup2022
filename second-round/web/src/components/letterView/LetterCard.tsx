@@ -36,7 +36,7 @@ export default function LetterCard() {
     }${dateObj.getMinutes()}`;
   }
 
-  const { data } = useQuery(
+  const { data, isLoading } = useQuery(
     [
       "letter",
       folderName,
@@ -55,7 +55,15 @@ export default function LetterCard() {
       )
   );
 
-  return data ? (
+  return isLoading ? (
+    <div className="flex justify-center items-center h-screen text-menuText">
+      <h2>{text.loading}</h2>
+    </div>
+  ) : !data ? (
+    <div className="flex justify-center items-center h-screen text-menuText">
+      <h2>{text.letterNotFound}</h2>
+    </div>
+  ) : (
     <section className="mb-3 rounded-xl bg-white dark:text-textPrimaryWhite dark:bg-darkGray">
       <div className="flex items-center justify-between mr-4 ml-auto">
         <h1 className="font-bold text-2xl px-8 py-4">{data.title}</h1>
@@ -182,9 +190,5 @@ export default function LetterCard() {
       </div>
       <p className="text-sm px-8 py-4">{data.text}</p>
     </section>
-  ) : (
-    <div className="flex justify-center items-center h-screen">
-      <h2>{text.loading}</h2>
-    </div>
   );
 }

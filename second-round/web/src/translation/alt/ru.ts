@@ -3,6 +3,7 @@ const ruAlt = {
   filterActive: "Фильтр активен",
   mailRuLogo: "Логотип Mail.ru",
   avatar: "Аватар",
+  noLetters: "Нет писем",
   // buttons
   back: "Вернуться",
   download: "Скачать",
@@ -24,6 +25,7 @@ const ruAlt = {
   darkTheme: "Темная тема",
   lightTheme: "Светлая тема",
   imageTheme: "Тема с изображением",
+  themeSelected: "Тема выбрана",
 };
 
 export default ruAlt;

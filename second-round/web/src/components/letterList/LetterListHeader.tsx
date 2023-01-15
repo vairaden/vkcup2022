@@ -74,9 +74,7 @@ export default function LetterListHeader() {
               alt={alt.attachment}
             ></img>
           ))}
-        <p className="ml-1" style={{ color: theme.menuText }}>
-          {text.filter}
-        </p>
+        <p className="ml-1 text-menuText">{text.filter}</p>
         {theme.darkThemeIcons ? (
           <img
             src="/icons/dark/chevron_down_outline_dark_20.svg"

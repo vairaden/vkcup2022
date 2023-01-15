@@ -38,7 +38,7 @@ export default function LanguageMenu() {
         </label>
       </div>
       <Button
-        className="w-36 bg-electricBlue text-textPrimaryWhite"
+        className="w-36 bg-electricBlue text-white"
         onClick={() => setLanguage(selectedLanguage)}
       >
         {text.selectLanguage}

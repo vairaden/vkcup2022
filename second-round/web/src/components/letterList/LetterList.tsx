@@ -6,6 +6,7 @@ import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo, useRef } from "react";
 import useTranslation from "../../hooks/useTranslation";
 import useFilterStore from "../../hooks/useFilterStore";
+import useThemeStore from "../../hooks/useThemeStore";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
@@ -16,41 +17,41 @@ export default function LetterList() {
   );
 
   const queryClient = useQueryClient();
+  const currentTheme = useThemeStore((state) => state.theme);
 
-  const { text } = useTranslation();
+  const { text, alt } = useTranslation();
 
-  const { isLoading, data, error, fetchNextPage, hasNextPage } =
-    useInfiniteQuery(
-      [
-        "letters",
+  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    [
+      "letters",
+      folderName,
+      filterUnread,
+      filterBookmarked,
+      filterWithAttachments,
+    ],
+    ({
+      pageParam = {
         folderName,
-        filterUnread,
-        filterBookmarked,
-        filterWithAttachments,
-      ],
-      ({
-        pageParam = {
-          folderName,
-          pageNumber: 0,
-          unread: filterUnread,
-          bookmarked: filterBookmarked,
-          withAttachments: filterWithAttachments,
-        },
-      }) => fetchData(pageParam),
-      {
-        getNextPageParam: (lastPage, pages) => {
-          return lastPage.hasMore
-            ? {
-                folderName,
-                pageNumber: pages.length,
-                unread: filterUnread,
-                bookmarked: filterBookmarked,
-                withAttachments: filterWithAttachments,
-              }
-            : undefined;
-        },
-      }
-    );
+        pageNumber: 0,
+        unread: filterUnread,
+        bookmarked: filterBookmarked,
+        withAttachments: filterWithAttachments,
+      },
+    }) => fetchData(pageParam),
+    {
+      getNextPageParam: (lastPage, pages) => {
+        return lastPage.hasMore
+          ? {
+              folderName,
+              pageNumber: pages.length,
+              unread: filterUnread,
+              bookmarked: filterBookmarked,
+              withAttachments: filterWithAttachments,
+            }
+          : undefined;
+      },
+    }
+  );
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastPostRef = useCallback(
@@ -79,8 +80,12 @@ export default function LetterList() {
     return letterList;
   }, [data]);
 
-  return data ? (
-    <section className="mb-3 bg-white dark:bg-darkGray rounded-xl">
+  return isLoading ? (
+    <div className="flex justify-center items-center h-screen text-menuText">
+      <h2>{text.loading}</h2>
+    </div>
+  ) : letters.length > 0 ? (
+    <section className="mb-3 bg-elementBg rounded-xl">
       <ul>
         {letters.map((letterData, index) => (
           <li key={index}>
@@ -88,11 +93,11 @@ export default function LetterList() {
             {index === letters.length - 2 ? (
               <div
                 ref={lastPostRef}
-                className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"
+                className="h-[1px] mx-auto w-[85%] bg-separator"
               ></div>
             ) : (
               index !== letters.length - 1 && (
-                <div className="h-[1px] mx-auto w-[85%] bg-separatorGray dark:bg-black"></div>
+                <div className="h-[1px] mx-auto w-[85%] bg-separator"></div>
               )
             )}
           </li>
@@ -100,8 +105,14 @@ export default function LetterList() {
       </ul>
     </section>
   ) : (
-    <div className="flex justify-center items-center h-screen">
-      <h2>{text.loading}</h2>
+    <div className="flex items-center justify-center h-[calc(100vh-68px)]">
+      {currentTheme.name === "image" ? (
+        <img src="/icons/no_letters_other.svg" alt={alt.noLetters}></img>
+      ) : !currentTheme.darkThemeIcons ? (
+        <img src="/icons/light/no_letters.svg" alt={alt.noLetters}></img>
+      ) : (
+        <img src="/icons/dark/no_letters_dark.svg" alt={alt.noLetters}></img>
+      )}
     </div>
   );
 }
