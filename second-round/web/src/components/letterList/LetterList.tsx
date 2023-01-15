@@ -105,7 +105,7 @@ export default function LetterList() {
       </ul>
     </section>
   ) : (
-    <div className="flex items-center justify-center h-[calc(100vh-68px)]">
+    <div className="flex flex-col items-center justify-center h-[calc(100vh-68px)]">
       {currentTheme.name === "image" ? (
         <img src="/icons/no_letters_other.svg" alt={alt.noLetters}></img>
       ) : !currentTheme.darkThemeIcons ? (
@@ -113,6 +113,9 @@ export default function LetterList() {
       ) : (
         <img src="/icons/dark/no_letters_dark.svg" alt={alt.noLetters}></img>
       )}
+      <h2 className="mt-6 text-2xl font-semibold text-menuText">
+        {alt.noLetters}
+      </h2>
     </div>
   );
 }

@@ -32,11 +32,19 @@ export default function AttachmentIcon({ doc }: { doc: { img: string } }) {
                   download="attachment.jpg"
                   href={doc.img}
                 >
-                  <img
-                    className="mr-2"
-                    src="/icons/light/download_outline.svg"
-                    alt={alt.download}
-                  ></img>
+                  {theme.isDark ? (
+                    <img
+                      className="mr-2"
+                      src="/icons/dark/download_outline_dark.svg"
+                      alt={alt.download}
+                    ></img>
+                  ) : (
+                    <img
+                      className="mr-2"
+                      src="/icons/light/download_outline.svg"
+                      alt={alt.download}
+                    ></img>
+                  )}
                   {text.download}
                 </a>
               </div>

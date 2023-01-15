@@ -3,7 +3,7 @@ const ruAlt = {
   filterActive: "Фильтр активен",
   mailRuLogo: "Логотип Mail.ru",
   avatar: "Аватар",
-  noLetters: "Нет писем",
+  noLetters: "Писем нет",
   // buttons
   back: "Вернуться",
   download: "Скачать",

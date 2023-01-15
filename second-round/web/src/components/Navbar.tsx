@@ -40,17 +40,15 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="h-[1px] mx-auto w-[85%] bg-menuSeparator my-2"></div>
-        <button className="flex items-center md:w-[200px] w-8 h-9 mt-4 md:ml-2 mx-auto rounded-lg hover:bg-hover">
-          <img
-            className="m-2"
-            src="/icons/plus_icon.svg"
-            alt={text.newFolder}
-          ></img>
-          <p className="hidden md:block text-[#74767A]">{text.newFolder}</p>
+        <button className="flex items-center md:w-[200px] w-8 h-9 px-4 mx-auto rounded-lg hover:bg-hover">
+          <img src="/icons/plus_icon.svg" alt={text.newFolder}></img>
+          <p className="ml-2 hidden md:block text-[#74767A]">
+            {text.newFolder}
+          </p>
         </button>
       </div>
       <button
-        className="flex items-center p-2 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover"
+        className="flex items-center p-2 rounded-lg hover:bg-hover"
         onClick={() => setShowSettings(true)}
       >
         {theme.darkThemeIcons ? (
