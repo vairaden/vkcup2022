@@ -16,6 +16,7 @@ export default function Navbar() {
   return (
     <nav className="fixed z-10 top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
       <div>
+        {/* Compose button */}
         <Button onClick={() => null} className="mb-3 w-9 md:w-full font-bold">
           <img
             className="m-2 md:hidden"
@@ -24,6 +25,7 @@ export default function Navbar() {
           ></img>
           <p className="hidden md:inline">{text.composeLetter}</p>
         </Button>
+        {/* Folder list */}
         <ul>
           {folderList.map((folder) => (
             <FolderThumbnail
@@ -39,6 +41,7 @@ export default function Navbar() {
             </FolderThumbnail>
           ))}
         </ul>
+        {/* New folder button */}
         <div className="h-[1px] mx-auto w-[85%] bg-menuSeparator my-2"></div>
         <button className="flex items-center w-8 h-8 md:w-[200px] px-2 md:px-4 mx-auto rounded-lg hover:bg-altHover">
           <img src="/icons/plus_icon.svg" alt={text.newFolder}></img>
@@ -47,6 +50,7 @@ export default function Navbar() {
           </p>
         </button>
       </div>
+      {/* Settings button */}
       <button
         className="flex items-center p-2 md:px-4 rounded-lg hover:bg-altHover"
         onClick={() => setShowSettings(true)}
@@ -66,6 +70,7 @@ export default function Navbar() {
         )}
         <p className="hidden md:block text-menuText">{text.settings}</p>
       </button>
+      {/* Settings */}
       {showSettings && (
         <Settings closeCallback={() => setShowSettings(false)} />
       )}

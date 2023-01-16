@@ -4,7 +4,13 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 0,
+    },
+  },
+});
 
 export default function App() {
   useEffect(() => {

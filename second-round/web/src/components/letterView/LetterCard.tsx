@@ -66,62 +66,48 @@ export default function LetterCard() {
   ) : (
     <section className="mb-3 rounded-xl bg-elementBg text-primaryText">
       <div className="flex items-center justify-between px-8 ml-auto">
+        {/* Title */}
         <h1 className="font-bold text-2xl mr-8 py-4">{data.title}</h1>
+        {/* Flags */}
         <div className="flex items-center">
           {data.flag === "Заказы" ? (
-            <>
-              <img
-                src="/letter_indicators/shopping_cart_outline_20.svg"
-                alt={alt.orders}
-              ></img>
-              <p className="ml-2 text-sm">{alt.orders}</p>
-            </>
+            <img
+              src="/letter_indicators/shopping_cart_outline_20.svg"
+              alt={alt.orders}
+            ></img>
           ) : data.flag === "Финансы" ? (
-            <>
-              <img
-                src="/letter_indicators/money_ruble_outline_20.svg"
-                alt={alt.finance}
-              ></img>
-              <p className="ml-2 text-sm">{alt.finance}</p>
-            </>
+            <img
+              src="/letter_indicators/money_ruble_outline_20.svg"
+              alt={alt.finance}
+            ></img>
           ) : data.flag === "Регистрации" ? (
-            <>
-              <img
-                src="/letter_indicators/key_outline_20.svg"
-                alt={alt.registrations}
-              ></img>
-              <p className="ml-2 text-sm">{alt.registrations}</p>
-            </>
+            <img
+              src="/letter_indicators/key_outline_20.svg"
+              alt={alt.registrations}
+            ></img>
           ) : data.flag === "Путешествия" ? (
-            <>
-              <img
-                src="/letter_indicators/plane_outline_20.svg"
-                alt={alt.travels}
-              ></img>
-              <p className="ml-2 text-sm">{alt.travels}</p>
-            </>
+            <img
+              src="/letter_indicators/plane_outline_20.svg"
+              alt={alt.travels}
+            ></img>
           ) : data.flag === "Билеты" ? (
-            <>
-              <img
-                src="/letter_indicators/ticket_outline_20.svg"
-                alt={alt.tickets}
-              ></img>
-              <p className="ml-2 text-sm">{alt.tickets}</p>
-            </>
+            <img
+              src="/letter_indicators/ticket_outline_20.svg"
+              alt={alt.tickets}
+            ></img>
           ) : (
             data.flag === "Штрафы и налоги" && (
-              <>
-                <img
-                  src="/letter_indicators/government_outline_20.svg"
-                  alt={alt.finesAndTaxes}
-                ></img>
-                <p className="ml-2 text-sm">{alt.finesAndTaxes}</p>
-              </>
+              <img
+                src="/letter_indicators/government_outline_20.svg"
+                alt={alt.finesAndTaxes}
+              ></img>
             )
           )}
+          {data.flag && <p className="ml-2 text-sm">{data.flag}</p>}
         </div>
       </div>
       <div className="flex items-center">
+        {/* Read indicator */}
         <div
           className={`mx-[13px] h-[6px] w-[6px] rounded-md ${
             data.read && "bg-electricBlue"
@@ -138,6 +124,7 @@ export default function LetterCard() {
             {data.author.name[0]}
           </div>
         )}
+        {/* Author and date */}
         <div>
           <div className="flex items-center">
             <h2 className="mr-2 whitespace-nowrap">
@@ -160,6 +147,7 @@ export default function LetterCard() {
               )
             )}
           </div>
+          {/* Receivers */}
           <p className="whitespace-nowrap truncate w-96 text-textGray text-sm">
             {text.to + ": "}
             {data.to.map(
@@ -171,6 +159,7 @@ export default function LetterCard() {
           </p>
         </div>
       </div>
+      {/* Attachment */}
       <div className="px-8 py-4">
         {data.doc && (
           <>
@@ -192,6 +181,7 @@ export default function LetterCard() {
           </>
         )}
       </div>
+      {/* Text */}
       <p className="text-sm px-8 py-4">{data.text}</p>
     </section>
   );

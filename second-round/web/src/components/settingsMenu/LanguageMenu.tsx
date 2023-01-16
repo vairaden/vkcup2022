@@ -14,6 +14,7 @@ export default function LanguageMenu() {
   return (
     <div className="flex flex-col px-8 py-[26px] text-primaryText">
       <h2>{text.changeLanguage}</h2>
+      {/* Russian language */}
       <div className="my-4">
         <label className="flex items-center">
           <input
@@ -26,6 +27,7 @@ export default function LanguageMenu() {
           <img className="m-3" src="/flags/ru_flag.svg" alt={alt.ruFlag}></img>
           Русский
         </label>
+        {/* English language */}
         <label className="flex items-center">
           <input
             type="radio"

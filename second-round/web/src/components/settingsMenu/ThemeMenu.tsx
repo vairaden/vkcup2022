@@ -11,6 +11,7 @@ export default function ThemeMenu() {
   return (
     <div className="flex flex-col px-8 py-[26px]">
       <h2 className="mb-5 text-primaryText">{text.themeMenu}</h2>
+      {/* Color themes */}
       <div className="flex flex-wrap max-w-[700px]">
         {colorThemes.map((theme) => (
           <label key={theme.name}>
@@ -39,6 +40,7 @@ export default function ThemeMenu() {
         ))}
       </div>
       <div className="flex flex-wrap">
+        {/* Dark theme */}
         <label>
           <div className="w-[120px] h-[88px] cursor-pointer m-[10px] bg-[url(/dark-theme-image.svg)]">
             {currentTheme.name === "dark" && (
@@ -59,6 +61,7 @@ export default function ThemeMenu() {
             onChange={() => setTheme("dark")}
           />
         </label>
+        {/* Light theme */}
         <label>
           <div className="w-[120px] h-[88px] cursor-pointer m-[10px] bg-[url(/light-theme-image.svg)]">
             {currentTheme.name === "light" && (
@@ -79,6 +82,7 @@ export default function ThemeMenu() {
             onChange={() => setTheme("light")}
           />
         </label>
+        {/* Image theme */}
         <label>
           <div className="w-[120px] h-[88px] cursor-pointer m-[10px] bg-[url(/image-theme.svg)]">
             {currentTheme.name === "image" && (

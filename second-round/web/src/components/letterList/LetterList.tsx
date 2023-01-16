@@ -93,11 +93,11 @@ export default function LetterList() {
             {index === letters.length - 2 ? (
               <div
                 ref={lastPostRef}
-                className="h-[1px] mx-auto w-[85%] bg-separator"
+                className="h-px mx-auto w-[85%] bg-separator"
               ></div>
             ) : (
               index !== letters.length - 1 && (
-                <div className="h-[1px] mx-auto w-[85%] bg-separator"></div>
+                <div className="h-px mx-auto w-[85%] bg-separator"></div>
               )
             )}
           </li>

@@ -40,30 +40,36 @@ export default function LetterThumbnail({
         ></div>
       </Link>
       {/* Avatar */}
-      <div className="flex items-center">
-        {data.author.avatar ? (
-          <img
-            className="h-8 w-8 rounded-2xl mr-2 group-hover/letter:hidden"
-            src={data.author.avatar}
-            alt={alt.avatar}
-          />
-        ) : (
-          <div className="group-hover/letter:hidden flex items-center justify-center h-8 w-8 rounded-2xl mr-2 bg-[#FFB980] text-[#C25C21] text-center text-[12px]">
-            {data.author.name[0]}
-          </div>
-        )}
-        <div className="hidden group-hover/letter:block h-8 w-8 mr-2">
-          <label>
-            <input
-              type="checkbox"
-              className="w-4 h-4 m-2 mb-3"
-              checked={selected}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setSelected(e.target.checked)
-              }
+      <div className="relative mr-2">
+        <div
+          className="w-8 h-8 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
+         group-hover/letter:scale-0 transition-all duration-100"
+        >
+          {data.author.avatar ? (
+            <img
+              className="rounded-2xl w-8 h-8"
+              src={data.author.avatar}
+              alt={alt.avatar}
             />
-          </label>
+          ) : (
+            <div className="flex items-center justify-center w-8 h-8 rounded-2xl bg-[#FFB980] text-[#C25C21] text-center text-[12px]">
+              {data.author.name[0]}
+            </div>
+          )}
         </div>
+        <label
+          className="w-4 h-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
+        scale-0 group-hover/letter:scale-100 transition-all duration-100"
+        >
+          <input
+            type="checkbox"
+            className="w-4 h-4 cursor-pointer"
+            checked={selected}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSelected(e.target.checked)
+            }
+          />
+        </label>
       </div>
       {/* Author name */}
       <Link to={to} className="flex items-center">

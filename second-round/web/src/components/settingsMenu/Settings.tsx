@@ -17,12 +17,15 @@ export default function Settings({
   const { text, alt } = useTranslation();
 
   return (
+    // Modal background
     <div onClick={closeCallback} className="fixed top-0 left-0 h-full w-full">
+      {/* Setting panel */}
       <div
-        className="fixed bottom-0 w-[100vw] h-[400px] shadow-[0px_-3px_48px_0px_rgba(0,16,61,0.28)] flex bg-elementBg"
+        className="fixed bottom-0 w-[100vw] shadow-[0px_-3px_48px_0px_rgba(0,16,61,0.28)] flex bg-elementBg h-[400px]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center min-w-[260px] py-5 border-r-[1px] border-separator">
+          {/* Theme menu */}
           <button
             onClick={() => setSelectedMenu("theme")}
             className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
@@ -32,6 +35,7 @@ export default function Settings({
           >
             <p className="text-primaryText">{text.theme}</p>
           </button>
+          {/* Language menu */}
           <button
             onClick={() => setSelectedMenu("language")}
             className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
