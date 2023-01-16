@@ -9,8 +9,11 @@ export default function LetterCardHeader() {
   const { text, alt } = useTranslation();
 
   return (
-    <header className="fixed left-0 top-0 h-14 px-4 py-3 w-[100vw] shadow-sm bg-headerBg">
-      <Link className="flex items-center w-9 ml-2 mt-1" to={"/" + folderName}>
+    <header className="fixed left-0 top-0 h-14 px-3 py-3 w-[100vw] shadow-sm bg-headerBg">
+      <Link
+        className="flex items-center hover:bg-hover rounded-xl p-2 ml-1 md:ml-4 w-fit"
+        to={"/" + folderName}
+      >
         {theme.darkThemeIcons ? (
           <img
             src="/icons/dark/chevron_left_outline_dark_20.svg"
@@ -22,7 +25,7 @@ export default function LetterCardHeader() {
             alt={alt.back}
           ></img>
         )}
-        <h1 className="hidden md:block text-menuText">{text.back}</h1>
+        <h1 className="hidden md:block ml-2 text-menuText">{text.back}</h1>
       </Link>
     </header>
   );

@@ -16,7 +16,10 @@ export default function FilterButton({
   const theme = useThemeStore((state) => state.theme);
 
   return (
-    <button onClick={onClick} className={`flex items-center p-2 ${className}`}>
+    <button
+      onClick={onClick}
+      className={`flex items-center p-2 hover:bg-hover ${className}`}
+    >
       <div className="w-5">
         {active &&
           (theme.isDark ? (

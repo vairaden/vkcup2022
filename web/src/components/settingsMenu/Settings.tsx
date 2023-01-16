@@ -28,7 +28,7 @@ export default function Settings({
           {/* Theme menu */}
           <button
             onClick={() => setSelectedMenu("theme")}
-            className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
+            className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-hover ${
               selectedMenu == "theme" &&
               "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
             }`}
@@ -38,7 +38,7 @@ export default function Settings({
           {/* Language menu */}
           <button
             onClick={() => setSelectedMenu("language")}
-            className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-grayHover dark:hover:bg-darkHover ${
+            className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-hover ${
               selectedMenu === "language" &&
               "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
             }`}
