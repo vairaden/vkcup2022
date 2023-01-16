@@ -18,7 +18,7 @@ export default function FilterButton({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center p-2 hover:bg-hover ${className}`}
+      className={`flex items-center p-2 hover:bg-hover transition-colors ${className}`}
     >
       <div className="w-5">
         {active &&

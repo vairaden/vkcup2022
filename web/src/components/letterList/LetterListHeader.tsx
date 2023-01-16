@@ -39,7 +39,7 @@ export default function LetterListHeader() {
       )}
       {/* Filters */}
       <button
-        className="flex items-center hover:bg-hover rounded-xl p-2"
+        className="flex items-center hover:bg-altHover transition-colors rounded-xl p-2"
         onClick={() => setFiltersOpen((prev) => !prev)}
       >
         {filterBookmarked && (

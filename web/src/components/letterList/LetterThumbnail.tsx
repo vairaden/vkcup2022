@@ -27,7 +27,7 @@ export default function LetterThumbnail({
   return (
     <article
       className={`group/letter grid grid-cols-[22px_40px_12rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem]
-       w-full h-12 rounded-xl hover:bg-hover text-sm text-primaryText ${
+       w-full h-12 rounded-xl hover:bg-hover transition-colors text-sm text-primaryText ${
          selected && "bg-selected hover:bg-selected"
        }`}
     >

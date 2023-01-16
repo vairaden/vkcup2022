@@ -43,9 +43,12 @@ export default function Navbar() {
         </ul>
         {/* New folder button */}
         <div className="h-[1px] mx-auto w-[85%] bg-menuSeparator my-2"></div>
-        <button className="flex items-center w-8 h-8 md:w-[200px] px-2 md:px-4 mx-auto rounded-lg hover:bg-altHover">
+        <button
+          className="group/newFolder flex items-center w-8 h-8 md:w-[200px] p-2 md:px-4 mx-auto rounded-lg
+         hover:bg-altHover transition-colors"
+        >
           <img src="/icons/plus_icon.svg" alt={text.newFolder}></img>
-          <p className="ml-2 hidden md:block text-[#74767A]">
+          <p className="ml-2 hidden md:block text-menuText/50 group-hover/newFolder:text-menuText">
             {text.newFolder}
           </p>
         </button>

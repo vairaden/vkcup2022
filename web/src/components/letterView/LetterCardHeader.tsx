@@ -9,9 +9,9 @@ export default function LetterCardHeader() {
   const { text, alt } = useTranslation();
 
   return (
-    <header className="fixed left-0 top-0 h-14 px-3 py-3 w-[100vw] shadow-sm bg-headerBg">
+    <header className="fixed left-0 top-0 h-14 px-3 py-2 w-[100vw] shadow-sm bg-headerBg">
       <Link
-        className="flex items-center hover:bg-hover rounded-xl p-2 ml-1 md:ml-4 w-fit"
+        className="flex items-center hover:bg-altHover transition-colors rounded-xl p-2 ml-1 md:ml-4 w-fit"
         to={"/" + folderName}
       >
         {theme.darkThemeIcons ? (

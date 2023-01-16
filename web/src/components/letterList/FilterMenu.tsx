@@ -70,7 +70,7 @@ export default function FilterMenu() {
       </FilterButton>
       {(filterBookmarked || filterUnread || filterWithAttachments) && (
         <button
-          className="text-primaryText hover:bg-hover text-left pl-8 border-t border-separator h-10"
+          className="text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
           onClick={resetFilters}
         >
           {text.resetAll}
