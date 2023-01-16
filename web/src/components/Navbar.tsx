@@ -5,9 +5,10 @@ import { useState } from "react";
 import Settings from "./settingsMenu/Settings";
 import useTranslation from "../hooks/useTranslation";
 import useThemeStore from "../hooks/useThemeStore";
+import { useParams } from "react-router-dom";
 
 export default function Navbar() {
-  const [activeFolder, setActiveFolder] = useState("inbox");
+  const activeFolder = useParams().folderName || "inbox";
   const [showSettings, setShowSettings] = useState(false);
 
   const { text } = useTranslation();
@@ -34,7 +35,6 @@ export default function Navbar() {
               imgSrc={folder.imgSrc}
               darkImgSrc={folder.darkImgSrc}
               imgAlt={folder.imgAlt}
-              onClick={() => setActiveFolder(folder.name)}
               selected={folder.name === activeFolder}
             >
               {text[(folder.name + "Folder") as keyof typeof text]}

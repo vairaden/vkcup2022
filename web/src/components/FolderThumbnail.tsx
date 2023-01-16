@@ -16,7 +16,7 @@ export default function FolderThumbnail({
   imgAlt: string;
   selected: boolean;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 }) {
   const theme = useThemeStore((state) => state.theme);
 
