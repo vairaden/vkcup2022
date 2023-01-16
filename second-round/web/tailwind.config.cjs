@@ -9,7 +9,7 @@ module.exports = {
         headerBg: "rgb(var(--color-headerBg) / <alpha-value>)",
         menuText: "rgb(var(--color-menuText) / <alpha-value>)",
         separator: "rgb(var(--color-separator) / <alpha-value>)",
-        menuSeparator: "rgb(var(--color-menuSeparator) / <alpha-value>)",
+        menuSeparator: "rgb(var(--color-menuSeparator))",
         elementBg: "rgb(var(--color-elementBg) / <alpha-value>)",
         primaryText: "rgb(var(--color-primaryText) / <alpha-value>)",
         hover: "rgb(var(--color-hover))",
@@ -19,9 +19,13 @@ module.exports = {
         electricBlue: "#005FF9",
         linkBlue: "#589BFF",
         textGray: "#87898F",
+        darkGray: "#A5A7AD",
       },
       fontFamily: {
         arial: ["Arial", "sans-serif"],
+      },
+      fontSize: {
+        sm: "0.9375rem", // 15px
       },
     },
     screens: {

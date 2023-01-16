@@ -45,7 +45,7 @@ body {
     --color-headerBg: 107 19 68;
     --color-primaryText: 0 0 0;
     --color-menuText: 231 232 234;
-    --color-menuSeparator: 107 19 68;
+    --color-menuSeparator: 0 16 61 / 12%;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 7.8%;
     --color-altHover: 255 255 255 / 12%;

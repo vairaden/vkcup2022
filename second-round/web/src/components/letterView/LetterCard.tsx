@@ -65,8 +65,8 @@ export default function LetterCard() {
     </div>
   ) : (
     <section className="mb-3 rounded-xl bg-elementBg text-primaryText">
-      <div className="flex items-center justify-between mr-4 ml-auto">
-        <h1 className="font-bold text-2xl px-8 py-4">{data.title}</h1>
+      <div className="flex items-center justify-between px-8 ml-auto">
+        <h1 className="font-bold text-2xl mr-8 py-4">{data.title}</h1>
         <div className="flex items-center">
           {data.flag === "Заказы" ? (
             <>
@@ -74,7 +74,7 @@ export default function LetterCard() {
                 src="/letter_indicators/shopping_cart_outline_20.svg"
                 alt={alt.orders}
               ></img>
-              <p className="ml-2 mr-4 text-sm">{alt.orders}</p>
+              <p className="ml-2 text-sm">{alt.orders}</p>
             </>
           ) : data.flag === "Финансы" ? (
             <>
@@ -82,7 +82,7 @@ export default function LetterCard() {
                 src="/letter_indicators/money_ruble_outline_20.svg"
                 alt={alt.finance}
               ></img>
-              <p className="ml-2 mr-4 text-sm">{alt.finance}</p>
+              <p className="ml-2 text-sm">{alt.finance}</p>
             </>
           ) : data.flag === "Регистрации" ? (
             <>
@@ -90,7 +90,7 @@ export default function LetterCard() {
                 src="/letter_indicators/key_outline_20.svg"
                 alt={alt.registrations}
               ></img>
-              <p className="ml-2 mr-4 text-sm">{alt.registrations}</p>
+              <p className="ml-2 text-sm">{alt.registrations}</p>
             </>
           ) : data.flag === "Путешествия" ? (
             <>
@@ -98,7 +98,7 @@ export default function LetterCard() {
                 src="/letter_indicators/plane_outline_20.svg"
                 alt={alt.travels}
               ></img>
-              <p className="ml-2 mr-4 text-sm">{alt.travels}</p>
+              <p className="ml-2 text-sm">{alt.travels}</p>
             </>
           ) : data.flag === "Билеты" ? (
             <>
@@ -106,7 +106,7 @@ export default function LetterCard() {
                 src="/letter_indicators/ticket_outline_20.svg"
                 alt={alt.tickets}
               ></img>
-              <p className="ml-2 mr-4 text-sm">{alt.tickets}</p>
+              <p className="ml-2 text-sm">{alt.tickets}</p>
             </>
           ) : (
             data.flag === "Штрафы и налоги" && (
@@ -115,7 +115,7 @@ export default function LetterCard() {
                   src="/letter_indicators/government_outline_20.svg"
                   alt={alt.finesAndTaxes}
                 ></img>
-                <p className="ml-2 mr-4 text-sm">{alt.finesAndTaxes}</p>
+                <p className="ml-2 text-sm">{alt.finesAndTaxes}</p>
               </>
             )
           )}
