@@ -71,39 +71,56 @@ export default function LetterCard() {
         {/* Flags */}
         <div className="flex items-center">
           {data.flag === "Заказы" ? (
-            <img
-              src="/letter_indicators/shopping_cart_outline_20.svg"
-              alt={alt.orders}
-            ></img>
+            <>
+              <img
+                src="/letter_indicators/shopping_cart_outline_20.svg"
+                alt={alt.orders}
+              ></img>
+              <p className="ml-2 text-sm">{alt.orders}</p>
+            </>
           ) : data.flag === "Финансы" ? (
-            <img
-              src="/letter_indicators/money_ruble_outline_20.svg"
-              alt={alt.finance}
-            ></img>
+            <>
+              <img
+                src="/letter_indicators/money_ruble_outline_20.svg"
+                alt={alt.finance}
+              ></img>
+              <p className="ml-2 text-sm">{alt.finance}</p>
+            </>
           ) : data.flag === "Регистрации" ? (
-            <img
-              src="/letter_indicators/key_outline_20.svg"
-              alt={alt.registrations}
-            ></img>
-          ) : data.flag === "Путешествия" ? (
-            <img
-              src="/letter_indicators/plane_outline_20.svg"
-              alt={alt.travels}
-            ></img>
+            <>
+              <img
+                src="/letter_indicators/key_outline_20.svg"
+                alt={alt.registrations}
+              ></img>
+              <p className="ml-2 text-sm">{alt.registrations}</p>
+            </>
+          ) : data.flag === "Путешевствия" ? (
+            <>
+              <img
+                src="/letter_indicators/plane_outline_20.svg"
+                alt={alt.travels}
+              ></img>
+              <p className="ml-2 text-sm">{alt.travels}</p>
+            </>
           ) : data.flag === "Билеты" ? (
-            <img
-              src="/letter_indicators/ticket_outline_20.svg"
-              alt={alt.tickets}
-            ></img>
+            <>
+              <img
+                src="/letter_indicators/ticket_outline_20.svg"
+                alt={alt.tickets}
+              ></img>
+              <p className="ml-2 text-sm">{alt.tickets}</p>
+            </>
           ) : (
             data.flag === "Штрафы и налоги" && (
-              <img
-                src="/letter_indicators/government_outline_20.svg"
-                alt={alt.finesAndTaxes}
-              ></img>
+              <>
+                <img
+                  src="/letter_indicators/government_outline_20.svg"
+                  alt={alt.finesAndTaxes}
+                ></img>
+                <p className="ml-2 text-sm">{alt.finesAndTaxes}</p>
+              </>
             )
           )}
-          {data.flag && <p className="ml-2 text-sm">{data.flag}</p>}
         </div>
       </div>
       <div className="flex items-center">

@@ -119,7 +119,7 @@ export default function LetterThumbnail({
             src="/letter_indicators/key_outline_20.svg"
             alt={alt.registrations}
           ></img>
-        ) : data.flag === "Путешествия" ? (
+        ) : data.flag === "Путешевствия" ? (
           <img
             src="/letter_indicators/plane_outline_20.svg"
             alt={alt.travels}
