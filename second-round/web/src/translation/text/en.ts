@@ -24,6 +24,7 @@ const textEn = {
   filterUnread: "Unread",
   filterBookmarked: "Bookmarked",
   filterWithAttachments: "With attachments",
+  resetAll: "Reset all",
   // folders
   composeLetter: "Compose a letter",
   inboxFolder: "Inbox",

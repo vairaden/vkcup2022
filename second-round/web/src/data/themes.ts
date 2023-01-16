@@ -54,7 +54,7 @@ export const themes = [
     isDark: false,
   },
   {
-    name: "grange",
+    name: "orange",
     previewColor: "#F44336",
     darkThemeIcons: true,
     isDark: false,

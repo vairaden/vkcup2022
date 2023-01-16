@@ -24,8 +24,8 @@ export default function FolderThumbnail({
     <li onClick={onClick}>
       <Link to={to}>
         <div
-          className={`flex items-center md:w-[200px] h-9 md:px-4 px-2 rounded-lg hover:bg-hover ${
-            selected && "bg-selected font-bold"
+          className={`flex items-center md:w-[200px] h-9 px-2 md:px-4 rounded-lg hover:bg-altHover ${
+            selected && "bg-altSelected font-bold"
           }`}
         >
           {theme.darkThemeIcons ? (

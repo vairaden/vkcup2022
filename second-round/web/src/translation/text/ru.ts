@@ -24,6 +24,7 @@ const textRu = {
   filterUnread: "Непрочитанные",
   filterBookmarked: "С флажком",
   filterWithAttachments: "С вложениями",
+  resetAll: "Сбросить все",
   // folders
   composeLetter: "Написать письмо",
   inboxFolder: "Входящие",

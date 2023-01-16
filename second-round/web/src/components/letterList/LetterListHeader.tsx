@@ -141,6 +141,14 @@ export default function LetterListHeader() {
             </div>
             {text.filterWithAttachments}
           </FilterButton>
+          {(filterBookmarked || filterUnread || filterWithAttachments) && (
+            <button
+              className="text-primaryText text-left pl-8 border-t border-separator h-10"
+              onClick={resetFilters}
+            >
+              {text.resetAll}
+            </button>
+          )}
         </div>
       )}
     </header>

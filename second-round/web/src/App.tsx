@@ -19,7 +19,7 @@ export default function App() {
           <Outlet />
         </div>
       </main>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools position="bottom-right" />
     </QueryClientProvider>
   );
 }

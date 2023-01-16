@@ -20,7 +20,9 @@ body {
     --color-menuSeparator: 0 0 0;
     --color-separator: 0 0 0;
     --color-hover: 255 255 255 / 3.9%;
+    --color-altHover: 255 255 255 / 3.9%;
     --color-selected: 255 255 255 / 7.8%;
+    --color-altSelected: 255 255 255 / 7.8%;
   }
 
   [data-theme="light"] {
@@ -32,7 +34,9 @@ body {
     --color-menuSeparator: 218 220 224;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="image"] {
@@ -43,8 +47,10 @@ body {
     --color-menuText: 231 232 234;
     --color-menuSeparator: 107 19 68;
     --color-separator: 218 220 224;
-    --color-hover: 0 16 61 / 3.9%;
+    --color-hover: 0 16 61 / 7.8%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="darkBrown"] {
@@ -55,7 +61,9 @@ body {
     --color-menuSeparator: 41 27 24;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="darkGray"] {
@@ -67,7 +75,9 @@ body {
     --color-menuSeparator: 36 36 36;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="darkPurple"] {
@@ -79,7 +89,9 @@ body {
     --color-menuSeparator: 51 29 51;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="darkBlue"] {
@@ -91,7 +103,9 @@ body {
     --color-menuSeparator: 23 25 40;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="blue"] {
@@ -103,7 +117,9 @@ body {
     --color-menuSeparator: 67 76 152;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="pink"] {
@@ -115,10 +131,12 @@ body {
     --color-menuSeparator: 178 28 79;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
-  [data-theme="grange"] {
+  [data-theme="orange"] {
     --color-primaryBg: 244 67 54;
     --color-elementBg: 255 255 255;
     --color-headerBg: 183 47 39;
@@ -127,7 +145,9 @@ body {
     --color-menuSeparator: 183 47 39;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="green"] {
@@ -139,7 +159,9 @@ body {
     --color-menuSeparator: 39 102 41;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 255 255 255 / 12%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 255 255 255 / 24%;
   }
 
   [data-theme="cyan"] {
@@ -151,7 +173,9 @@ body {
     --color-menuSeparator: 60 146 138;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="gray"] {
@@ -163,7 +187,9 @@ body {
     --color-menuSeparator: 131 126 120;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="lightOrange"] {
@@ -175,7 +201,9 @@ body {
     --color-menuSeparator: 140 131 126;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="lightGreen"] {
@@ -187,7 +215,9 @@ body {
     --color-menuSeparator: 116 122 99;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="lightCyan"] {
@@ -199,7 +229,9 @@ body {
     --color-menuSeparator: 84 111 116;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="lightPurple"] {
@@ -211,7 +243,9 @@ body {
     --color-menuSeparator: 90 94 118;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="lightBlue"] {
@@ -223,7 +257,9 @@ body {
     --color-menuSeparator: 82 95 107;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 
   [data-theme="lightGray"] {
@@ -235,6 +271,8 @@ body {
     --color-menuSeparator: 128 128 128;
     --color-separator: 218 220 224;
     --color-hover: 0 16 61 / 3.9%;
+    --color-altHover: 0 16 61 / 3.9%;
     --color-selected: 0 16 61 / 7.8%;
+    --color-altSelected: 0 16 61 / 7.8%;
   }
 }
