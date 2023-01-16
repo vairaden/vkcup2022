@@ -47,7 +47,19 @@ export default function Navbar() {
           className="group/newFolder flex items-center w-8 h-8 md:w-[200px] p-2 md:px-4 mx-auto rounded-lg
          hover:bg-altHover transition-colors"
         >
-          <img src="/icons/plus_icon.svg" alt={text.newFolder}></img>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            className="fill-menuText/50 group-hover/newFolder:fill-menuText"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 12C7 12.5523 7.44772 13 8 13C8.55229 13 9 12.5523 9 12V9H12C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7H9V4C9 3.44772 8.55228 3 8 3C7.44771 3 7 3.44772 7 4L7 7H4C3.44772 7 3 7.44772 3 8C3 8.55228 3.44772 9 4 9H7L7 12Z"
+              fill="inherit"
+            />
+          </svg>
           <p className="ml-2 hidden md:block text-menuText/50 group-hover/newFolder:text-menuText">
             {text.newFolder}
           </p>
