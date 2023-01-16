@@ -16,7 +16,7 @@ export default function LanguageMenu() {
       <h2>{text.changeLanguage}</h2>
       {/* Russian language */}
       <div className="my-4">
-        <label className="flex items-center">
+        <label className="flex items-center cursor-pointer">
           <input
             type="radio"
             name="language"
@@ -28,7 +28,7 @@ export default function LanguageMenu() {
           Русский
         </label>
         {/* English language */}
-        <label className="flex items-center">
+        <label className="flex items-center cursor-pointer">
           <input
             type="radio"
             name="language"
