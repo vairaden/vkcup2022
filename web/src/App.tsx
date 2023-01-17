@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
@@ -13,10 +12,6 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", "light");
-  });
-
   return (
     <QueryClientProvider client={queryClient}>
       <main>

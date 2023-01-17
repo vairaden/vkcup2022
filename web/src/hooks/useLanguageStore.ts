@@ -1,3 +1,4 @@
+import { persist } from "zustand/middleware";
 import { create } from "zustand";
 
 interface LanguageStore {
@@ -5,9 +6,16 @@ interface LanguageStore {
   setLanguage: (language: "ru" | "en") => void;
 }
 
-const useLanguageStore = create<LanguageStore>()((set) => ({
-  language: "ru",
-  setLanguage: (language) => set({ language }),
-}));
+const useLanguageStore = create<LanguageStore>()(
+  persist(
+    (set) => ({
+      language: "ru",
+      setLanguage: (language) => set({ language }),
+    }),
+    {
+      name: "language",
+    }
+  )
+);
 
 export default useLanguageStore;
