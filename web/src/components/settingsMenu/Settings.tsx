@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState } from "react";
 import useLanguageStore from "../../hooks/useLanguageStore";
 import useTranslation from "../../hooks/useTranslation";
@@ -28,20 +29,28 @@ export default function Settings({
           {/* Theme menu */}
           <button
             onClick={() => setSelectedMenu("theme")}
-            className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-hover transition-colors ${
-              selectedMenu == "theme" &&
-              "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
-            }`}
+            className={clsx(
+              "flex items-center w-[200px] h-9 px-4 rounded-lg transition-colors",
+              {
+                "hover:bg-hover": selectedMenu !== "theme",
+                "bg-selected hover:bg-selected font-bold":
+                  selectedMenu === "theme",
+              }
+            )}
           >
             <p className="text-primaryText">{text.theme}</p>
           </button>
           {/* Language menu */}
           <button
             onClick={() => setSelectedMenu("language")}
-            className={`flex items-center w-[200px] h-9 px-4 rounded-lg hover:bg-hover transition-colors ${
-              selectedMenu === "language" &&
-              "bg-[#00103D14] dark:bg-[#FFFFFF14] font-bold"
-            }`}
+            className={clsx(
+              "flex items-center w-[200px] h-9 px-4 rounded-lg transition-colors",
+              {
+                "hover:bg-hover": selectedMenu !== "language",
+                "bg-selected hover:bg-selected font-bold":
+                  selectedMenu === "language",
+              }
+            )}
           >
             <p className="mr-2 text-primaryText">
               {text.language}: {language == "ru" ? "Русский" : "English"}

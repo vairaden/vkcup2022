@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Link } from "react-router-dom";
 import useThemeStore from "../hooks/useThemeStore";
 
@@ -24,9 +25,13 @@ export default function FolderThumbnail({
     <li onClick={onClick}>
       <Link to={to}>
         <div
-          className={`flex items-center md:w-[200px] h-9 px-2 md:px-4 rounded-lg hover:bg-altHover transition-colors ${
-            selected && "bg-altSelected font-bold"
-          }`}
+          className={clsx(
+            "flex items-center md:w-[200px] h-9 px-2 md:px-4 rounded-lg transition-colors",
+            {
+              "hover:bg-altHover": !selected,
+              "bg-altSelected hover:bg-altSelected font-bold": selected,
+            }
+          )}
         >
           {theme.darkThemeIcons ? (
             <img src={darkImgSrc} alt={imgAlt}></img>

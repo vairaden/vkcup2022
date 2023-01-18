@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import useThemeStore from "../hooks/useThemeStore";
 import useTranslation from "../hooks/useTranslation";
 
@@ -18,7 +19,10 @@ export default function FilterButton({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center p-2 hover:bg-hover transition-colors ${className}`}
+      className={clsx(
+        "flex items-center p-2 hover:bg-hover transition-colors",
+        className
+      )}
     >
       <div className="w-5">
         {active &&

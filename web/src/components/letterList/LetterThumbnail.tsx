@@ -1,4 +1,5 @@
-import { ChangeEvent, useState } from "react";
+import clsx from "clsx";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Letter from "../../dtos";
 import useTranslation from "../../hooks/useTranslation";
@@ -26,24 +27,29 @@ export default function LetterThumbnail({
 
   return (
     <article
-      className={`group/letter grid grid-cols-[22px_40px_12rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem]
-       w-full h-12 rounded-xl hover:bg-hover transition-colors text-sm text-primaryText ${
-         selected && "bg-selected hover:bg-selected"
-       }`}
+      className={clsx(
+        "group/letter grid grid-cols-[22px_40px_12rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem] w-full h-12 rounded-xl \
+          transition-colors text-sm text-primaryText",
+        {
+          "hover:bg-hover": !selected,
+          "bg-selected hover:bg-selected": selected,
+        }
+      )}
     >
       {/* Unread icon */}
       <Link to={to} className="flex items-center">
         <div
-          className={`mx-2 h-[6px] w-[6px] rounded-md group-hover/letter:bg-darkGray ${
-            !data.read && "bg-electricBlue group-hover/letter:bg-electricBlue"
-          }`}
+          className={clsx("mx-2 h-[6px] w-[6px] rounded-md", {
+            "group-hover/letter:bg-darkGray": data.read,
+            "bg-electricBlue group-hover/letter:bg-electricBlue": !data.read,
+          })}
         ></div>
       </Link>
       {/* Avatar */}
       <div className="relative mr-2">
         <div
           className="w-8 h-8 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
-         group-hover/letter:scale-0 transition-all duration-100"
+          group-hover/letter:scale-0 transition-all duration-100"
         >
           {data.author.avatar ? (
             <img
@@ -65,9 +71,7 @@ export default function LetterThumbnail({
             type="checkbox"
             className="w-4 h-4 cursor-pointer"
             checked={selected}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setSelected(e.target.checked)
-            }
+            onChange={(e) => setSelected(e.target.checked)}
           />
         </label>
       </div>

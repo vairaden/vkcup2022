@@ -49,9 +49,7 @@ export default function LetterListHeader() {
           ></img>
         )}
         {filterUnread && (
-          <div
-            className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
-          ></div>
+          <div className="mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue"></div>
         )}
         {filterWithAttachments &&
           (theme.name !== "light" ? (
