@@ -1,3 +1,5 @@
+import AttachmentIcon from "../shared/icons/AttachmentIcon";
+import DownloadIcon from "../shared/icons/DownloadIcon";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
 
@@ -28,23 +30,11 @@ export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
                   alt={alt.attachment}
                 ></img>
                 <a
-                  className="hidden group-hover/download:flex absolute bottom-2 left-[50%] translate-x-[-50%]"
+                  className="hidden group-hover/download:flex items-center absolute bottom-2 left-[50%] translate-x-[-50%]"
                   download="attachment.jpg"
                   href={doc.img}
                 >
-                  {theme.isDark ? (
-                    <img
-                      className="mr-2"
-                      src="/icons/dark/download_outline_dark.svg"
-                      alt={alt.download}
-                    ></img>
-                  ) : (
-                    <img
-                      className="mr-2"
-                      src="/icons/light/download_outline.svg"
-                      alt={alt.download}
-                    ></img>
-                  )}
+                  <DownloadIcon className="fill-menuText mr-2" />
                   {text.download}
                 </a>
               </div>
@@ -61,17 +51,7 @@ export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
         </div>
       </div>
       <div className="rounded-lg group-hover/list:bg-hover ml-2">
-        {theme.isDark ? (
-          <img
-            src="/icons/dark/attach_outline_dark_20.svg"
-            alt={alt.attachment}
-          ></img>
-        ) : (
-          <img
-            src="/icons/light/attach_outline_20.svg"
-            alt={alt.attachment}
-          ></img>
-        )}
+        <AttachmentIcon className="fill-primaryText" />
       </div>
     </div>
   );

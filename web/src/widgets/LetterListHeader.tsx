@@ -3,6 +3,10 @@ import useFilterStore from "../shared/store/useFilterStore";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
 import LetterFilters from "../features/LetterFilters";
+import AttachmentIcon from "../shared/icons/AttachmentIcon";
+import ChevronDownIcon from "../shared/icons/ChevronDownIcon";
+import MailIcon from "../shared/icons/MailIcon";
+import clsx from "clsx";
 
 export default function LetterListHeader() {
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -18,25 +22,7 @@ export default function LetterListHeader() {
 
   return (
     <header className="fixed z-10 flex justify-between left-0 top-0 h-14 px-4 py-3 w-[100vw] shadow-sm bg-headerBg">
-      {/* Logo */}
-      <img
-        className="block md:hidden"
-        src="/mailru_logo/mailru_logo_no_letters.svg"
-        alt={alt.mailRuLogo}
-      ></img>
-      {theme.name !== "light" ? (
-        <img
-          className="hidden md:block"
-          src="/mailru_logo/mailru_logo_dark.svg"
-          alt={alt.mailRuLogo}
-        ></img>
-      ) : (
-        <img
-          className="hidden md:block"
-          src="/mailru_logo/mailru_logo.svg"
-          alt={alt.mailRuLogo}
-        ></img>
-      )}
+      <MailIcon whiteLetters={theme.name !== "light"} />
       {/* Filters */}
       <button
         className="flex items-center hover:bg-altHover transition-colors rounded-xl p-2"
@@ -51,36 +37,21 @@ export default function LetterListHeader() {
         {filterUnread && (
           <div className="mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue"></div>
         )}
-        {filterWithAttachments &&
-          (theme.name !== "light" ? (
-            <img
-              src="/icons/dark/attach_outline_dark_20.svg"
-              alt={alt.attachment}
-            ></img>
-          ) : (
-            <img
-              src="/icons/light/attach_outline_20.svg"
-              alt={alt.attachment}
-            ></img>
-          ))}
+        {filterWithAttachments && <AttachmentIcon className="fill-menuText" />}
         <p
-          className={`ml-1 ${
-            theme.name === "light" ? "text-black" : "text-white"
-          }`}
+          className={clsx("ml-1", {
+            "text-[rgb(231_232_234)]": theme.name !== "light",
+            "text-primaryText": theme.name === "light",
+          })}
         >
           {text.filter}
         </p>
-        {theme.name !== "light" ? (
-          <img
-            src="/icons/dark/chevron_down_outline_dark_20.svg"
-            alt={alt.filterSelect}
-          ></img>
-        ) : (
-          <img
-            src="/icons/light/chevron_down_outline_20.svg"
-            alt={alt.filterSelect}
-          ></img>
-        )}
+        <ChevronDownIcon
+          className={clsx({
+            "fill-[rgb(231_232_234)]": theme.name !== "light",
+            "fill-primaryText": theme.name === "light",
+          })}
+        />
       </button>
       {filtersOpen && <LetterFilters />}
     </header>

@@ -18,6 +18,9 @@ const textRu = {
   ],
   today: "Сегодня",
   to: "Кому",
+  subject: "Тема",
+  cc: "Копия",
+  bcc: "Скрытая копия",
   // filters
   filter: "Фильтр",
   filterAll: "Все письма",

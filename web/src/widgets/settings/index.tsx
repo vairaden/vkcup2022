@@ -20,7 +20,7 @@ export default function Settings() {
     // Modal background
     <div
       onClick={toggleSettingsOpen}
-      className="fixed top-0 left-0 h-full w-full"
+      className="z-10 fixed top-0 left-0 h-full w-full"
     >
       {/* Setting panel */}
       <div

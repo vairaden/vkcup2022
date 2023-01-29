@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import useThemeStore from "../store/useThemeStore";
-import useTranslation from "../translation/useTranslation";
+import CheckmarkIcon from "../icons/CheckmarkIcon";
 
 export default function FilterButton({
   children,
@@ -13,9 +12,6 @@ export default function FilterButton({
   onClick: () => void;
   className?: string;
 }) {
-  const { alt } = useTranslation();
-  const theme = useThemeStore((state) => state.theme);
-
   return (
     <button
       onClick={onClick}
@@ -25,18 +21,7 @@ export default function FilterButton({
       )}
     >
       <div className="w-5">
-        {active &&
-          (theme.isDark ? (
-            <img
-              src="/icons/dark/checkmark_outline_dark.svg"
-              alt={alt.filterActive}
-            ></img>
-          ) : (
-            <img
-              src="/icons/light/checkmark_outline.svg"
-              alt={alt.filterActive}
-            ></img>
-          ))}
+        {active && <CheckmarkIcon className="fill-primaryText" />}
       </div>
       {children}
     </button>

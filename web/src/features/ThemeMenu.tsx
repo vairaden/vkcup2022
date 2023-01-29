@@ -1,3 +1,4 @@
+import ThemeCheckmark from "../shared/icons/ThemeCheckmark";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
 
@@ -21,10 +22,7 @@ export default function ThemeMenu() {
             >
               {currentTheme.name === theme.name && (
                 <div className="bg-[#00000020] flex justify-center items-center">
-                  <img
-                    src="/icons/checkmark_outline_40.svg"
-                    alt={alt.themeSelected}
-                  ></img>
+                  <ThemeCheckmark />
                 </div>
               )}
             </div>
@@ -45,10 +43,7 @@ export default function ThemeMenu() {
           <div className="w-[120px] h-[88px] cursor-pointer m-[10px] bg-[url(/dark-theme-image.svg)]">
             {currentTheme.name === "dark" && (
               <div className="bg-[#005ff97e] h-[88px] flex justify-center items-center">
-                <img
-                  src="/icons/checkmark_outline_40.svg"
-                  alt={alt.themeSelected}
-                ></img>
+                <ThemeCheckmark />
               </div>
             )}
           </div>
@@ -66,10 +61,7 @@ export default function ThemeMenu() {
           <div className="w-[120px] h-[88px] cursor-pointer m-[10px] bg-[url(/light-theme-image.svg)]">
             {currentTheme.name === "light" && (
               <div className="bg-[#005ff97e] h-[88px] flex justify-center items-center">
-                <img
-                  src="/icons/checkmark_outline_40.svg"
-                  alt={alt.themeSelected}
-                ></img>
+                <ThemeCheckmark />
               </div>
             )}
           </div>
@@ -87,10 +79,7 @@ export default function ThemeMenu() {
           <div className="w-[120px] h-[88px] cursor-pointer m-[10px] bg-[url(/image-theme.svg)]">
             {currentTheme.name === "image" && (
               <div className="bg-[#005ff97e] h-[88px] flex justify-center items-center">
-                <img
-                  src="/icons/checkmark_outline_40.svg"
-                  alt={alt.themeSelected}
-                ></img>
+                <ThemeCheckmark />
               </div>
             )}
           </div>

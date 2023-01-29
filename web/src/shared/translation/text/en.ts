@@ -18,6 +18,9 @@ const textEn = {
   ],
   today: "Today",
   to: "To",
+  subject: "Subject",
+  cc: "Cc",
+  bcc: "Bcc",
   // filters
   filter: "Filter",
   filterAll: "All letters",

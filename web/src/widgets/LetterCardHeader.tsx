@@ -1,4 +1,6 @@
+import clsx from "clsx";
 import { Link, useParams } from "react-router-dom";
+import ChevronLeftIcon from "../shared/icons/ChevronLeftIcon";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
 
@@ -14,18 +16,20 @@ export default function LetterCardHeader() {
         className="flex items-center hover:bg-altHover transition-colors rounded-xl p-2 ml-1 md:ml-4 w-fit"
         to={"/" + folderName}
       >
-        {theme.darkThemeIcons ? (
-          <img
-            src="/icons/dark/chevron_left_outline_dark_20.svg"
-            alt={alt.back}
-          ></img>
-        ) : (
-          <img
-            src="/icons/light/chevron_left_outline_20.svg"
-            alt={alt.back}
-          ></img>
-        )}
-        <h1 className="hidden md:block ml-2 text-menuText">{text.back}</h1>
+        <ChevronLeftIcon
+          className={clsx({
+            "fill-[rgb(231_232_234)]": theme.name !== "light",
+            "fill-primaryText": theme.name === "light",
+          })}
+        />
+        <h2
+          className={clsx("hidden md:block ml-2", {
+            "text-[rgb(231_232_234)]": theme.name !== "light",
+            "text-primaryText": theme.name === "light",
+          })}
+        >
+          {text.back}
+        </h2>
       </Link>
     </header>
   );

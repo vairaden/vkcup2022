@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import Letter from "../shared/dtos";
 import useTranslation from "../shared/translation/useTranslation";
 import AttachmentsPreview from "../features/AttachmentsPreview";
+import ShoppingCartIcon from "../shared/icons/letter-indicators/ShoppingCartIcon";
+import MoneyIcon from "../shared/icons/letter-indicators/MoneyIcon";
+import KeyIcon from "../shared/icons/letter-indicators/KeyIcon";
+import PlaneIcon from "../shared/icons/letter-indicators/PlaneIcon";
+import TicketIcon from "../shared/icons/letter-indicators/TicketIcon";
+import BookmarkIcon from "../shared/icons/letter-indicators/BookmarkIcon";
+import GovernmentIcon from "../shared/icons/letter-indicators/GovernmentIcon";
+import ImportantIcon from "../shared/icons/letter-indicators/ImportantIcon";
 
 export default function LetterThumbnail({
   data,
@@ -83,19 +91,7 @@ export default function LetterThumbnail({
       </Link>
       {/* Flags */}
       <Link to={to} className="flex items-center">
-        {data.important ? (
-          <img
-            src="/letter_indicators/important_20.svg"
-            alt={alt.important}
-          ></img>
-        ) : (
-          data.bookmark && (
-            <img
-              src="/letter_indicators/bookmark_20.svg"
-              alt={alt.bookmark}
-            ></img>
-          )
-        )}
+        {data.important ? <ImportantIcon /> : data.bookmark && <BookmarkIcon />}
       </Link>
       {/* Title */}
       <Link to={to}>
@@ -107,39 +103,19 @@ export default function LetterThumbnail({
         </p>
       </Link>
       {/* Letter flags */}
-      <Link to={to} className="flex ml-8">
+      <Link to={to} className="flex items-center ml-8">
         {data.flag === "Заказы" ? (
-          <img
-            src="/letter_indicators/shopping_cart_outline_20.svg"
-            alt={alt.orders}
-          ></img>
+          <ShoppingCartIcon />
         ) : data.flag === "Финансы" ? (
-          <img
-            src="/letter_indicators/money_ruble_outline_20.svg"
-            alt={alt.finance}
-          ></img>
+          <MoneyIcon />
         ) : data.flag === "Регистрации" ? (
-          <img
-            src="/letter_indicators/key_outline_20.svg"
-            alt={alt.registrations}
-          ></img>
+          <KeyIcon />
         ) : data.flag === "Путешевствия" ? (
-          <img
-            src="/letter_indicators/plane_outline_20.svg"
-            alt={alt.travels}
-          ></img>
+          <PlaneIcon />
         ) : data.flag === "Билеты" ? (
-          <img
-            src="/letter_indicators/ticket_outline_20.svg"
-            alt={alt.tickets}
-          ></img>
+          <TicketIcon />
         ) : (
-          data.flag === "Штрафы и налоги" && (
-            <img
-              src="/letter_indicators/government_outline_20.svg"
-              alt={alt.finesAndTaxes}
-            ></img>
-          )
+          data.flag === "Штрафы и налоги" && <GovernmentIcon />
         )}
       </Link>
       <div className="flex items-center">

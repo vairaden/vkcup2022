@@ -2,6 +2,14 @@ import { useParams } from "react-router-dom";
 import useLetter from "./useLetter";
 import useFilterStore from "../../shared/store/useFilterStore";
 import useTranslation from "../../shared/translation/useTranslation";
+import ShoppingCartIcon from "../../shared/icons/letter-indicators/ShoppingCartIcon";
+import MoneyIcon from "../../shared/icons/letter-indicators/MoneyIcon";
+import KeyIcon from "../../shared/icons/letter-indicators/KeyIcon";
+import PlaneIcon from "../../shared/icons/letter-indicators/PlaneIcon";
+import TicketIcon from "../../shared/icons/letter-indicators/TicketIcon";
+import GovernmentIcon from "../../shared/icons/letter-indicators/GovernmentIcon";
+import ImportantIcon from "../../shared/icons/letter-indicators/ImportantIcon";
+import BookmarkIcon from "../../shared/icons/letter-indicators/BookmarkIcon";
 
 function calculateFileSize(file: string) {
   const fileSize = file.length / 1024;
@@ -60,51 +68,33 @@ export default function LetterCard() {
         <div className="flex items-center">
           {data.flag === "Заказы" ? (
             <>
-              <img
-                src="/letter_indicators/shopping_cart_outline_20.svg"
-                alt={alt.orders}
-              ></img>
+              <ShoppingCartIcon />
               <p className="ml-2 text-sm">{alt.orders}</p>
             </>
           ) : data.flag === "Финансы" ? (
             <>
-              <img
-                src="/letter_indicators/money_ruble_outline_20.svg"
-                alt={alt.finance}
-              ></img>
+              <MoneyIcon />
               <p className="ml-2 text-sm">{alt.finance}</p>
             </>
           ) : data.flag === "Регистрации" ? (
             <>
-              <img
-                src="/letter_indicators/key_outline_20.svg"
-                alt={alt.registrations}
-              ></img>
+              <KeyIcon />
               <p className="ml-2 text-sm">{alt.registrations}</p>
             </>
           ) : data.flag === "Путешевствия" ? (
             <>
-              <img
-                src="/letter_indicators/plane_outline_20.svg"
-                alt={alt.travels}
-              ></img>
+              <PlaneIcon />
               <p className="ml-2 text-sm">{alt.travels}</p>
             </>
           ) : data.flag === "Билеты" ? (
             <>
-              <img
-                src="/letter_indicators/ticket_outline_20.svg"
-                alt={alt.tickets}
-              ></img>
+              <TicketIcon />
               <p className="ml-2 text-sm">{alt.tickets}</p>
             </>
           ) : (
             data.flag === "Штрафы и налоги" && (
               <>
-                <img
-                  src="/letter_indicators/government_outline_20.svg"
-                  alt={alt.finesAndTaxes}
-                ></img>
+                <GovernmentIcon />
                 <p className="ml-2 text-sm">{alt.finesAndTaxes}</p>
               </>
             )
@@ -139,17 +129,9 @@ export default function LetterCard() {
               {formatDate(data.date)}
             </p>
             {data.important ? (
-              <img
-                src="/letter_indicators/important_20.svg"
-                alt={alt.important}
-              ></img>
+              <ImportantIcon />
             ) : (
-              data.bookmark && (
-                <img
-                  src="/letter_indicators/bookmark_20.svg"
-                  alt={alt.bookmark}
-                ></img>
-              )
+              data.bookmark && <BookmarkIcon />
             )}
           </div>
           {/* Receivers */}

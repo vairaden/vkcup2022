@@ -1,3 +1,5 @@
+import AttachmentIcon from "../shared/icons/AttachmentIcon";
+import BookmarkIcon from "../shared/icons/letter-indicators/BookmarkIcon";
 import useFilterStore from "../shared/store/useFilterStore";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
@@ -21,7 +23,6 @@ export default function LetterFilters() {
     (state) => state.filterWithAttachments
   );
 
-  const theme = useThemeStore((state) => state.theme);
   const { text, alt } = useTranslation();
 
   return (
@@ -41,31 +42,14 @@ export default function LetterFilters() {
         {text.filterUnread}
       </FilterButton>
       <FilterButton active={filterBookmarked} onClick={toggleFilterBookmarked}>
-        <div className="w-6">
-          <img
-            src="/letter_indicators/bookmark_20.svg"
-            alt={alt.bookmark}
-          ></img>
-        </div>
+        <BookmarkIcon className="mr-1" />
         {text.filterBookmarked}
       </FilterButton>
       <FilterButton
         active={filterWithAttachments}
         onClick={toggleFilterWithAttachments}
       >
-        <div className="w-6">
-          {theme.isDark ? (
-            <img
-              src="/icons/dark/attach_outline_dark_20.svg"
-              alt={alt.attachment}
-            ></img>
-          ) : (
-            <img
-              src="/icons/light/attach_outline_20.svg"
-              alt={alt.attachment}
-            ></img>
-          )}
-        </div>
+        <AttachmentIcon className="fill-primaryText" />
         {text.filterWithAttachments}
       </FilterButton>
       {(filterBookmarked || filterUnread || filterWithAttachments) && (

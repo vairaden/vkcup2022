@@ -1,6 +1,6 @@
 import LetterThumbnail from "../../entities/LetterThumbnail";
 import { useParams } from "react-router-dom";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import useTranslation from "../../shared/translation/useTranslation";
 import useFilterStore from "../../shared/store/useFilterStore";
 import useThemeStore from "../../shared/store/useThemeStore";
@@ -51,6 +51,11 @@ export default function LetterList() {
     [setSize, isLoading, folderName, data]
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setSize(1);
+  }, [folderName]);
+
   return isLoading ? (
     <div className="flex justify-center items-center h-screen text-menuText">
       <h2>{text.loading}</h2>
@@ -80,9 +85,9 @@ export default function LetterList() {
       {currentTheme.name === "image" ? (
         <img src="/icons/no_letters_other.svg" alt={alt.noLetters}></img>
       ) : !currentTheme.darkThemeIcons ? (
-        <img src="/icons/light/no_letters.svg" alt={alt.noLetters}></img>
+        <img src="/icons/no_letters.svg" alt={alt.noLetters}></img>
       ) : (
-        <img src="/icons/dark/no_letters_dark.svg" alt={alt.noLetters}></img>
+        <img src="/icons/no_letters_dark.svg" alt={alt.noLetters}></img>
       )}
       <h2 className="mt-6 text-2xl font-semibold text-menuText">
         {alt.noLetters}
