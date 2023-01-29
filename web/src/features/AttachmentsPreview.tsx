@@ -1,6 +1,5 @@
 import AttachmentIcon from "../shared/icons/AttachmentIcon";
 import DownloadIcon from "../shared/icons/DownloadIcon";
-import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
 
 export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
@@ -13,7 +12,6 @@ export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
   }
 
   const { text, alt } = useTranslation();
-  const theme = useThemeStore((state) => state.theme);
 
   return (
     <div className="z-0 relative group/list">

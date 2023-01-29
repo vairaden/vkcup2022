@@ -4,11 +4,11 @@ import ChevronLeftIcon from "../shared/icons/ChevronLeftIcon";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
 
-export default function LetterCardHeader() {
+export default function LetterDetailsHeader() {
   const folderName = useParams().folderName || "inbox";
 
   const theme = useThemeStore((state) => state.theme);
-  const { text, alt } = useTranslation();
+  const { text } = useTranslation();
 
   return (
     <header className="fixed left-0 top-0 h-14 px-3 py-2 w-[100vw] shadow-sm bg-headerBg">

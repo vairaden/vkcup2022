@@ -7,7 +7,7 @@ export default function ThemeMenu() {
   const currentTheme = useThemeStore((state) => state.theme);
   const setTheme = useThemeStore((state) => state.setTheme);
 
-  const { text, alt } = useTranslation();
+  const { text } = useTranslation();
 
   return (
     <div className="flex flex-col px-8 py-[26px]">
