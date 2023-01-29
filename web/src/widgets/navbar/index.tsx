@@ -1,24 +1,29 @@
 import Button from "../../shared/ui/Button";
 import FolderThumbnail from "../../entities/FolderThumbnail";
 import folderList from "../../shared/data/folderList";
-import { useState } from "react";
-import Settings from "../settings";
 import useTranslation from "../../shared/translation/useTranslation";
 import useThemeStore from "../../shared/store/useThemeStore";
 import { useParams } from "react-router-dom";
+import useMenuStore from "../../shared/store/useMenuStore";
 
 export default function Navbar() {
   const activeFolder = useParams().folderName || "inbox";
-  const [showSettings, setShowSettings] = useState(false);
+  const toggleSettingsOpen = useMenuStore((state) => state.toggleSettingsOpen);
+  const toggleLetterCreatorOpen = useMenuStore(
+    (state) => state.toggleLetterCreatorOpen
+  );
 
   const { text } = useTranslation();
   const theme = useThemeStore((state) => state.theme);
 
   return (
-    <nav className="fixed z-10 top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
+    <nav className="fixed top-14 flex flex-col justify-between px-4 py-3 md:w-[232px] w-[68px] h-[calc(100vh-56px)]">
       <div>
         {/* Compose button */}
-        <Button onClick={() => null} className="mb-3 w-9 md:w-full font-bold">
+        <Button
+          onClick={toggleLetterCreatorOpen}
+          className="mb-3 w-9 md:w-full font-bold bg-white"
+        >
           <img
             className="m-2 md:hidden"
             src="/icons/compose_outline_20.svg"
@@ -68,7 +73,7 @@ export default function Navbar() {
       {/* Settings button */}
       <button
         className="flex items-center p-2 md:px-4 rounded-lg hover:bg-altHover"
-        onClick={() => setShowSettings(true)}
+        onClick={toggleSettingsOpen}
       >
         {theme.darkThemeIcons ? (
           <img
@@ -85,10 +90,6 @@ export default function Navbar() {
         )}
         <p className="hidden md:block text-menuText">{text.settings}</p>
       </button>
-      {/* Settings */}
-      {showSettings && (
-        <Settings closeCallback={() => setShowSettings(false)} />
-      )}
     </nav>
   );
 }

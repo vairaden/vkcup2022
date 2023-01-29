@@ -4,12 +4,11 @@ import useLanguageStore from "../../shared/store/useLanguageStore";
 import useTranslation from "../../shared/translation/useTranslation";
 import LanguageMenu from "../../features/LanguageMenu";
 import ThemeMenu from "../../features/ThemeMenu";
+import useMenuStore from "../../shared/store/useMenuStore";
 
-export default function Settings({
-  closeCallback,
-}: {
-  closeCallback: () => void;
-}) {
+export default function Settings() {
+  const toggleSettingsOpen = useMenuStore((state) => state.toggleSettingsOpen);
+
   const [selectedMenu, setSelectedMenu] = useState<"theme" | "language">(
     "theme"
   );
@@ -19,7 +18,10 @@ export default function Settings({
 
   return (
     // Modal background
-    <div onClick={closeCallback} className="fixed top-0 left-0 h-full w-full">
+    <div
+      onClick={toggleSettingsOpen}
+      className="fixed top-0 left-0 h-full w-full"
+    >
       {/* Setting panel */}
       <div
         className="fixed bottom-0 w-[100vw] shadow-[0px_-3px_48px_0px_rgba(0,16,61,0.28)] flex bg-elementBg h-[400px]"

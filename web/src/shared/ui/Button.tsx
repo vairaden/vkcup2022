@@ -13,7 +13,7 @@ export default function Button({
     <button
       onClick={onClick}
       className={clsx(
-        "w-[200px] h-9 rounded-lg bg-white border-[1px] border-[#C9C9C9]",
+        "w-[200px] h-9 rounded-lg border-[1px] border-[#C9C9C9]",
         className
       )}
     >
