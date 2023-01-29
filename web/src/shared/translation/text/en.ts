@@ -21,6 +21,10 @@ const textEn = {
   subject: "Subject",
   cc: "Cc",
   bcc: "Bcc",
+  // controls
+  send: "Send",
+  save: "Save",
+  cancel: "Cancel",
   // filters
   filter: "Filter",
   filterAll: "All letters",

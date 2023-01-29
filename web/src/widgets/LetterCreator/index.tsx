@@ -1,7 +1,8 @@
 import { useState } from "react";
+import LetterCreationControls from "../../features/LetterCreationControls";
+import LetterCreationForm from "../../entities/LetterCreationForm";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
-import Button from "../../shared/ui/Button";
 
 export default function LetterCreator() {
   const toggleLetterCreatorOpen = useMenuStore(
@@ -22,39 +23,15 @@ export default function LetterCreator() {
     >
       <div
         className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]
-        flex w-[55rem] h-[52rem] bg-elementBg rounded-xl"
+        flex flex-col w-[55rem] h-[52rem] bg-elementBg rounded-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <form className="flex flex-col">
-          <label>
-            {text.to}
-            <input type="text" />
-          </label>
-          <label>
-            {text.subject}
-            <input type="text" />
-          </label>
-          <label>
-            {text.cc}
-            <input type="text" />
-          </label>
-          <label>
-            {text.bcc}
-            <input type="text" />
-          </label>
-          <textarea className="h-full w-full"></textarea>
-          <div className="flex">
-            <Button
-              type="submit"
-              onClick={() => {}}
-              className="bg-electricBlue"
-            >
-              Submit
-            </Button>
-            <Button onClick={() => {}}>Save</Button>
-            <Button onClick={() => {}}>Cancel</Button>
-          </div>
-        </form>
+        <LetterCreationForm />
+        <LetterCreationControls
+          sendClick={() => {}}
+          cancelClick={() => {}}
+          saveClick={() => {}}
+        />
       </div>
     </div>
   );

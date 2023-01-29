@@ -19,6 +19,7 @@ module.exports = {
         electricBlue: "#005FF9",
         linkBlue: "#589BFF",
         textGray: "#87898F",
+        lightGray: "#E1E4E6",
         darkGray: "#A5A7AD",
       },
       fontFamily: {

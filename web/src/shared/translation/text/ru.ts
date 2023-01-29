@@ -21,6 +21,10 @@ const textRu = {
   subject: "Тема",
   cc: "Копия",
   bcc: "Скрытая копия",
+  // controls
+  send: "Отправить",
+  save: "Сохранить",
+  cancel: "Отмена",
   // filters
   filter: "Фильтр",
   filterAll: "Все письма",
