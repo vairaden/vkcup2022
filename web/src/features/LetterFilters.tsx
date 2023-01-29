@@ -1,9 +1,9 @@
-import useFilterStore from "../../hooks/useFilterStore";
-import useThemeStore from "../../hooks/useThemeStore";
-import useTranslation from "../../hooks/useTranslation";
-import FilterButton from "../FilterButton";
+import useFilterStore from "../shared/store/useFilterStore";
+import useThemeStore from "../shared/store/useThemeStore";
+import useTranslation from "../shared/translation/useTranslation";
+import FilterButton from "../shared/ui/FilterButton";
 
-export default function FilterMenu() {
+export default function LetterFilters() {
   const toggleFilterBookmarked = useFilterStore(
     (state) => state.toggleFilterBookmarked
   );

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import useFilterStore from "../../hooks/useFilterStore";
-import useThemeStore from "../../hooks/useThemeStore";
-import useTranslation from "../../hooks/useTranslation";
-import FilterMenu from "./FilterMenu";
+import useFilterStore from "../shared/store/useFilterStore";
+import useThemeStore from "../shared/store/useThemeStore";
+import useTranslation from "../shared/translation/useTranslation";
+import LetterFilters from "../features/LetterFilters";
 
 export default function LetterListHeader() {
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -82,7 +82,7 @@ export default function LetterListHeader() {
           ></img>
         )}
       </button>
-      {filtersOpen && <FilterMenu />}
+      {filtersOpen && <LetterFilters />}
     </header>
   );
 }

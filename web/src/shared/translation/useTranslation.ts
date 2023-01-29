@@ -1,8 +1,8 @@
-import enAlt from "../translation/alt/en";
-import ruAlt from "../translation/alt/ru";
-import textEn from "../translation/text/en";
-import textRu from "../translation/text/ru";
-import useLanguageStore from "./useLanguageStore";
+import enAlt from "./alt/en";
+import ruAlt from "./alt/ru";
+import textEn from "./text/en";
+import textRu from "./text/ru";
+import useLanguageStore from "../store/useLanguageStore";
 
 export default function useTranslation() {
   const text = {
@@ -16,6 +16,7 @@ export default function useTranslation() {
   };
 
   const language = useLanguageStore((state) => state.language);
+  document.documentElement.lang = language;
 
   return {
     text: (text[language] || text.ru) as typeof text.ru,

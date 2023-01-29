@@ -1,12 +1,10 @@
-import LetterThumbnail from "./LetterThumbnail";
-import { fetchData } from "../../api";
-import Letter from "../../dtos";
+import LetterThumbnail from "../../entities/LetterThumbnail";
 import { useParams } from "react-router-dom";
-import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo, useRef } from "react";
-import useTranslation from "../../hooks/useTranslation";
-import useFilterStore from "../../hooks/useFilterStore";
-import useThemeStore from "../../hooks/useThemeStore";
+import useTranslation from "../../shared/translation/useTranslation";
+import useFilterStore from "../../shared/store/useFilterStore";
+import useThemeStore from "../../shared/store/useThemeStore";
+import useLetterList from "./useLetterList";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
@@ -16,69 +14,42 @@ export default function LetterList() {
     (state) => state.filterWithAttachments
   );
 
-  const queryClient = useQueryClient();
   const currentTheme = useThemeStore((state) => state.theme);
 
   const { text, alt } = useTranslation();
 
-  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    [
-      "letters",
-      folderName,
-      filterUnread,
-      filterBookmarked,
-      filterWithAttachments,
-    ],
-    ({
-      pageParam = {
-        folderName,
-        pageNumber: 0,
-        unread: filterUnread,
-        bookmarked: filterBookmarked,
-        withAttachments: filterWithAttachments,
-      },
-    }) => fetchData(pageParam),
-    {
-      getNextPageParam: (lastPage, pages) => {
-        return lastPage.hasMore
-          ? {
-              folderName,
-              pageNumber: pages.length,
-              unread: filterUnread,
-              bookmarked: filterBookmarked,
-              withAttachments: filterWithAttachments,
-            }
-          : undefined;
-      },
-    }
-  );
+  const { isLoading, data, setSize } = useLetterList({
+    folderName,
+    pageSize: 30,
+    unread: filterUnread,
+    bookmarked: filterBookmarked,
+    withAttachments: filterWithAttachments,
+  });
+
+  const letters = useMemo(() => {
+    if (!data) return [];
+
+    return data.map((page) => page.pageData).flat();
+  }, [data]);
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastPostRef = useCallback(
     (node: HTMLDivElement) => {
       if (isLoading) return;
-
       if (observer.current) observer.current.disconnect();
-
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasNextPage) {
-          fetchNextPage();
+        if (
+          entries[0].isIntersecting &&
+          data &&
+          data[data.length - 1].hasMore
+        ) {
+          setSize((size) => size + 1);
         }
       });
       if (node) observer.current.observe(node);
     },
-    [fetchNextPage, hasNextPage, isLoading, folderName, queryClient]
+    [setSize, isLoading, folderName, data]
   );
-
-  const letters = useMemo(() => {
-    let letterList: Letter[] = [];
-    if (data) {
-      for (let page of data.pages) {
-        letterList = [...letterList, ...page.pageData];
-      }
-    }
-    return letterList;
-  }, [data]);
 
   return isLoading ? (
     <div className="flex justify-center items-center h-screen text-menuText">

@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import useThemeStore from "../../hooks/useThemeStore";
-import useTranslation from "../../hooks/useTranslation";
+import useThemeStore from "../shared/store/useThemeStore";
+import useTranslation from "../shared/translation/useTranslation";
 
 export default function LetterCardHeader() {
   const folderName = useParams().folderName || "inbox";

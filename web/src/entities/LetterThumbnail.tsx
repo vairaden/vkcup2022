@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Letter from "../../dtos";
-import useTranslation from "../../hooks/useTranslation";
-import AttachmentIcon from "./AttachmentIcon";
+import Letter from "../shared/dtos";
+import useTranslation from "../shared/translation/useTranslation";
+import AttachmentsPreview from "../features/AttachmentsPreview";
 
 export default function LetterThumbnail({
   data,
@@ -143,7 +143,7 @@ export default function LetterThumbnail({
         )}
       </Link>
       <div className="flex items-center">
-        {data.doc && <AttachmentIcon doc={data.doc} />}
+        {data.doc && <AttachmentsPreview doc={data.doc} />}
       </div>
       {/* Date */}
       <Link to={to} className="px-3">

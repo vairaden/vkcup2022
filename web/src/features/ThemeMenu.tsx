@@ -1,5 +1,5 @@
-import useThemeStore from "../../hooks/useThemeStore";
-import useTranslation from "../../hooks/useTranslation";
+import useThemeStore from "../shared/store/useThemeStore";
+import useTranslation from "../shared/translation/useTranslation";
 
 export default function ThemeMenu() {
   const colorThemes = useThemeStore((state) => state.colorThemes);

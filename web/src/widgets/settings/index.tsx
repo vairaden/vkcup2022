@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
-import useLanguageStore from "../../hooks/useLanguageStore";
-import useTranslation from "../../hooks/useTranslation";
-import LanguageMenu from "./LanguageMenu";
-import ThemeMenu from "./ThemeMenu";
+import useLanguageStore from "../../shared/store/useLanguageStore";
+import useTranslation from "../../shared/translation/useTranslation";
+import LanguageMenu from "../../features/LanguageMenu";
+import ThemeMenu from "../../features/ThemeMenu";
 
 export default function Settings({
   closeCallback,

@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import useThemeStore from "../hooks/useThemeStore";
-import useTranslation from "../hooks/useTranslation";
+import useThemeStore from "../store/useThemeStore";
+import useTranslation from "../translation/useTranslation";
 
 export default function FilterButton({
   children,

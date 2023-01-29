@@ -1,8 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { fetchLetterById } from "../../api";
-import useFilterStore from "../../hooks/useFilterStore";
-import useTranslation from "../../hooks/useTranslation";
+import useLetter from "./useLetter";
+import useFilterStore from "../../shared/store/useFilterStore";
+import useTranslation from "../../shared/translation/useTranslation";
 
 function calculateFileSize(file: string) {
   const fileSize = file.length / 1024;
@@ -36,23 +35,12 @@ export default function LetterCard() {
     }${dateObj.getMinutes()}`;
   }
 
-  const { data, isLoading } = useQuery(
-    [
-      "letter",
-      folderName,
-      letterId,
-      filterUnread,
-      filterBookmarked,
-      filterWithAttachments,
-    ],
-    () =>
-      fetchLetterById(
-        folderName,
-        letterId,
-        filterUnread,
-        filterBookmarked,
-        filterWithAttachments
-      )
+  const { data, isLoading } = useLetter(
+    folderName,
+    letterId,
+    filterUnread,
+    filterBookmarked,
+    filterWithAttachments
   );
 
   return isLoading ? (

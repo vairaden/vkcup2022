@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import useThemeStore from "../hooks/useThemeStore";
+import useThemeStore from "../shared/store/useThemeStore";
 
 export default function FolderThumbnail({
   to,

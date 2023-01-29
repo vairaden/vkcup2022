@@ -1,10 +1,10 @@
-import Button from "./Button";
-import FolderThumbnail from "./FolderThumbnail";
-import folderList from "../data/folderList";
+import Button from "../../shared/ui/Button";
+import FolderThumbnail from "../../entities/FolderThumbnail";
+import folderList from "../../shared/data/folderList";
 import { useState } from "react";
-import Settings from "./settingsMenu/Settings";
-import useTranslation from "../hooks/useTranslation";
-import useThemeStore from "../hooks/useThemeStore";
+import Settings from "../settings";
+import useTranslation from "../../shared/translation/useTranslation";
+import useThemeStore from "../../shared/store/useThemeStore";
 import { useParams } from "react-router-dom";
 
 export default function Navbar() {
