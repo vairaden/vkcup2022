@@ -36,29 +36,24 @@ export default function useLetterList(params: IParams) {
   const initialPageLoaded = useRef(false);
   const [hasMore, setHasMore] = useState(true);
 
-  const queryKey = getKey(pageToLoad.current, params);
-
-  const loadItems = async () => {
+  async function loadItems() {
+    const queryKey = getKey(pageToLoad.current, params);
     const data = await fetchData(queryKey);
     setHasMore(data.hasMore);
     pageToLoad.current++;
     setLetters((prevLetters) => [...prevLetters, ...data.pageData]);
-  };
+  }
 
   useEffect(() => {
-    if (initialPageLoaded.current) {
-      return;
-    }
-    loadItems();
-    initialPageLoaded.current = true;
-  }, [loadItems]);
-
-  useEffect(() => {
-    setLetters([]);
-    pageToLoad.current = 0;
     initialPageLoaded.current = false;
+    pageToLoad.current = 0;
+    setLetters([]);
+    loadItems().then(() => {
+      initialPageLoaded.current = true;
+    });
   }, [
     params.folderName,
+    params.pageSize,
     params.unread,
     params.bookmarked,
     params.withAttachments,
