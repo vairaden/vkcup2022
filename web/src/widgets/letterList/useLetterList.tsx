@@ -1,4 +1,4 @@
-import useSWRInfinite from "swr/infinite";
+import { useEffect, useRef, useState } from "react";
 import Letter from "../../shared/dtos";
 
 interface IParams {
@@ -26,23 +26,48 @@ export async function fetchData(queryKey: string) {
   return data;
 }
 
-const getKey = (
-  index: number,
-  previousPageData: IPageData,
-  params: IParams
-) => {
-  if (previousPageData && !previousPageData.hasMore) return null;
-  if (index === 0)
-    return `/${params.folderName}?page=0&pageSize=${params.pageSize}&unread=${params.unread}&bookmarked=${params.bookmarked}&withAttachments=${params.withAttachments}`;
-
+const getKey = (index: number, params: IParams) => {
   return `/${params.folderName}?page=${index}&pageSize=${params.pageSize}&unread=${params.unread}&bookmarked=${params.bookmarked}&withAttachments=${params.withAttachments}`;
 };
 
 export default function useLetterList(params: IParams) {
-  const res = useSWRInfinite(
-    (index, previousPageData) => getKey(index, previousPageData, params),
-    fetchData
-  );
+  const [letters, setLetters] = useState<Letter[]>([]);
+  const pageToLoad = useRef(0);
+  const initialPageLoaded = useRef(false);
+  const [hasMore, setHasMore] = useState(true);
 
-  return res;
+  const queryKey = getKey(pageToLoad.current, params);
+
+  const loadItems = async () => {
+    const data = await fetchData(queryKey);
+    setHasMore(data.hasMore);
+    pageToLoad.current++;
+    setLetters((prevLetters) => [...prevLetters, ...data.pageData]);
+  };
+
+  useEffect(() => {
+    if (initialPageLoaded.current) {
+      return;
+    }
+    loadItems();
+    initialPageLoaded.current = true;
+  }, [loadItems]);
+
+  useEffect(() => {
+    setLetters([]);
+    pageToLoad.current = 0;
+    initialPageLoaded.current = false;
+  }, [
+    params.folderName,
+    params.unread,
+    params.bookmarked,
+    params.withAttachments,
+  ]);
+
+  return {
+    isLoading: !initialPageLoaded.current,
+    letters,
+    hasMore,
+    loadItems,
+  };
 }

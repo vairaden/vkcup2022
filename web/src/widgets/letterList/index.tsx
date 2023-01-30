@@ -1,5 +1,5 @@
 import LetterThumbnail from "../../entities/LetterThumbnail";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import useTranslation from "../../shared/translation/useTranslation";
 import useFilterStore from "../../shared/store/useFilterStore";
@@ -8,6 +8,7 @@ import useLetterList from "./useLetterList";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
+  const location = useLocation();
   const filterUnread = useFilterStore((state) => state.filterUnread);
   const filterBookmarked = useFilterStore((state) => state.filterBookmarked);
   const filterWithAttachments = useFilterStore(
@@ -18,19 +19,17 @@ export default function LetterList() {
 
   const { text, alt } = useTranslation();
 
-  const { isLoading, data, setSize } = useLetterList({
+  const { isLoading, letters, hasMore, loadItems } = useLetterList({
     folderName,
-    pageSize: 30,
+    pageSize: 20,
     unread: filterUnread,
     bookmarked: filterBookmarked,
     withAttachments: filterWithAttachments,
   });
 
-  const letters = useMemo(() => {
-    if (!data) return [];
-
-    return data.map((page) => page.pageData).flat();
-  }, [data]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastPostRef = useCallback(
@@ -38,23 +37,14 @@ export default function LetterList() {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (
-          entries[0].isIntersecting &&
-          data &&
-          data[data.length - 1].hasMore
-        ) {
-          setSize((size) => size + 1);
+        if (entries[0].isIntersecting && hasMore) {
+          loadItems();
         }
       });
       if (node) observer.current.observe(node);
     },
-    [setSize, isLoading, folderName, data]
+    [isLoading, hasMore, loadItems]
   );
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    setSize(1);
-  }, [folderName]);
 
   return isLoading ? (
     <div className="flex justify-center items-center h-screen text-menuText">

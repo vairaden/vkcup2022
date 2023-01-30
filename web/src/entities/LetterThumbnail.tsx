@@ -62,6 +62,8 @@ export default function LetterThumbnail({
           {data.author.avatar ? (
             <img
               className="rounded-2xl w-8 h-8"
+              width={32}
+              height={32}
               src={data.author.avatar}
               alt={alt.avatar}
             />

@@ -24,6 +24,8 @@ export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
               <div className="w-[264px] h-[198px] p-1 rounded-2xl bg-elementBg shadow-md group/download">
                 <img
                   className="w-[256px] h-[190px] rounded-xl"
+                  width={256}
+                  height={190}
                   src={doc.img}
                   alt={alt.attachment}
                 ></img>
@@ -32,13 +34,15 @@ export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
                   download="attachment.jpg"
                   href={doc.img}
                 >
-                  <DownloadIcon className="fill-menuText mr-2" />
+                  <DownloadIcon className="fill-primaryText mr-2" />
                   {text.download}
                 </a>
               </div>
             </div>
             <img
               className="w-8 h-8 rounded"
+              width={32}
+              height={32}
               src={doc.img}
               alt={alt.attachment}
             ></img>
