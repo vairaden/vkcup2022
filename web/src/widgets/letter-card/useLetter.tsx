@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import Letter from "../../shared/dtos";
+import Letter from "../../entities/letter/letterDTO";
 
 async function fetchLetterById(queryKey: string) {
   const url =

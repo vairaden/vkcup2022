@@ -1,8 +1,8 @@
 import useMenuStore from "../../shared/store/useMenuStore";
-import LetterCard from "../../widgets/LetterCard";
-import LetterCreator from "../../widgets/LetterCreator";
-import Navbar from "../../widgets/Navbar";
-import Settings from "../../widgets/Settings";
+import LetterCard from "../../widgets/letter-card/LetterCard";
+import LetterCreator from "../../features/letter-creation-form/LetterCreator";
+import Navbar from "../../widgets/navbar";
+import Settings from "../../features/settings";
 import LetterDetailsHeader from "../../widgets/LetterDetailsHeader";
 
 export default function LetterDetailsPage() {

@@ -1,5 +1,5 @@
 import Button from "../../shared/ui/Button";
-import FolderThumbnail from "../../entities/FolderThumbnail";
+import FolderThumbnail from "../../entities/folder/FolderThumbnail";
 import folderList from "../../shared/data/folderList";
 import useTranslation from "../../shared/translation/useTranslation";
 import { useParams } from "react-router-dom";

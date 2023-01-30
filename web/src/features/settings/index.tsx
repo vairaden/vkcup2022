@@ -2,8 +2,8 @@ import clsx from "clsx";
 import { useState } from "react";
 import useLanguageStore from "../../shared/store/useLanguageStore";
 import useTranslation from "../../shared/translation/useTranslation";
-import LanguageMenu from "../../features/LanguageMenu";
-import ThemeMenu from "../../features/ThemeMenu";
+import LanguageMenu from "./LanguageMenu";
+import ThemeMenu from "./ThemeMenu";
 import useMenuStore from "../../shared/store/useMenuStore";
 
 export default function Settings() {

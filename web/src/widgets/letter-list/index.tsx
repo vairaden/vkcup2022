@@ -1,4 +1,4 @@
-import LetterThumbnail from "../../entities/LetterThumbnail";
+import LetterThumbnail from "../../entities/letter/LetterThumbnail";
 import { useLocation, useParams } from "react-router-dom";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import useTranslation from "../../shared/translation/useTranslation";

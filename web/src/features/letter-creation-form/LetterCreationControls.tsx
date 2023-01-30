@@ -1,5 +1,5 @@
-import useTranslation from "../shared/translation/useTranslation";
-import Button from "../shared/ui/Button";
+import useTranslation from "../../shared/translation/useTranslation";
+import Button from "../../shared/ui/Button";
 
 export default function LetterCreationControls({
   sendClick,

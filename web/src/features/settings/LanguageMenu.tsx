@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useLanguageStore from "../shared/store/useLanguageStore";
-import useTranslation from "../shared/translation/useTranslation";
-import Button from "../shared/ui/Button";
+import useLanguageStore from "../../shared/store/useLanguageStore";
+import useTranslation from "../../shared/translation/useTranslation";
+import Button from "../../shared/ui/Button";
 
 export default function LanguageMenu() {
   const language = useLanguageStore((state) => state.language);

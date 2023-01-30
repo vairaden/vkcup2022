@@ -1,7 +1,8 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { Letter } from "./interfaces";
 
-const data: Letter[] = require("./db.json");
+let data: Letter[] = require("./db.json");
+data = data.map((letter, index) => ({ ...letter, id: index }));
 
 const folders = new Map([
   ["sent", "Отправленные"],
@@ -101,6 +102,93 @@ export function getLetterById(req: IncomingMessage, res: ServerResponse) {
   }
 
   const letter = filteredData[parseInt(letterId)];
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify(letter));
+}
+
+export function moveLetter(req: IncomingMessage, res: ServerResponse) {
+  if (!req.url) throw new Error("No url");
+
+  const folderName = req.url.split("/api/")[1].split("/")[0];
+  const letterId = req.url.split("/api/")[1].split("/")[1].split("?")[0];
+  const newFolderName = req.url.split("newFolderName=")[1].split("&")[0];
+
+  let filteredData: Letter[] = [];
+
+  switch (folderName) {
+    case "inbox":
+      filteredData = data.filter((letter) => letter.folder !== "Отправленные");
+      break;
+    case "important":
+      filteredData = data.filter((letter) => letter.important);
+      break;
+    default:
+      filteredData = data.filter(
+        (letter) => letter.folder === folders.get(folderName)
+      );
+      break;
+  }
+
+  const unread = req.url.split("unread=")[1].split("&")[0] ?? "false";
+  const bookmarked = req.url.split("bookmarked=")[1].split("&")[0] ?? "false";
+  const withAttachments =
+    req.url.split("withAttachments=")[1].split("&")[0] ?? "false";
+
+  if (unread === "true") {
+    filteredData = filteredData.filter((letter) => !letter.read);
+  }
+  if (bookmarked === "true") {
+    filteredData = filteredData.filter((letter) => letter.bookmark);
+  }
+  if (withAttachments === "true") {
+    filteredData = filteredData.filter((letter) => letter.doc !== undefined);
+  }
+
+  const letter = filteredData[parseInt(letterId)];
+  letter.folder = newFolderName;
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify(letter));
+}
+
+export function sendLetter(req: IncomingMessage, res: ServerResponse) {
+  if (!req.url) throw new Error("No url");
+
+  const folderName = req.url.split("/api/")[1].split("/")[0];
+  const letterId = req.url.split("/api/")[1].split("/")[1].split("?")[0];
+
+  let filteredData: Letter[] = [];
+
+  switch (folderName) {
+    case "inbox":
+      filteredData = data.filter((letter) => letter.folder !== "Отправленные");
+      break;
+    case "important":
+      filteredData = data.filter((letter) => letter.important);
+      break;
+    default:
+      filteredData = data.filter(
+        (letter) => letter.folder === folders.get(folderName)
+      );
+      break;
+  }
+
+  const unread = req.url.split("unread=")[1].split("&")[0] ?? "false";
+  const bookmarked = req.url.split("bookmarked=")[1].split("&")[0] ?? "false";
+  const withAttachments =
+    req.url.split("withAttachments=")[1].split("&")[0] ?? "false";
+
+  if (unread === "true") {
+    filteredData = filteredData.filter((letter) => !letter.read);
+  }
+  if (bookmarked === "true") {
+    filteredData = filteredData.filter((letter) => letter.bookmark);
+  }
+  if (withAttachments === "true") {
+    filteredData = filteredData.filter((letter) => letter.doc !== undefined);
+  }
+
+  const letter = filteredData[parseInt(letterId)];
+  letter.folder = "Отправленные";
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(letter));
 }

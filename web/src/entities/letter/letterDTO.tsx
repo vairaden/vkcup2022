@@ -1,4 +1,5 @@
 export default interface Letter {
+  id: number;
   author: {
     name: string;
     surname: string;

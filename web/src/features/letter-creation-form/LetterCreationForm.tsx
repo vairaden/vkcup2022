@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
-import LetterCreationInput from "../features/LetterCreationInput";
-import useTranslation from "../shared/translation/useTranslation";
+import LetterCreationInput from "./LetterCreationInput";
+import useTranslation from "../../shared/translation/useTranslation";
 
 export default function LetterCreationForm({
   widgetControls,

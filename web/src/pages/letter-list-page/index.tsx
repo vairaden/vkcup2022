@@ -1,9 +1,9 @@
 import useMenuStore from "../../shared/store/useMenuStore";
-import LetterCreator from "../../widgets/LetterCreator";
-import LetterList from "../../widgets/LetterList";
+import LetterCreator from "../../features/letter-creation-form/LetterCreator";
+import LetterList from "../../widgets/letter-list";
 import LetterListHeader from "../../widgets/LetterListHeader";
-import Navbar from "../../widgets/Navbar";
-import Settings from "../../widgets/Settings";
+import Navbar from "../../widgets/navbar";
+import Settings from "../../features/settings";
 
 export default function LetterListPage() {
   const settingsOpen = useMenuStore((state) => state.settingsOpen);

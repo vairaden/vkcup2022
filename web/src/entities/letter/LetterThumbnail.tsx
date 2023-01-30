@@ -1,17 +1,17 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Letter from "../shared/dtos";
-import useTranslation from "../shared/translation/useTranslation";
-import AttachmentsPreview from "../features/AttachmentsPreview";
-import ShoppingCartIcon from "../shared/icons/letter-indicators/ShoppingCartIcon";
-import MoneyIcon from "../shared/icons/letter-indicators/MoneyIcon";
-import KeyIcon from "../shared/icons/letter-indicators/KeyIcon";
-import PlaneIcon from "../shared/icons/letter-indicators/PlaneIcon";
-import TicketIcon from "../shared/icons/letter-indicators/TicketIcon";
-import BookmarkIcon from "../shared/icons/letter-indicators/BookmarkIcon";
-import GovernmentIcon from "../shared/icons/letter-indicators/GovernmentIcon";
-import ImportantIcon from "../shared/icons/letter-indicators/ImportantIcon";
+import Letter from "./letterDTO";
+import useTranslation from "../../shared/translation/useTranslation";
+import AttachmentsPreview from "./AttachmentsPreview";
+import ShoppingCartIcon from "../../shared/icons/letter-indicators/ShoppingCartIcon";
+import MoneyIcon from "../../shared/icons/letter-indicators/MoneyIcon";
+import KeyIcon from "../../shared/icons/letter-indicators/KeyIcon";
+import PlaneIcon from "../../shared/icons/letter-indicators/PlaneIcon";
+import TicketIcon from "../../shared/icons/letter-indicators/TicketIcon";
+import BookmarkIcon from "../../shared/icons/letter-indicators/BookmarkIcon";
+import GovernmentIcon from "../../shared/icons/letter-indicators/GovernmentIcon";
+import ImportantIcon from "../../shared/icons/letter-indicators/ImportantIcon";
 import { useDrag } from "react-dnd";
 
 export default function LetterThumbnail({
@@ -36,6 +36,9 @@ export default function LetterThumbnail({
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "letter",
+    item: {
+      id: data.id,
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),

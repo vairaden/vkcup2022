@@ -2,7 +2,12 @@ import path from "path";
 import fs from "fs";
 import http from "http";
 
-import { getLetterById, getLettersByFolderName } from "./letterService";
+import {
+  getLetterById,
+  getLettersByFolderName,
+  moveLetter,
+  sendLetter,
+} from "./letterService";
 
 const PORT = 3000;
 
@@ -33,6 +38,24 @@ http
       req.method === "GET"
     ) {
       return getLetterById(req, res);
+    }
+
+    // Move letter to folder (.../api/:folderName/:letterId?...)
+    if (
+      req.url.includes("/api/") &&
+      req.url.split("/")[3] &&
+      req.method === "UPDATE"
+    ) {
+      return moveLetter(req, res);
+    }
+
+    // Post letter (.../api/:folderName/:letterId?...)
+    if (
+      req.url.includes("/api/") &&
+      req.url.split("/")[3] &&
+      req.method === "POST"
+    ) {
+      return sendLetter(req, res);
     }
 
     // Serving letters in folder (.../api/:folderName?...)

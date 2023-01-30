@@ -2,7 +2,7 @@ import { useState } from "react";
 import useFilterStore from "../shared/store/useFilterStore";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
-import LetterFilters from "../features/LetterFilters";
+import LetterFilters from "../features/letter-filters/LetterFilters";
 import AttachmentIcon from "../shared/icons/AttachmentIcon";
 import ChevronDownIcon from "../shared/icons/ChevronDownIcon";
 import MailIcon from "../shared/icons/MailIcon";

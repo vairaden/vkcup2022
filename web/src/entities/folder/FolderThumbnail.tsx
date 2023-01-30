@@ -13,11 +13,15 @@ export default function FolderThumbnail({
   children: React.ReactNode;
   onClick?: () => void;
 }) {
+  function moveLetter(item: any) {
+    console.log(item);
+  }
+
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({
       accept: "letter",
       canDrop: () => true,
-      drop: () => true,
+      drop: (item) => moveLetter(item),
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         canDrop: monitor.canDrop(),

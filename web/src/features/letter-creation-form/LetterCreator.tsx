@@ -1,6 +1,6 @@
 import { useState } from "react";
-import LetterCreationControls from "../../features/LetterCreationControls";
-import LetterCreationForm from "../../entities/LetterCreationForm";
+import LetterCreationControls from "./LetterCreationControls";
+import LetterCreationForm from "./LetterCreationForm";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
 import clsx from "clsx";
