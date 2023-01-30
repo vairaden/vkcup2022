@@ -1,6 +1,6 @@
 import Button from "../../shared/ui/Button";
 import FolderThumbnail from "../../entities/folder/FolderThumbnail";
-import folderList from "../../shared/data/folderList";
+import folderList from "../../entities/folder/folderList";
 import useTranslation from "../../shared/translation/useTranslation";
 import { useParams } from "react-router-dom";
 import useMenuStore from "../../shared/store/useMenuStore";
@@ -34,6 +34,7 @@ export default function Navbar() {
             <FolderThumbnail
               key={folder.name}
               to={folder.route}
+              flag={folder.flag}
               selected={folder.name === activeFolder}
             >
               {folder.icon}

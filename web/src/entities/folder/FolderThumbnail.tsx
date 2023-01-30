@@ -1,14 +1,17 @@
 import clsx from "clsx";
 import { useDrop } from "react-dnd";
 import { Link } from "react-router-dom";
+import Letter from "../letter/letterDTO";
 
 export default function FolderThumbnail({
   to,
+  flag,
   selected,
   children,
   onClick,
 }: {
   to: string;
+  flag: string;
   selected: boolean;
   children: React.ReactNode;
   onClick?: () => void;
@@ -20,8 +23,8 @@ export default function FolderThumbnail({
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({
       accept: "letter",
-      canDrop: () => true,
-      drop: (item) => moveLetter(item),
+      canDrop: (item: Letter) => item.folder !== flag,
+      drop: (item: Letter) => moveLetter(item),
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         canDrop: monitor.canDrop(),
