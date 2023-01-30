@@ -38,7 +38,6 @@ export default function LetterThumbnail({
     type: "letter",
     item: {
       id: data.id,
-      folder: data.folder,
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),

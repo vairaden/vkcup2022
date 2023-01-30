@@ -20,7 +20,7 @@ const textRu = {
   to: "Кому",
   subject: "Тема",
   cc: "Копия",
-  bcc: "Скрытая",
+  bcc: "Скрытая копия",
   // controls
   send: "Отправить",
   save: "Сохранить",

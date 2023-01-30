@@ -4,8 +4,6 @@ import LetterCreationForm from "./LetterCreationForm";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
 import clsx from "clsx";
-import CrossIcon from "../../shared/icons/CrossIcon";
-import ExpandIcon from "../../shared/icons/ExpandIcon";
 
 export default function LetterCreator() {
   const toggleLetterCreatorOpen = useMenuStore(
@@ -34,22 +32,17 @@ export default function LetterCreator() {
       >
         <LetterCreationForm
           widgetControls={
-            <div className="w-20 flex items-center justify-between">
+            <>
               <button
                 type="button"
-                className="p-2"
                 onClick={() => setFullScreen((prev) => !prev)}
               >
-                <ExpandIcon className="stroke-primaryText" />
+                F
               </button>
-              <button
-                type="button"
-                className="p-2"
-                onClick={toggleLetterCreatorOpen}
-              >
-                <CrossIcon className="stroke-primaryText" />
+              <button type="button" onClick={toggleLetterCreatorOpen}>
+                x
               </button>
-            </div>
+            </>
           }
         />
         <LetterCreationControls
