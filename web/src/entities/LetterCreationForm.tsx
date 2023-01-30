@@ -1,22 +1,20 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import LetterCreationInput from "../features/LetterCreationInput";
-import useMenuStore from "../shared/store/useMenuStore";
 import useTranslation from "../shared/translation/useTranslation";
 
-export default function LetterCreationForm() {
+export default function LetterCreationForm({
+  widgetControls,
+}: {
+  widgetControls: ReactNode;
+}) {
   const { text } = useTranslation();
   const [ccOpen, setCcOpen] = useState(false);
   const [bccOpen, setBccOpen] = useState(false);
-  const toggleLetterCreatorOpen = useMenuStore(
-    (state) => state.toggleLetterCreatorOpen
-  );
 
   return (
     <form className="flex flex-col h-full">
       <LetterCreationInput label={text.to}>
-        <button type="button" onClick={toggleLetterCreatorOpen}>
-          x
-        </button>
+        {widgetControls}
       </LetterCreationInput>
       {ccOpen && (
         <LetterCreationInput label={text.cc}>

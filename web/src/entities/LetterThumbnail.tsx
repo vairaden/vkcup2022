@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Letter from "../shared/dtos";
 import useTranslation from "../shared/translation/useTranslation";
@@ -12,6 +12,7 @@ import TicketIcon from "../shared/icons/letter-indicators/TicketIcon";
 import BookmarkIcon from "../shared/icons/letter-indicators/BookmarkIcon";
 import GovernmentIcon from "../shared/icons/letter-indicators/GovernmentIcon";
 import ImportantIcon from "../shared/icons/letter-indicators/ImportantIcon";
+import { useDrag } from "react-dnd";
 
 export default function LetterThumbnail({
   data,
@@ -33,11 +34,25 @@ export default function LetterThumbnail({
     return `${dateObj.getDate()} ${text.months[dateObj.getMonth()]}`;
   }
 
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: "letter",
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  useEffect(() => {
+    if (isDragging) {
+      setSelected(true);
+    }
+  }, [isDragging]);
+
   return (
     <article
+      ref={drag}
       className={clsx(
         "group/letter grid grid-cols-[22px_40px_12rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem] w-full h-12 rounded-xl \
-          transition-colors text-sm text-primaryText",
+        transition-colors text-sm text-primaryText",
         {
           "hover:bg-hover": !selected,
           "bg-selected hover:bg-selected": selected,
@@ -75,7 +90,7 @@ export default function LetterThumbnail({
         </div>
         <label
           className="w-4 h-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
-        scale-0 group-hover/letter:scale-100 transition-all duration-100"
+          scale-0 group-hover/letter:scale-100 transition-all duration-100"
         >
           <input
             type="checkbox"

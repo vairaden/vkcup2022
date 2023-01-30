@@ -3,12 +3,13 @@ import LetterCreationControls from "../../features/LetterCreationControls";
 import LetterCreationForm from "../../entities/LetterCreationForm";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
+import clsx from "clsx";
 
 export default function LetterCreator() {
   const toggleLetterCreatorOpen = useMenuStore(
     (state) => state.toggleLetterCreatorOpen
   );
-
+  const [fullScreen, setFullScreen] = useState(false);
   const [letter, setLetter] = useState({
     title: "",
     body: "",
@@ -22,11 +23,28 @@ export default function LetterCreator() {
       onClick={toggleLetterCreatorOpen}
     >
       <div
-        className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]
-        flex flex-col w-[55rem] h-[52rem] bg-elementBg rounded-xl"
+        className={clsx("absolute flex flex-col bg-elementBg", {
+          "top-0 left-0 w-full h-full": fullScreen,
+          "top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]  w-[55rem] h-[52rem] rounded-xl":
+            !fullScreen,
+        })}
         onClick={(e) => e.stopPropagation()}
       >
-        <LetterCreationForm />
+        <LetterCreationForm
+          widgetControls={
+            <>
+              <button
+                type="button"
+                onClick={() => setFullScreen((prev) => !prev)}
+              >
+                F
+              </button>
+              <button type="button" onClick={toggleLetterCreatorOpen}>
+                x
+              </button>
+            </>
+          }
+        />
         <LetterCreationControls
           sendClick={() => {}}
           cancelClick={() => {}}

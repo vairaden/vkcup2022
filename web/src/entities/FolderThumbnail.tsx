@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useDrop } from "react-dnd";
 import { Link } from "react-router-dom";
 
 export default function FolderThumbnail({
@@ -12,8 +13,21 @@ export default function FolderThumbnail({
   children: React.ReactNode;
   onClick?: () => void;
 }) {
+  const [{ isOver, canDrop }, drop] = useDrop(
+    () => ({
+      accept: "letter",
+      canDrop: () => true,
+      drop: () => true,
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop(),
+      }),
+    }),
+    []
+  );
+
   return (
-    <li onClick={onClick}>
+    <li onClick={onClick} ref={drop}>
       <Link to={to}>
         <div
           className={clsx(

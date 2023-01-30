@@ -10,10 +10,22 @@ interface MenuStore {
 const useMenuStore = create<MenuStore>()((set) => ({
   settingsOpen: false,
   toggleSettingsOpen: () =>
-    set((state) => ({ settingsOpen: !state.settingsOpen })),
+    set((state) => {
+      const html = document.querySelector("html");
+      if (html) {
+        html.style.overflow = !state.settingsOpen ? "hidden" : "auto";
+      }
+      return { settingsOpen: !state.settingsOpen };
+    }),
   letterCreatorOpen: false,
   toggleLetterCreatorOpen: () =>
-    set((state) => ({ letterCreatorOpen: !state.letterCreatorOpen })),
+    set((state) => {
+      const html = document.querySelector("html");
+      if (html) {
+        html.style.overflow = !state.letterCreatorOpen ? "hidden" : "auto";
+      }
+      return { letterCreatorOpen: !state.letterCreatorOpen };
+    }),
 }));
 
 export default useMenuStore;
