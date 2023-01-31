@@ -24,6 +24,7 @@ const textEn = {
   // controls
   send: "Send",
   save: "Save",
+  attachFile: "Attach file",
   cancel: "Cancel",
   // filters
   filter: "Filter",

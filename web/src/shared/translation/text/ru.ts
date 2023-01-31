@@ -24,6 +24,7 @@ const textRu = {
   // controls
   send: "Отправить",
   save: "Сохранить",
+  attachFile: "Прикрепить файл",
   cancel: "Отмена",
   // filters
   filter: "Фильтр",

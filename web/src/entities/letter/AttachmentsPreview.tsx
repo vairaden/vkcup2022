@@ -1,16 +1,9 @@
 import AttachmentIcon from "../../shared/icons/AttachmentIcon";
 import DownloadIcon from "../../shared/icons/controls/DownloadIcon";
 import useTranslation from "../../shared/translation/useTranslation";
+import { calculateRawFileSize } from "../../shared/utils/calculateFileSize";
 
 export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
-  function calculateFileSize(file: string) {
-    const fileSize = file.length / 1024;
-
-    return fileSize < 1024
-      ? `${parseInt(fileSize.toFixed(2))} Kb`
-      : `${parseInt((fileSize / 1024).toFixed(2))} Mb`;
-  }
-
   const { text, alt } = useTranslation();
 
   return (
@@ -48,7 +41,7 @@ export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
             ></img>
           </div>
           <p className="text-sm ml-2">
-            attachment.jpg {calculateFileSize(doc.img)}
+            attachment.jpg {calculateRawFileSize(doc.img)}
           </p>
         </div>
       </div>

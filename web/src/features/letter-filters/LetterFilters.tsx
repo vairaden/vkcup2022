@@ -61,7 +61,7 @@ export default function LetterFilters() {
         className="flex items-center text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
         onClick={() => setSortingMenuOpen(!sortingMenuOpen)}
       >
-        <ChevronLeftIcon />
+        <ChevronLeftIcon className="fill-primaryText" />
         {text.sort}
       </button>
       {sortingMenuOpen && (
