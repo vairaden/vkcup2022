@@ -23,13 +23,13 @@ export default function LetterCreationControls({
       </Button>
       <Button
         onClick={saveClick}
-        className="bg-lightGray border-none w-min px-6 mr-2"
+        className="bg-selected text-primaryText  border-none w-min px-6 mr-2"
       >
         {text.save}
       </Button>
       <Button
         onClick={cancelClick}
-        className="bg-lightGray border-none w-min px-6"
+        className="bg-selected text-primaryText border-none w-min px-6"
       >
         {text.cancel}
       </Button>

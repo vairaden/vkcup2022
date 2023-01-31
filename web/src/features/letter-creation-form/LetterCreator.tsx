@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LetterCreationControls from "./LetterCreationControls";
 import LetterCreationForm from "./LetterCreationForm";
 import useMenuStore from "../../shared/store/useMenuStore";
@@ -18,6 +18,19 @@ export default function LetterCreator() {
   });
 
   const { text } = useTranslation();
+
+  function mediaHandler(e: MediaQueryListEvent | MediaQueryList) {
+    if (e.matches) {
+      setFullScreen(true);
+    } else {
+      setFullScreen(false);
+    }
+  }
+  const mediaQuery = window.matchMedia("(max-width: 960px)");
+  useEffect(() => {
+    mediaHandler(mediaQuery);
+    mediaQuery.addEventListener("change", mediaHandler);
+  }, []);
 
   return (
     <div
