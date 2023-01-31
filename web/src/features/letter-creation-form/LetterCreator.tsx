@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import LetterCreationControls from "./LetterCreationControls";
-import LetterCreationForm from "./LetterCreationForm";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
 import clsx from "clsx";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
 import ExpandIcon from "../../shared/icons/controls/ExpandIcon";
+import LetterDataInputs from "./LetterCreationForm";
+import LetterBodyInput from "./LetterBodyInput";
+import FileAttachment from "./FileAttachment";
 
 export default function LetterCreator() {
   const toggleLetterCreatorOpen = useMenuStore(
@@ -37,7 +39,7 @@ export default function LetterCreator() {
       className="z-10 fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"
       onClick={toggleLetterCreatorOpen}
     >
-      <div
+      <form
         className={clsx("absolute flex flex-col bg-elementBg", {
           "top-0 left-0 w-full h-full": fullScreen,
           "top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]  w-[55rem] h-[52rem] rounded-xl":
@@ -45,7 +47,7 @@ export default function LetterCreator() {
         })}
         onClick={(e) => e.stopPropagation()}
       >
-        <LetterCreationForm
+        <LetterDataInputs
           widgetControls={
             <div className="w-20 flex items-center justify-between">
               <button
@@ -65,12 +67,16 @@ export default function LetterCreator() {
             </div>
           }
         />
+        <div className="overflow-scroll h-full">
+          <FileAttachment />
+          <LetterBodyInput />
+        </div>
         <LetterCreationControls
           sendClick={() => {}}
           cancelClick={() => {}}
           saveClick={() => {}}
         />
-      </div>
+      </form>
     </div>
   );
 }
