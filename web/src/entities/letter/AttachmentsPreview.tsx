@@ -1,5 +1,5 @@
 import AttachmentIcon from "../../shared/icons/AttachmentIcon";
-import DownloadIcon from "../../shared/icons/DownloadIcon";
+import DownloadIcon from "../../shared/icons/controls/DownloadIcon";
 import useTranslation from "../../shared/translation/useTranslation";
 
 export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {

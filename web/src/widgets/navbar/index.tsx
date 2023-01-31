@@ -4,8 +4,8 @@ import folderList from "../../entities/folder/folderList";
 import useTranslation from "../../shared/translation/useTranslation";
 import { useParams } from "react-router-dom";
 import useMenuStore from "../../shared/store/useMenuStore";
-import PlusIcon from "../../shared/icons/PlusIcon";
-import GearIcon from "../../shared/icons/GearIcon";
+import PlusIcon from "../../shared/icons/controls/PlusIcon";
+import GearIcon from "../../shared/icons/controls/GearIcon";
 import PencilIcon from "../../shared/icons/PencilIcon";
 
 export default function Navbar() {

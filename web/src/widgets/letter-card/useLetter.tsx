@@ -21,7 +21,8 @@ export default function useLetter(
   withAttachments: boolean
 ) {
   const res = useSWR(
-    `/${folderName}/${letterId}?unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}`,
+    `/${folderName}/${letterId}?unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}
+      &sortOption=${"none"}&sortDirection=${"desc"}`,
     fetchLetterById
   );
 

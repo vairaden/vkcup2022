@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CheckmarkIcon from "../icons/CheckmarkIcon";
+import CheckmarkIcon from "../../shared/icons/CheckmarkIcon";
 
 export default function FilterButton({
   children,

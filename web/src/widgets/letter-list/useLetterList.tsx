@@ -27,7 +27,11 @@ export async function fetchData(queryKey: string) {
 }
 
 const getKey = (index: number, params: IParams) => {
-  return `/${params.folderName}?page=${index}&pageSize=${params.pageSize}&unread=${params.unread}&bookmarked=${params.bookmarked}&withAttachments=${params.withAttachments}`;
+  return `/${params.folderName}?page=${index}&pageSize=${params.pageSize}
+    &unread=${params.unread}&bookmarked=${params.bookmarked}&withAttachments=${
+    params.withAttachments
+  }
+    &sortOption=${"none"}&sortDirection=${"desc"}`;
 };
 
 export default function useLetterList(params: IParams) {

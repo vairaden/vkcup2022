@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Link, useParams } from "react-router-dom";
-import ChevronLeftIcon from "../shared/icons/ChevronLeftIcon";
+import ChevronLeftIcon from "../shared/icons/controls/ChevronLeftIcon";
 import useThemeStore from "../shared/store/useThemeStore";
 import useTranslation from "../shared/translation/useTranslation";
 

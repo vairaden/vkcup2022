@@ -7,7 +7,7 @@ import {
   getLettersByFolderName,
   moveLetter,
   sendLetter,
-} from "./letterService";
+} from "./letterController";
 
 const PORT = 3000;
 

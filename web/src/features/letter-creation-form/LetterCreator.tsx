@@ -4,8 +4,8 @@ import LetterCreationForm from "./LetterCreationForm";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
 import clsx from "clsx";
-import CrossIcon from "../../shared/icons/CrossIcon";
-import ExpandIcon from "../../shared/icons/ExpandIcon";
+import CrossIcon from "../../shared/icons/controls/CrossIcon";
+import ExpandIcon from "../../shared/icons/controls/ExpandIcon";
 
 export default function LetterCreator() {
   const toggleLetterCreatorOpen = useMenuStore(

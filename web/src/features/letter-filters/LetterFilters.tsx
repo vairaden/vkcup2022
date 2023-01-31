@@ -2,7 +2,7 @@ import AttachmentIcon from "../../shared/icons/AttachmentIcon";
 import BookmarkIcon from "../../shared/icons/letter-indicators/BookmarkIcon";
 import useFilterStore from "../../shared/store/useFilterStore";
 import useTranslation from "../../shared/translation/useTranslation";
-import FilterButton from "../../shared/ui/FilterButton";
+import FilterButton from "./FilterButton";
 
 export default function LetterFilters() {
   const toggleFilterBookmarked = useFilterStore(
