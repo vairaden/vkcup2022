@@ -21,8 +21,14 @@ export default function useLetter(
   withAttachments: boolean
 ) {
   const res = useSWR(
-    `/${folderName}/${letterId}?unread=${unread}&bookmarked=${bookmarked}&withAttachments=${withAttachments}
-      &sortOption=${"none"}&sortDirection=${"desc"}`,
+    `/${folderName}/${letterId}?` +
+      new URLSearchParams({
+        unread: unread.toString(),
+        bookmarked: bookmarked.toString(),
+        withAttachments: withAttachments.toString(),
+        sortOption: "none",
+        sortDirection: "desc",
+      }),
     fetchLetterById
   );
 

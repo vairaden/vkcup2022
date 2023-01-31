@@ -32,7 +32,7 @@ export function getLetterById(req: IncomingMessage, res: ServerResponse) {
 
   const filteredData: Letter[] = filterLetters(req.url);
 
-  const letter = filteredData[parseInt(letterId)];
+  const letter = filteredData.find((l) => l.id === parseInt(letterId));
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(JSON.stringify(letter));
 }

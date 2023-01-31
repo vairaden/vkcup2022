@@ -7,6 +7,8 @@ interface IParams {
   unread: boolean;
   bookmarked: boolean;
   withAttachments: boolean;
+  sortOption: string;
+  sortDirection: string;
 }
 
 interface IPageData {
@@ -27,11 +29,18 @@ export async function fetchData(queryKey: string) {
 }
 
 const getKey = (index: number, params: IParams) => {
-  return `/${params.folderName}?page=${index}&pageSize=${params.pageSize}
-    &unread=${params.unread}&bookmarked=${params.bookmarked}&withAttachments=${
-    params.withAttachments
-  }
-    &sortOption=${"none"}&sortDirection=${"desc"}`;
+  return (
+    `/${params.folderName}?` +
+    new URLSearchParams({
+      page: index.toString(),
+      pageSize: params.pageSize.toString(),
+      unread: params.unread.toString(),
+      bookmarked: params.bookmarked.toString(),
+      withAttachments: params.withAttachments.toString(),
+      sortOption: params.sortOption,
+      sortDirection: params.sortDirection,
+    })
+  );
 };
 
 export default function useLetterList(params: IParams) {
@@ -61,6 +70,8 @@ export default function useLetterList(params: IParams) {
     params.unread,
     params.bookmarked,
     params.withAttachments,
+    params.sortOption,
+    params.sortDirection,
   ]);
 
   return {

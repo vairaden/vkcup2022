@@ -32,6 +32,14 @@ const textRu = {
   filterBookmarked: "С флажком",
   filterWithAttachments: "С вложениями",
   resetAll: "Сбросить все",
+  // sort
+  sort: "Сортировка",
+  sortDateAsc: "Cначала новые",
+  sortDateDesc: "Cначала старые",
+  sortAuthorAsc: "Автор: от А до Я",
+  sortAuthorDesc: "Автор: от Я до А",
+  sortTitleAsc: "Тема: от А до Я",
+  sortTitleDesc: "Тема: от Я до А",
   // folders
   composeLetter: "Написать письмо",
   inboxFolder: "Входящие",

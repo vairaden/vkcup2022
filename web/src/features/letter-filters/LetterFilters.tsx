@@ -1,8 +1,11 @@
+import { useState } from "react";
 import AttachmentIcon from "../../shared/icons/AttachmentIcon";
+import ChevronLeftIcon from "../../shared/icons/controls/ChevronLeftIcon";
 import BookmarkIcon from "../../shared/icons/letter-indicators/BookmarkIcon";
 import useFilterStore from "../../shared/store/useFilterStore";
 import useTranslation from "../../shared/translation/useTranslation";
 import FilterButton from "./FilterButton";
+import SortingMenu from "./SortingMenu";
 
 export default function LetterFilters() {
   const toggleFilterBookmarked = useFilterStore(
@@ -14,6 +17,7 @@ export default function LetterFilters() {
   const toggleFilterWithAttachments = useFilterStore(
     (state) => state.toggleFilterWithAttachments
   );
+  const filtersApplied = useFilterStore((state) => state.filtersApplied);
   const resetFilters = useFilterStore((state) => state.resetFilters);
 
   const filterUnread = useFilterStore((state) => state.filterUnread);
@@ -21,6 +25,8 @@ export default function LetterFilters() {
   const filterWithAttachments = useFilterStore(
     (state) => state.filterWithAttachments
   );
+
+  const [sortingMenuOpen, setSortingMenuOpen] = useState(false);
 
   const { text } = useTranslation();
 
@@ -51,7 +57,17 @@ export default function LetterFilters() {
         <AttachmentIcon className="fill-primaryText" />
         {text.filterWithAttachments}
       </FilterButton>
-      {(filterBookmarked || filterUnread || filterWithAttachments) && (
+      <button
+        className="flex items-center text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
+        onClick={() => setSortingMenuOpen(!sortingMenuOpen)}
+      >
+        <ChevronLeftIcon />
+        {text.sort}
+      </button>
+      {sortingMenuOpen && (
+        <SortingMenu className="absolute top-40 left-0 translate-x-[-100%]" />
+      )}
+      {filtersApplied && (
         <button
           className="text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
           onClick={resetFilters}

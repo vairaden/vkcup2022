@@ -32,6 +32,14 @@ const textEn = {
   filterBookmarked: "Bookmarked",
   filterWithAttachments: "With attachments",
   resetAll: "Reset all",
+  // sort
+  sort: "Sorting",
+  sortDateAsc: "Newest on top",
+  sortDateDesc: "Oldest on top",
+  sortAuthorAsc: "Sender: A to Z",
+  sortAuthorDesc: "Sender: Z to A",
+  sortTitleAsc: "Subject: A to Z",
+  sortTitleDesc: "Subject: Z to A",
   // folders
   composeLetter: "Compose a letter",
   inboxFolder: "Inbox",

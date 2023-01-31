@@ -21,6 +21,7 @@ export function filterLetters(url: string) {
   const sortOption = (url.split("sortOption=")[1].split("&")[0] ?? "date") as
     | "none"
     | "date"
+    | "author"
     | "title";
   const sortDirection = (url.split("sortDirection=")[1].split("&")[0] ??
     "desc") as "asc" | "desc";
@@ -49,14 +50,43 @@ export function filterLetters(url: string) {
   if (withAttachments === "true") {
     filteredData = filteredData.filter((letter) => letter.doc !== undefined);
   }
-  if (sortOption !== "none") {
-    filteredData = filteredData.sort((a, b) => {
-      if (a[sortOption] > b[sortOption])
-        return sortDirection === "asc" ? -1 : 1;
-      if (a[sortOption] < b[sortOption])
-        return sortDirection === "asc" ? 1 : -1;
-      return 0;
-    });
+
+  switch (sortOption) {
+    case "date":
+      filteredData = filteredData.sort((a, b) => {
+        if (a.date > b.date) {
+          return sortDirection === "asc" ? 1 : -1;
+        }
+        if (a.date < b.date) {
+          return sortDirection === "asc" ? -1 : 1;
+        }
+        return 0;
+      });
+      break;
+    case "author":
+      filteredData = filteredData.sort((a, b) => {
+        if (a.author.name < b.author.name) {
+          return sortDirection === "asc" ? 1 : -1;
+        }
+        if (a.author.name > b.author.name) {
+          return sortDirection === "asc" ? -1 : 1;
+        }
+        return 0;
+      });
+      break;
+    case "title":
+      filteredData = filteredData.sort((a, b) => {
+        if (a.title < b.title) {
+          return sortDirection === "asc" ? 1 : -1;
+        }
+        if (a.title > b.title) {
+          return sortDirection === "asc" ? -1 : 1;
+        }
+        return 0;
+      });
+      break;
+    default:
+      break;
   }
 
   return filteredData;

@@ -14,6 +14,8 @@ export default function LetterList() {
   const filterWithAttachments = useFilterStore(
     (state) => state.filterWithAttachments
   );
+  const sortOption = useFilterStore((state) => state.sortOption);
+  const sortDirection = useFilterStore((state) => state.sortDirection);
 
   const currentTheme = useThemeStore((state) => state.theme);
 
@@ -21,10 +23,12 @@ export default function LetterList() {
 
   const { isLoading, letters, hasMore, loadItems } = useLetterList({
     folderName,
-    pageSize: 20,
+    pageSize: 10,
     unread: filterUnread,
     bookmarked: filterBookmarked,
     withAttachments: filterWithAttachments,
+    sortOption,
+    sortDirection,
   });
 
   useEffect(() => {
@@ -54,8 +58,11 @@ export default function LetterList() {
     <section className="mb-3 bg-elementBg rounded-xl">
       <ul>
         {letters.map((letterData, index) => (
-          <li key={index}>
-            <LetterThumbnail to={`/${folderName}/${index}`} data={letterData} />
+          <li key={letterData.id}>
+            <LetterThumbnail
+              to={`/${folderName}/${letterData.id}`}
+              data={letterData}
+            />
             {index === letters.length - 2 ? (
               <div
                 ref={lastPostRef}
