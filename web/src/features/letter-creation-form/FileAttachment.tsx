@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState } from "react";
 import { v4 } from "uuid";
 import AttachmentIcon from "../../shared/icons/AttachmentIcon";
@@ -10,12 +11,51 @@ export default function FileAttachment() {
   const [attachments, setAttachments] = useState<{ id: string; file: File }[]>(
     []
   );
+  const [isDraggingFileOver, setIsDraggingFileOver] = useState(false);
 
   const { text, alt } = useTranslation();
 
+  //* Don't forget to add pointer-events-none to children of label
+
+  function dropHandler(e: React.DragEvent<HTMLLabelElement>) {
+    e.preventDefault();
+    setIsDraggingFileOver(false);
+    if (e.dataTransfer.files.length > 0) {
+      setAttachments((prev) => [
+        ...prev,
+        ...Array.from(e.dataTransfer.files).map((file) => ({
+          id: v4(),
+          file,
+        })),
+      ]);
+    }
+  }
+
+  function dragOverHandler(e: React.DragEvent<HTMLLabelElement>) {
+    e.preventDefault();
+  }
   return (
-    <label className="grid grid-cols-[min-content_auto] grid-rows-1 items-top border-b-[1px] border-separator text-primaryText">
-      <div className="flex items-center h-8 py-2 px-4 mx-6 my-2 whitespace-nowrap rounded-lg hover:bg-hover cursor-pointer">
+    <label
+      id="file-drop-zone"
+      onDrop={dropHandler}
+      onDragOver={dragOverHandler}
+      onDragEnter={(e) => {
+        e.preventDefault();
+        setIsDraggingFileOver(true);
+      }}
+      onDragLeave={(e) => {
+        e.preventDefault();
+        setIsDraggingFileOver(false);
+      }}
+      className={clsx(
+        "grid grid-cols-[min-content_auto] grid-rows-1 items-top  text-primaryText",
+        {
+          "border-b-[1px] border-separator": !isDraggingFileOver,
+          "border-2 border-electricBlue": isDraggingFileOver,
+        }
+      )}
+    >
+      <div className="pointer-events-none flex items-center h-8 py-2 px-4 mx-6 my-2 whitespace-nowrap rounded-lg hover:bg-hover cursor-pointer">
         <AttachmentIcon className="fill-primaryText mr-2" />
         {text.attachFile}
       </div>
@@ -34,7 +74,10 @@ export default function FileAttachment() {
           e.target.files = null;
         }}
       ></input>
-      <div className="flex flex-wrap" onClick={(e) => e.preventDefault()}>
+      <div
+        className="pointer-events-none flex flex-wrap"
+        onClick={(e) => e.preventDefault()}
+      >
         {attachments.length > 0 &&
           attachments.map((attachment) => (
             <div
@@ -58,7 +101,7 @@ export default function FileAttachment() {
                 )})`}
               </p>
               <button
-                className="w-5 h-5"
+                className="pointer-events-auto w-5 h-5"
                 type="button"
                 onClick={() => {
                   setAttachments((prev) =>
@@ -80,15 +123,18 @@ export default function FileAttachment() {
           ))}
       </div>
       {attachments.length > 0 && (
-        <div className="flex items-center" onClick={(e) => e.preventDefault()}>
-          {`${attachments.length} ${"File"}, ${calculateFileSize(
+        <div
+          className="pointer-events-none col-span-2 flex items-center text-sm text-textGray mx-10 mb-1"
+          onClick={(e) => e.preventDefault()}
+        >
+          {`${attachments.length} ${"File"}, (${calculateFileSize(
             attachments.reduce((acc, cur) => acc + cur.file.size, 0)
-          )}`}
+          )})`}
           <button
             onClick={() => {
               setAttachments([]);
             }}
-            className="underline hover:no-underline"
+            className="pointer-events-auto underline hover:no-underline ml-2"
           >
             Delete all
           </button>
