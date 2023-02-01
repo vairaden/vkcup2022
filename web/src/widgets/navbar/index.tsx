@@ -14,6 +14,9 @@ export default function Navbar() {
   const toggleLetterCreatorOpen = useMenuStore(
     (state) => state.toggleLetterCreatorOpen
   );
+  const toggleFolderCreatorOpen = useMenuStore(
+    (state) => state.toggleFolderCreatorOpen
+  );
 
   const { text } = useTranslation();
 
@@ -49,6 +52,7 @@ export default function Navbar() {
         <button
           className="group/newFolder flex items-center w-8 h-8 md:w-[200px] p-2 md:px-4 mx-auto rounded-lg
          hover:bg-altHover transition-colors"
+          onClick={toggleFolderCreatorOpen}
         >
           <PlusIcon className="fill-menuText/50 group-hover/newFolder:fill-menuText" />
           <p className="ml-2 hidden md:block text-menuText/50 group-hover/newFolder:text-menuText">

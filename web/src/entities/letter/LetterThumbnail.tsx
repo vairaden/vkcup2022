@@ -22,6 +22,8 @@ export default function LetterThumbnail({
   to: string;
 }) {
   const [selected, setSelected] = useState(false);
+  const [contextMenuOpen, setContextMenuOpen] = useState(false);
+
   const { text, alt } = useTranslation();
 
   function formatDate(date: string) {
@@ -62,6 +64,9 @@ export default function LetterThumbnail({
           "bg-selected hover:bg-selected": selected,
         }
       )}
+      onContextMenu={(e) => {
+        e.preventDefault();
+      }}
     >
       {/* Unread icon */}
       <Link to={to} className="flex items-center">

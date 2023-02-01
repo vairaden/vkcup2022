@@ -48,7 +48,7 @@ export default function FileAttachment() {
         setIsDraggingFileOver(false);
       }}
       className={clsx(
-        "grid grid-cols-[min-content_auto] grid-rows-1 items-top  text-primaryText",
+        "grid grid-cols-[min-content_auto] grid-rows-1 items-top text-primaryText bg-elementBg",
         {
           "border-b-[1px] border-separator": !isDraggingFileOver,
           "border-2 border-electricBlue": isDraggingFileOver,

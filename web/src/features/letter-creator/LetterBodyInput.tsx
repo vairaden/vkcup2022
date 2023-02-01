@@ -7,7 +7,7 @@ export default function LetterBodyInput() {
             e.target.style.height = "auto";
             e.target.style.height = `${e.target.scrollHeight}px`;
           }}
-          className="w-full whitespace-nowrap resize-none outline-none"
+          className="w-full whitespace-nowrap resize-none outline-none text-black"
         ></textarea>
       </label>
       <label className="flex flex-col text-textGray">

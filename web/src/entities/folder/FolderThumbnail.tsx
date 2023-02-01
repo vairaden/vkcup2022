@@ -16,15 +16,20 @@ export default function FolderThumbnail({
   children: React.ReactNode;
   onClick?: () => void;
 }) {
-  function moveLetter(item: any) {
-    console.log(item);
+  interface IDropItem {
+    id: number;
+    folder: string;
+  }
+
+  function moveLetter(item: IDropItem) {
+    console.log({ id: item.id, from: item.folder, to: flag });
   }
 
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({
       accept: "letter",
       canDrop: (item: Letter) => item.folder !== flag,
-      drop: (item: Letter) => moveLetter(item),
+      drop: (item: Letter) => moveLetter(item as IDropItem),
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         canDrop: monitor.canDrop(),
@@ -42,6 +47,7 @@ export default function FolderThumbnail({
             {
               "hover:bg-altHover": !selected,
               "bg-altSelected hover:bg-altSelected font-bold": selected,
+              "border-2 border-electricBlue transition-none": isOver && canDrop,
             }
           )}
         >

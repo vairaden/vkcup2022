@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { Link, useParams } from "react-router-dom";
-import ChevronLeftIcon from "../shared/icons/controls/ChevronLeftIcon";
-import useThemeStore from "../shared/store/useThemeStore";
-import useTranslation from "../shared/translation/useTranslation";
+import ChevronLeftIcon from "../../shared/icons/controls/ChevronLeftIcon";
+import useThemeStore from "../../shared/store/useThemeStore";
+import useTranslation from "../../shared/translation/useTranslation";
 
 export default function LetterDetailsHeader() {
   const folderName = useParams().folderName || "inbox";
@@ -18,13 +18,13 @@ export default function LetterDetailsHeader() {
       >
         <ChevronLeftIcon
           className={clsx({
-            "fill-[rgb(231_232_234)]": theme.name !== "light",
+            "fill-lightGray": theme.name !== "light",
             "fill-primaryText": theme.name === "light",
           })}
         />
         <h2
           className={clsx("hidden md:block ml-2", {
-            "text-[rgb(231_232_234)]": theme.name !== "light",
+            "text-lightGray": theme.name !== "light",
             "text-primaryText": theme.name === "light",
           })}
         >

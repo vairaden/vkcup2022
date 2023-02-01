@@ -3,7 +3,6 @@ import Button from "../../shared/ui/Button";
 
 export default function LetterCreationControls({
   sendClick,
-  saveClick,
   cancelClick,
 }: {
   sendClick: () => void;
@@ -20,12 +19,6 @@ export default function LetterCreationControls({
         className="bg-electricBlue text-white border-none w-min px-6 mr-2"
       >
         {text.send}
-      </Button>
-      <Button
-        onClick={saveClick}
-        className="bg-selected text-primaryText  border-none w-min px-6 mr-2"
-      >
-        {text.save}
       </Button>
       <Button
         onClick={cancelClick}

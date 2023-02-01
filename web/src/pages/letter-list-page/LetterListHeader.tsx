@@ -1,13 +1,13 @@
 import { useState } from "react";
-import useFilterStore from "../shared/store/useFilterStore";
-import useThemeStore from "../shared/store/useThemeStore";
-import useTranslation from "../shared/translation/useTranslation";
-import LetterFilters from "../features/letter-filters/LetterFilters";
-import AttachmentIcon from "../shared/icons/AttachmentIcon";
-import ChevronDownIcon from "../shared/icons/controls/ChevronDownIcon";
-import MailIcon from "../shared/icons/MailIcon";
+import useFilterStore from "../../shared/store/useFilterStore";
+import useThemeStore from "../../shared/store/useThemeStore";
+import useTranslation from "../../shared/translation/useTranslation";
+import LetterFilters from "../../features/letter-filters/LetterFilters";
+import AttachmentIcon from "../../shared/icons/AttachmentIcon";
+import ChevronDownIcon from "../../shared/icons/controls/ChevronDownIcon";
+import MailIcon from "../../shared/icons/MailIcon";
 import clsx from "clsx";
-import BookmarkIcon from "../shared/icons/letter-indicators/BookmarkIcon";
+import BookmarkIcon from "../../shared/icons/letter-indicators/BookmarkIcon";
 
 export default function LetterListHeader() {
   const [filtersOpen, setFiltersOpen] = useState(false);

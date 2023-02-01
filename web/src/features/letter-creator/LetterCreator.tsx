@@ -67,7 +67,7 @@ export default function LetterCreator() {
             </div>
           }
         />
-        <div className="overflow-scroll h-full">
+        <div className="overflow-scroll h-full bg-white">
           <FileAttachment />
           <LetterBodyInput />
         </div>

@@ -1,13 +1,15 @@
 import useMenuStore from "../../shared/store/useMenuStore";
-import LetterCreator from "../../features/letter-creation-form/LetterCreator";
+import LetterCreator from "../../features/letter-creator/LetterCreator";
 import LetterList from "../../widgets/letter-list";
-import LetterListHeader from "../../widgets/LetterListHeader";
+import LetterListHeader from "./LetterListHeader";
 import Navbar from "../../widgets/navbar";
 import Settings from "../../features/settings";
+import FolderCreator from "../../features/folder-creator/FolderCreator";
 
 export default function LetterListPage() {
   const settingsOpen = useMenuStore((state) => state.settingsOpen);
   const letterCreatorOpen = useMenuStore((state) => state.letterCreatorOpen);
+  const folderCreatorOpen = useMenuStore((state) => state.folderCreatorOpen);
 
   return (
     <>
@@ -16,6 +18,7 @@ export default function LetterListPage() {
         <LetterListHeader />
         <LetterList />
         {letterCreatorOpen && <LetterCreator />}
+        {folderCreatorOpen && <FolderCreator />}
       </main>
       {settingsOpen && <Settings />}
     </>
