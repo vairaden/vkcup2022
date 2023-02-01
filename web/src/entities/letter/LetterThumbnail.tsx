@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Letter from "./letterDTO";
 import useTranslation from "../../shared/translation/useTranslation";
@@ -36,7 +36,7 @@ export default function LetterThumbnail({
     return `${dateObj.getDate()} ${text.months[dateObj.getMonth()]}`;
   }
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [, drag, preview] = useDrag(() => ({
     type: "letter",
     item: {
       id: data.id,
@@ -47,17 +47,11 @@ export default function LetterThumbnail({
     }),
   }));
 
-  useEffect(() => {
-    if (isDragging) {
-      setSelected(true);
-    }
-  }, [isDragging]);
-
   return (
     <article
       ref={drag}
       className={clsx(
-        "group/letter grid grid-cols-[22px_40px_12rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem] w-full h-12 rounded-xl \
+        "group/letter grid grid-cols-[22px_2.5rem_14rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem] w-full h-12 rounded-xl \
         transition-colors text-sm text-primaryText",
         {
           "hover:bg-hover": !selected,
@@ -111,15 +105,31 @@ export default function LetterThumbnail({
       </div>
       {/* Author name */}
       <Link to={to} className="flex items-center">
-        <h2 className={`mr-2 truncate ${!data.read && "font-bold"}`}>
+        <h2
+          ref={preview}
+          className={clsx("mr-2 truncate", {
+            "font-bold": !data.read,
+          })}
+        >
           {data.author.name + " " + data.author.surname}
         </h2>
       </Link>
       {/* Flags */}
       <Link to={to} className="flex items-center">
-        {data.important ? <ImportantIcon /> : data.bookmark && <BookmarkIcon />}
+        {data.important ? (
+          <ImportantIcon />
+        ) : (
+          <BookmarkIcon
+            className={clsx(
+              "group-hover/letter:fill-hover group-hover/letter:stroke-darkGray group-hover/letter:stroke-2",
+              {
+                "hidden group-hover/letter:block": !data.bookmark,
+              }
+            )}
+          />
+        )}
       </Link>
-      {/* Title */}
+      {/* Title and body */}
       <Link to={to}>
         <p className="leading-[48px] align-middle truncate">
           <span className={`mr-3 ${!data.read && "font-bold"}`}>
