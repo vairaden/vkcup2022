@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Letter } from "../../entities/letter/letterDTO";
+import { z } from "zod";
+import { Letter, letterSchema } from "../../entities/letter/letterSchema";
 
 interface IParams {
   folderName: string;
@@ -11,10 +12,10 @@ interface IParams {
   sortDirection: string;
 }
 
-interface IPageData {
-  pageData: Letter[];
-  hasMore: boolean;
-}
+const pageSchema = z.object({
+  pageData: z.array(letterSchema),
+  hasMore: z.boolean(),
+});
 
 export async function fetchData(queryKey: string) {
   const url =
@@ -24,7 +25,7 @@ export async function fetchData(queryKey: string) {
     method: "GET",
   });
 
-  const data = (await res.json()) as IPageData;
+  const data = pageSchema.parse(await res.json());
   return data;
 }
 

@@ -6,7 +6,6 @@
 
 ## TODOs
 - refactoring and file names
-- letter composition
 - folder creation
-- dnd letters to folders
 - Letter creator translation
+- context menu

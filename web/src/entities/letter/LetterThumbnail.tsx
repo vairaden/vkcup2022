@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Letter } from "./letterDTO";
+import { Letter } from "./letterSchema";
 import useTranslation from "../../shared/translation/useTranslation";
 import AttachmentsPreview from "./AttachmentsPreview";
 import ShoppingCartIcon from "../../shared/icons/letter-indicators/ShoppingCartIcon";

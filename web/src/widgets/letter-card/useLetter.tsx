@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { Letter } from "../../entities/letter/letterDTO";
+import { letterSchema } from "../../entities/letter/letterSchema";
 
 async function fetchLetterById(queryKey: string) {
   const url =
@@ -9,7 +9,7 @@ async function fetchLetterById(queryKey: string) {
     method: "GET",
   });
 
-  const letter = (await res.json()) as Letter;
+  const letter = letterSchema.parse(await res.json());
   return letter;
 }
 
