@@ -19,7 +19,7 @@ export default function LetterListHeader() {
   );
 
   const theme = useThemeStore((state) => state.theme);
-  const { text, alt } = useTranslation();
+  const { text } = useTranslation();
 
   return (
     <header className="fixed z-10 flex justify-between left-0 top-0 h-14 px-4 py-3 w-[100vw] shadow-sm bg-headerBg">

@@ -1,12 +1,17 @@
 import { ReactNode, useState } from "react";
-import LetterCreationInput from "./LetterCreationInput";
 import useTranslation from "../../shared/translation/useTranslation";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
+import LetterCreatorInput from "./LetterCreatorInput";
+import { CreatedLetter } from "../../entities/letter/letterCreatorSchema";
 
-export default function LetterDataInputs({
+export default function LetterHeaderInputs({
   widgetControls,
+  letter,
+  setLetter,
 }: {
   widgetControls: ReactNode;
+  letter: CreatedLetter;
+  setLetter: (fn: (prev: CreatedLetter) => CreatedLetter) => void;
 }) {
   const { text } = useTranslation();
   const [ccOpen, setCcOpen] = useState(false);
@@ -14,11 +19,21 @@ export default function LetterDataInputs({
 
   return (
     <div className="flex flex-col">
-      <LetterCreationInput label={text.to}>
+      <LetterCreatorInput
+        value={letter.to}
+        label={text.to}
+        onChange={(e) => setLetter((prev) => ({ ...prev, to: e.target.value }))}
+      >
         {widgetControls}
-      </LetterCreationInput>
+      </LetterCreatorInput>
       {ccOpen && (
-        <LetterCreationInput label={text.cc}>
+        <LetterCreatorInput
+          value={letter.cc}
+          label={text.cc}
+          onChange={(e) => {
+            setLetter((prev) => ({ ...prev, cc: e.target.value }));
+          }}
+        >
           <button
             className="w-5 h-5"
             type="button"
@@ -30,10 +45,16 @@ export default function LetterDataInputs({
               hight={8}
             />
           </button>
-        </LetterCreationInput>
+        </LetterCreatorInput>
       )}
       {bccOpen && (
-        <LetterCreationInput label={text.bcc}>
+        <LetterCreatorInput
+          value={letter.bcc}
+          label={text.bcc}
+          onChange={(e) => {
+            setLetter((prev) => ({ ...prev, bcc: e.target.value }));
+          }}
+        >
           <button
             className="w-5 h-5"
             type="button"
@@ -45,9 +66,15 @@ export default function LetterDataInputs({
               hight={8}
             />
           </button>
-        </LetterCreationInput>
+        </LetterCreatorInput>
       )}
-      <LetterCreationInput label={text.subject}>
+      <LetterCreatorInput
+        value={letter.subject}
+        label={text.subject}
+        onChange={(e) =>
+          setLetter((prev) => ({ ...prev, subject: e.target.value }))
+        }
+      >
         <div className="flex whitespace-nowrap text-textGray text-xs">
           {!ccOpen && (
             <button
@@ -68,7 +95,7 @@ export default function LetterDataInputs({
             </button>
           )}
         </div>
-      </LetterCreationInput>
+      </LetterCreatorInput>
       <div className="overflow-scroll"></div>
     </div>
   );

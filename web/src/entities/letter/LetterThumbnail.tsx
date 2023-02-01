@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Letter from "./letterDTO";
+import { Letter } from "./letterDTO";
 import useTranslation from "../../shared/translation/useTranslation";
 import AttachmentsPreview from "./AttachmentsPreview";
 import ShoppingCartIcon from "../../shared/icons/letter-indicators/ShoppingCartIcon";
@@ -15,14 +15,19 @@ import ImportantIcon from "../../shared/icons/letter-indicators/ImportantIcon";
 import { useDrag } from "react-dnd";
 
 export default function LetterThumbnail({
+  className,
   data,
   to,
+  selected,
+  setSelected,
 }: {
+  className?: string;
   data: Letter;
   to: string;
+  selected: boolean;
+  setSelected: (id: number, selected: boolean) => void;
 }) {
-  const [selected, setSelected] = useState(false);
-  const [contextMenuOpen, setContextMenuOpen] = useState(false);
+  const [contextMenu, setContextMenu] = useState({ isOpen: false, x: 0, y: 0 });
 
   const { text, alt } = useTranslation();
 
@@ -51,8 +56,9 @@ export default function LetterThumbnail({
     <article
       ref={drag}
       className={clsx(
-        "group/letter grid grid-cols-[22px_2.5rem_14rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem] w-full h-12 rounded-xl \
+        "group/letter grid grid-cols-[22px_2.5rem_14rem_40px_minmax(0,auto)_minmax(0,auto)_minmax(0,auto)_5rem] w-full h-12 \
         transition-colors text-sm text-primaryText",
+        className,
         {
           "hover:bg-hover": !selected,
           "bg-selected hover:bg-selected": selected,
@@ -99,7 +105,7 @@ export default function LetterThumbnail({
             type="checkbox"
             className="w-4 h-4 cursor-pointer"
             checked={selected}
-            onChange={(e) => setSelected(e.target.checked)}
+            onChange={(e) => setSelected(data.id, e.target.checked)}
           />
         </label>
       </div>

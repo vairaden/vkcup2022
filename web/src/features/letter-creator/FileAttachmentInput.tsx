@@ -1,16 +1,20 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { v4 } from "uuid";
+import { CreatedLetter } from "../../entities/letter/letterCreatorSchema";
 import AttachmentIcon from "../../shared/icons/AttachmentIcon";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
 import DraftsIcon from "../../shared/icons/folder-icons/DraftsIcon";
 import useTranslation from "../../shared/translation/useTranslation";
 import { calculateFileSize } from "../../shared/utils/calculateFileSize";
 
-export default function FileAttachment() {
-  const [attachments, setAttachments] = useState<{ id: string; file: File }[]>(
-    []
-  );
+export default function FileAttachmentInput({
+  letter,
+  setLetter,
+}: {
+  letter: CreatedLetter;
+  setLetter: (fn: (prev: CreatedLetter) => CreatedLetter) => void;
+}) {
   const [isDraggingFileOver, setIsDraggingFileOver] = useState(false);
 
   const { text, alt } = useTranslation();
@@ -21,13 +25,16 @@ export default function FileAttachment() {
     e.preventDefault();
     setIsDraggingFileOver(false);
     if (e.dataTransfer.files.length > 0) {
-      setAttachments((prev) => [
+      setLetter((prev) => ({
         ...prev,
-        ...Array.from(e.dataTransfer.files).map((file) => ({
-          id: v4(),
-          file,
-        })),
-      ]);
+        attachments: [
+          ...prev.attachments,
+          ...Array.from(e.dataTransfer.files).map((file) => ({
+            id: v4(),
+            file,
+          })),
+        ],
+      }));
     }
   }
 
@@ -64,13 +71,18 @@ export default function FileAttachment() {
         multiple
         className="hidden"
         onChange={(e) => {
-          setAttachments((prev) => [
+          setLetter((prev) => ({
             ...prev,
-            ...Array.from(e.target.files ? e.target.files : []).map((file) => ({
-              id: v4(),
-              file,
-            })),
-          ]);
+            attachments: [
+              ...prev.attachments,
+              ...Array.from(e.target.files ? e.target.files : []).map(
+                (file) => ({
+                  id: v4(),
+                  file,
+                })
+              ),
+            ],
+          }));
           e.target.files = null;
         }}
       ></input>
@@ -78,8 +90,8 @@ export default function FileAttachment() {
         className="pointer-events-none flex flex-wrap"
         onClick={(e) => e.preventDefault()}
       >
-        {attachments.length > 0 &&
-          attachments.map((attachment) => (
+        {letter.attachments.length > 0 &&
+          letter.attachments.map((attachment) => (
             <div
               className="grid grid-cols-[32px_min-content_20px] items-center p-2 whitespace-nowrap"
               key={attachment.id + attachment.file.name}
@@ -104,13 +116,14 @@ export default function FileAttachment() {
                 className="pointer-events-auto w-5 h-5"
                 type="button"
                 onClick={() => {
-                  setAttachments((prev) =>
-                    prev.filter(
+                  setLetter((prev) => ({
+                    ...prev,
+                    attachments: prev.attachments.filter(
                       (a) =>
                         a.id !== attachment.id ||
                         a.file.name !== attachment.file.name
-                    )
-                  );
+                    ),
+                  }));
                 }}
               >
                 <CrossIcon
@@ -122,17 +135,17 @@ export default function FileAttachment() {
             </div>
           ))}
       </div>
-      {attachments.length > 0 && (
+      {letter.attachments.length > 0 && (
         <div
           className="pointer-events-none col-span-2 flex items-center text-sm text-textGray mx-10 mb-1"
           onClick={(e) => e.preventDefault()}
         >
-          {`${attachments.length} ${"File"}, (${calculateFileSize(
-            attachments.reduce((acc, cur) => acc + cur.file.size, 0)
+          {`${letter.attachments.length} ${"File"}, (${calculateFileSize(
+            letter.attachments.reduce((acc, cur) => acc + cur.file.size, 0)
           )})`}
           <button
             onClick={() => {
-              setAttachments([]);
+              setLetter((prev) => ({ ...prev, attachments: [] }));
             }}
             className="pointer-events-auto underline hover:no-underline ml-2"
           >

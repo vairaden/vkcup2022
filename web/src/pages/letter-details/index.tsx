@@ -1,6 +1,6 @@
 import useMenuStore from "../../shared/store/useMenuStore";
 import LetterCard from "../../widgets/letter-card/LetterCard";
-import LetterCreator from "../../features/letter-creator/LetterCreator";
+import LetterCreator from "../../features/letter-creator";
 import Navbar from "../../widgets/navbar";
 import Settings from "../../features/settings";
 import LetterDetailsHeader from "./LetterDetailsHeader";

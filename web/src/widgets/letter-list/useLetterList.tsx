@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Letter from "../../entities/letter/letterDTO";
+import { Letter } from "../../entities/letter/letterDTO";
 
 interface IParams {
   folderName: string;

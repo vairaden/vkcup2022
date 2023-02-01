@@ -1,5 +1,5 @@
 import useMenuStore from "../../shared/store/useMenuStore";
-import LetterCreator from "../../features/letter-creator/LetterCreator";
+import LetterCreator from "../../features/letter-creator";
 import LetterList from "../../widgets/letter-list";
 import LetterListHeader from "./LetterListHeader";
 import Navbar from "../../widgets/navbar";

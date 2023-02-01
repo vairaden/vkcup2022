@@ -1,25 +1,73 @@
-import { useEffect, useState } from "react";
-import LetterCreationControls from "./LetterCreationControls";
+import { FormEvent, useEffect, useState } from "react";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
 import clsx from "clsx";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
 import ExpandIcon from "../../shared/icons/controls/ExpandIcon";
-import LetterDataInputs from "./LetterCreationForm";
+import LetterHeaderInputs from "./LetterHeaderInputs";
+import FileAttachmentInput from "./FileAttachmentInput";
 import LetterBodyInput from "./LetterBodyInput";
-import FileAttachment from "./FileAttachment";
+import LetterCreatorControls from "./LetterCreatorControls";
+import { z } from "zod";
+import {
+  CreatedLetter,
+  letterCreatorSchema,
+} from "../../entities/letter/letterCreatorSchema";
 
 export default function LetterCreator() {
   const toggleLetterCreatorOpen = useMenuStore(
     (state) => state.toggleLetterCreatorOpen
   );
   const [fullScreen, setFullScreen] = useState(false);
-  const [letter, setLetter] = useState({
-    title: "",
+  const [letter, setLetter] = useState<CreatedLetter>({
+    to: "",
+    subject: "",
+    cc: "",
+    bcc: "",
+    attachments: [],
     body: "",
+    signature: "",
   });
 
   const { text } = useTranslation();
+
+  function handleSend(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = {
+      ...letter,
+      cc:
+        letter.cc.length > 0
+          ? letter.cc.split(",").map((email) => email.trim())
+          : [],
+      bcc:
+        letter.bcc.length > 0
+          ? letter.bcc.split(",").map((email) => email.trim())
+          : [],
+    };
+
+    try {
+      letterCreatorSchema
+        .extend({
+          cc: z.array(z.string().email()),
+          bcc: z.array(z.string().email()),
+        })
+        .parse(data);
+
+      console.log(letter);
+      setLetter({
+        to: "",
+        subject: "",
+        cc: "",
+        bcc: "",
+        attachments: [],
+        body: "",
+        signature: "",
+      });
+      toggleLetterCreatorOpen();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function mediaHandler(e: MediaQueryListEvent | MediaQueryList) {
     if (e.matches) {
@@ -32,6 +80,10 @@ export default function LetterCreator() {
   useEffect(() => {
     mediaHandler(mediaQuery);
     mediaQuery.addEventListener("change", mediaHandler);
+
+    return () => {
+      mediaQuery.removeEventListener("change", mediaHandler);
+    };
   }, []);
 
   return (
@@ -47,7 +99,7 @@ export default function LetterCreator() {
         })}
         onClick={(e) => e.stopPropagation()}
       >
-        <LetterDataInputs
+        <LetterHeaderInputs
           widgetControls={
             <div className="w-20 flex items-center justify-between">
               <button
@@ -66,15 +118,27 @@ export default function LetterCreator() {
               </button>
             </div>
           }
+          letter={letter}
+          setLetter={setLetter}
         />
         <div className="overflow-scroll h-full bg-white">
-          <FileAttachment />
-          <LetterBodyInput />
+          <FileAttachmentInput letter={letter} setLetter={setLetter} />
+          <LetterBodyInput letter={letter} setLetter={setLetter} />
         </div>
-        <LetterCreationControls
-          sendClick={() => {}}
-          cancelClick={() => {}}
-          saveClick={() => {}}
+        <LetterCreatorControls
+          sendClick={handleSend}
+          cancelClick={() => {
+            setLetter({
+              to: "",
+              subject: "",
+              cc: "",
+              bcc: "",
+              attachments: [],
+              body: "",
+              signature: "",
+            });
+            toggleLetterCreatorOpen();
+          }}
         />
       </form>
     </div>

@@ -1,10 +1,11 @@
 import LetterThumbnail from "../../entities/letter/LetterThumbnail";
 import { useLocation, useParams } from "react-router-dom";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useTranslation from "../../shared/translation/useTranslation";
 import useFilterStore from "../../shared/store/useFilterStore";
 import useThemeStore from "../../shared/store/useThemeStore";
 import useLetterList from "./useLetterList";
+import clsx from "clsx";
 
 export default function LetterList() {
   const folderName = useParams().folderName || "inbox";
@@ -21,6 +22,8 @@ export default function LetterList() {
 
   const { text, alt } = useTranslation();
 
+  const [selectedLetterIds, setSelectedLetterIds] = useState<number[]>([]);
+
   const { isLoading, letters, hasMore, loadItems } = useLetterList({
     folderName,
     pageSize: 10,
@@ -33,6 +36,7 @@ export default function LetterList() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setSelectedLetterIds([]);
   }, [location]);
 
   const observer = useRef<IntersectionObserver | null>(null);
@@ -57,20 +61,54 @@ export default function LetterList() {
   ) : letters.length > 0 ? (
     <section className="mb-3 bg-elementBg rounded-xl">
       <ul>
-        {letters.map((letterData, index) => (
+        {letters.map((letterData, index, array) => (
           <li key={letterData.id}>
             <LetterThumbnail
               to={`/${folderName}/${letterData.id}`}
               data={letterData}
+              selected={selectedLetterIds.includes(letterData.id)}
+              setSelected={(id: number, selected: boolean) => {
+                if (selected) {
+                  setSelectedLetterIds((prev) => [...prev, id]);
+                } else {
+                  setSelectedLetterIds((prev) =>
+                    prev.filter((letterId) => letterId !== id)
+                  );
+                }
+              }}
+              className={clsx("rounded-xl", {
+                "rounded-t-none":
+                  selectedLetterIds.includes(array[index - 1]?.id) &&
+                  selectedLetterIds.includes(letterData.id),
+                "rounded-b-none":
+                  selectedLetterIds.includes(array[index + 1]?.id) &&
+                  selectedLetterIds.includes(letterData.id),
+              })}
             />
             {index === letters.length - 2 ? (
               <div
                 ref={lastPostRef}
-                className="h-px mx-auto w-[85%] bg-separator"
+                className={clsx("h-px mx-auto", {
+                  "w-full bg-selected":
+                    selectedLetterIds.includes(array[index + 1]?.id) &&
+                    selectedLetterIds.includes(letterData.id),
+                  "w-11/12 bg-separator":
+                    !selectedLetterIds.includes(array[index + 1]?.id) &&
+                    !selectedLetterIds.includes(letterData.id),
+                })}
               ></div>
             ) : (
               index !== letters.length - 1 && (
-                <div className="h-px mx-auto w-[85%] bg-separator"></div>
+                <div
+                  className={clsx("h-px mx-auto", {
+                    "w-full bg-selected":
+                      selectedLetterIds.includes(array[index + 1]?.id) &&
+                      selectedLetterIds.includes(letterData.id),
+                    "w-11/12 bg-separator":
+                      !selectedLetterIds.includes(array[index + 1]?.id) &&
+                      !selectedLetterIds.includes(letterData.id),
+                  })}
+                ></div>
               )
             )}
           </li>

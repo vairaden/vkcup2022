@@ -1,12 +1,12 @@
+import { FormEvent } from "react";
 import useTranslation from "../../shared/translation/useTranslation";
 import Button from "../../shared/ui/Button";
 
-export default function LetterCreationControls({
+export default function LetterCreatorControls({
   sendClick,
   cancelClick,
 }: {
-  sendClick: () => void;
-  saveClick: () => void;
+  sendClick: (e: FormEvent<HTMLFormElement>) => void;
   cancelClick: () => void;
 }) {
   const { text } = useTranslation();
@@ -21,6 +21,7 @@ export default function LetterCreationControls({
         {text.send}
       </Button>
       <Button
+        type="button"
         onClick={cancelClick}
         className="bg-selected text-primaryText border-none w-min px-6"
       >
