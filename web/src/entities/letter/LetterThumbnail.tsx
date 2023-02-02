@@ -16,6 +16,8 @@ import { useDrag } from "react-dnd";
 import { LetterContextMenu } from "./LetterContextMenu";
 import MenuList from "../../shared/ui/MenuList";
 import MenuListItem from "../../shared/ui/MenuListItem";
+import folderList from "../folder/folderList";
+import ChevronDownIcon from "../../shared/icons/controls/ChevronDownIcon";
 
 export default function LetterThumbnail({
   className,
@@ -70,11 +72,22 @@ export default function LetterThumbnail({
           closeCallback={() => setContextMenu({ isOpen: false, x: 0, y: 0 })}
         >
           <MenuList>
-            <MenuListItem onClick={() => {}}>
+            <MenuListItem className="group/folderList w-40" onClick={() => {}}>
               Move{" "}
               {selectedLetterIds && selectedLetterIds.length > 0 && selected
                 ? selectedLetterIds.length + " Items"
                 : ""}
+              <ChevronDownIcon className="ml-auto -rotate-90" />
+              <MenuList className="absolute top-0 left-0 w-full translate-x-full hidden group-hover/folderList:block">
+                {folderList.map((folder) => (
+                  <MenuListItem onClick={() => {}}>
+                    {folder.icon}
+                    <p className="text-menuText ml-2">
+                      {text[(folder.name + "Folder") as keyof typeof text]}
+                    </p>
+                  </MenuListItem>
+                ))}
+              </MenuList>
             </MenuListItem>
             {selectAll && (
               <MenuListItem onClick={selectAll}>Select all</MenuListItem>

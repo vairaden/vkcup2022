@@ -13,7 +13,7 @@ export default function MenuListItem({
     <button
       onClick={onClick}
       className={clsx(
-        "flex items-center p-2 hover:bg-hover transition-colors",
+        "flex w-full items-center p-2 hover:bg-hover transition-colors",
         className
       )}
     >

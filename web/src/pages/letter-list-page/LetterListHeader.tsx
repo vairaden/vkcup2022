@@ -51,7 +51,13 @@ export default function LetterListHeader() {
           />
         </button>
       </div>
-      {filtersOpen && <LetterFilters />}
+      {filtersOpen && (
+        <LetterFilters
+          closeCallback={() => {
+            setFiltersOpen(false);
+          }}
+        />
+      )}
     </header>
   );
 }

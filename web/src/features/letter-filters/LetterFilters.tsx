@@ -7,7 +7,11 @@ import useTranslation from "../../shared/translation/useTranslation";
 import FilterButton from "./FilterButton";
 import SortingMenu from "./SortingMenu";
 
-export default function LetterFilters() {
+export default function LetterFilters({
+  closeCallback,
+}: {
+  closeCallback: () => void;
+}) {
   const toggleFilterBookmarked = useFilterStore(
     (state) => state.toggleFilterBookmarked
   );
@@ -31,50 +35,61 @@ export default function LetterFilters() {
   const { text } = useTranslation();
 
   return (
-    <div className="flex flex-col fixed top-12 right-6 w-60 py-2 bg-elementBg text-primaryText shadow-md rounded-xl">
-      <FilterButton
-        active={!filterUnread && !filterBookmarked && !filterWithAttachments}
-        onClick={resetFilters}
+    <div
+      onClick={closeCallback}
+      className="fixed top-0 left-0 w-full h-full z-50"
+    >
+      <div
+        className="flex flex-col fixed top-12 right-6 w-60 py-2 bg-elementBg text-primaryText shadow-md rounded-xl"
+        onClick={(e) => e.stopPropagation()}
       >
-        {text.filterAll}
-      </FilterButton>
-      <FilterButton active={filterUnread} onClick={toggleFilterUnread}>
-        <div className="w-6">
-          <div
-            className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
-          ></div>
-        </div>
-        {text.filterUnread}
-      </FilterButton>
-      <FilterButton active={filterBookmarked} onClick={toggleFilterBookmarked}>
-        <BookmarkIcon className="mr-1" />
-        {text.filterBookmarked}
-      </FilterButton>
-      <FilterButton
-        active={filterWithAttachments}
-        onClick={toggleFilterWithAttachments}
-      >
-        <AttachmentIcon className="fill-primaryText" />
-        {text.filterWithAttachments}
-      </FilterButton>
-      <button
-        className="flex items-center text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
-        onClick={() => setSortingMenuOpen(!sortingMenuOpen)}
-      >
-        <ChevronLeftIcon className="fill-primaryText" />
-        {text.sort}
-      </button>
-      {sortingMenuOpen && (
-        <SortingMenu className="absolute top-40 left-0 translate-x-[-100%]" />
-      )}
-      {filtersApplied && (
-        <button
-          className="text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
+        <FilterButton
+          active={!filterUnread && !filterBookmarked && !filterWithAttachments}
           onClick={resetFilters}
         >
-          {text.resetAll}
+          {text.filterAll}
+        </FilterButton>
+        <FilterButton active={filterUnread} onClick={toggleFilterUnread}>
+          <div className="w-6">
+            <div
+              className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
+            ></div>
+          </div>
+          {text.filterUnread}
+        </FilterButton>
+        <FilterButton
+          active={filterBookmarked}
+          onClick={toggleFilterBookmarked}
+        >
+          <BookmarkIcon className="mr-1" />
+          {text.filterBookmarked}
+        </FilterButton>
+        <FilterButton
+          active={filterWithAttachments}
+          onClick={toggleFilterWithAttachments}
+        >
+          <AttachmentIcon className="fill-primaryText" />
+          {text.filterWithAttachments}
+        </FilterButton>
+        <button
+          className="flex items-center text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
+          onClick={() => setSortingMenuOpen(!sortingMenuOpen)}
+        >
+          <ChevronLeftIcon className="fill-primaryText" />
+          {text.sort}
         </button>
-      )}
+        {sortingMenuOpen && (
+          <SortingMenu className="absolute top-40 left-0 translate-x-[-100%]" />
+        )}
+        {filtersApplied && (
+          <button
+            className="text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
+            onClick={resetFilters}
+          >
+            {text.resetAll}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
