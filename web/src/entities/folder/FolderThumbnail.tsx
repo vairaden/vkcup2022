@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useDrop } from "react-dnd";
 import { Link } from "react-router-dom";
-import { Letter } from "../letter/letterSchema";
+import { Letter } from "../letter/schemas/letterSchema";
 
 export default function FolderThumbnail({
   to,

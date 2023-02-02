@@ -21,11 +21,33 @@ const textRu = {
   subject: "Тема",
   cc: "Копия",
   bcc: "Скрытая",
+  file: (count: number): string => {
+    if (count === 1) {
+      return "Файл";
+    } else if (count > 1 && count < 5) {
+      return "Файла";
+    } else {
+      return "Файлов";
+    }
+  },
+  letter: (count: number): string => {
+    if (count === 1) {
+      return "Письмо";
+    } else if (count > 1 && count < 5) {
+      return "Письма";
+    } else {
+      return "Писем";
+    }
+  },
   // controls
   send: "Отправить",
   save: "Сохранить",
   attachFile: "Прикрепить файл",
   cancel: "Отмена",
+  deleteAll: "Удалить все",
+  move: "Переместить",
+  selectAll: "Выбрать все",
+  deselectAll: "Снять выбор",
   // filters
   filter: "Фильтр",
   filterAll: "Все письма",
@@ -65,5 +87,7 @@ const textRu = {
   changeLanguage: "Изменить язык",
   selectLanguage: "Выбрать язык",
 };
+
+export type TranslationText = typeof textRu;
 
 export default textRu;

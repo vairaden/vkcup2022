@@ -1,4 +1,6 @@
-const textEn = {
+import { TranslationText } from "./ru";
+
+const textEn: TranslationText = {
   // general
   letterNotFound: "Letter not found",
   loading: "Loading...",
@@ -21,11 +23,33 @@ const textEn = {
   subject: "Subject",
   cc: "Cc",
   bcc: "Bcc",
+  file: (count: number) => {
+    if (count === 1) {
+      return "File";
+    } else if (count > 1 && count < 5) {
+      return "Files";
+    } else {
+      return "Files";
+    }
+  },
+  letter: (count: number) => {
+    if (count === 1) {
+      return "Letter";
+    } else if (count > 1 && count < 5) {
+      return "Letters";
+    } else {
+      return "Letters";
+    }
+  },
   // controls
   send: "Send",
   save: "Save",
   attachFile: "Attach file",
   cancel: "Cancel",
+  deleteAll: "Delete all",
+  move: "Move",
+  selectAll: "Select all",
+  deselectAll: "Deselect all",
   // filters
   filter: "Filter",
   filterAll: "All letters",

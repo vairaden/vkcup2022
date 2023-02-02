@@ -28,4 +28,6 @@ const ruAlt = {
   themeSelected: "Тема выбрана",
 };
 
+export type TranslationAlt = typeof ruAlt;
+
 export default ruAlt;

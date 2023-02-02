@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { v4 } from "uuid";
-import { CreatedLetter } from "../../entities/letter/letterCreatorSchema";
-import AttachmentIcon from "../../shared/icons/AttachmentIcon";
-import CrossIcon from "../../shared/icons/controls/CrossIcon";
-import DraftsIcon from "../../shared/icons/folder-icons/DraftsIcon";
-import useTranslation from "../../shared/translation/useTranslation";
-import { calculateFileSize } from "../../shared/utils/calculateFileSize";
+import { CreatedLetter } from "../../../entities/letter/schemas/letterCreatorSchema";
+import AttachmentIcon from "../../../shared/icons/AttachmentIcon";
+import CrossIcon from "../../../shared/icons/controls/CrossIcon";
+import DraftsIcon from "../../../shared/icons/folder-icons/DraftsIcon";
+import useTranslation from "../../../shared/translation/useTranslation";
+import { calculateFileSize } from "../../../shared/utils/calculateFileSize";
 
 export default function FileAttachmentInput({
   letter,
@@ -140,7 +140,9 @@ export default function FileAttachmentInput({
           className="pointer-events-none col-span-2 flex items-center text-sm text-textGray mx-10 mb-1"
           onClick={(e) => e.preventDefault()}
         >
-          {`${letter.attachments.length} ${"File"}, (${calculateFileSize(
+          {`${letter.attachments.length} ${text.file(
+            letter.attachments.length
+          )}, (${calculateFileSize(
             letter.attachments.reduce((acc, cur) => acc + cur.file.size, 0)
           )})`}
           <button
@@ -149,7 +151,7 @@ export default function FileAttachmentInput({
             }}
             className="pointer-events-auto underline hover:no-underline ml-2"
           >
-            Delete all
+            {text.deleteAll}
           </button>
         </div>
       )}

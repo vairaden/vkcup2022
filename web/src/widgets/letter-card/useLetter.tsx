@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { letterSchema } from "../../entities/letter/letterSchema";
+import { letterSchema } from "../../entities/letter/schemas/letterSchema";
 
 async function fetchLetterById(queryKey: string) {
   const url =

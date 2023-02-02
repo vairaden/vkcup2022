@@ -11,42 +11,61 @@ export default [
     route: "/",
     name: "inbox",
     flag: "Входящие",
-    icon: <InboxIcon className="fill-menuText" />,
   },
   {
     route: "/important",
     name: "important",
     flag: "Важные",
-    icon: <FolderIcon className="fill-menuText" />,
   },
   {
     route: "/sent",
     name: "sent",
     flag: "Отправленные",
-    icon: <SentIcon className="fill-menuText" />,
   },
   {
     route: "/drafts",
     name: "drafts",
     flag: "Черновики",
-    icon: <DraftsIcon className="fill-menuText" />,
   },
   {
     route: "/archive",
     name: "archive",
     flag: "Архив",
-    icon: <ArchiveIcon className="fill-menuText" />,
   },
   {
     route: "/junk",
     name: "junk",
     flag: "Спам",
-    icon: <JunkIcon className="fill-menuText" />,
   },
   {
     route: "/trash",
     name: "trash",
     flag: "Корзина",
-    icon: <TrashIcon className="fill-menuText" />,
   },
 ];
+
+export function StandardFolderIcons({
+  className,
+  folderName,
+}: {
+  className?: string;
+  folderName: string;
+}) {
+  return folderName === "inbox" ? (
+    <InboxIcon className={className} />
+  ) : folderName === "important" ? (
+    <FolderIcon className={className} />
+  ) : folderName === "sent" ? (
+    <SentIcon className={className} />
+  ) : folderName === "drafts" ? (
+    <DraftsIcon className={className} />
+  ) : folderName === "archive" ? (
+    <ArchiveIcon className={className} />
+  ) : folderName === "junk" ? (
+    <JunkIcon className={className} />
+  ) : folderName === "trash" ? (
+    <TrashIcon className={className} />
+  ) : (
+    <FolderIcon className={className} />
+  );
+}

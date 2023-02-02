@@ -4,15 +4,15 @@ import useTranslation from "../../shared/translation/useTranslation";
 import clsx from "clsx";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
 import ExpandIcon from "../../shared/icons/controls/ExpandIcon";
-import LetterHeaderInputs from "./LetterHeaderInputs";
-import FileAttachmentInput from "./FileAttachmentInput";
-import LetterBodyInput from "./LetterBodyInput";
-import LetterCreatorControls from "./LetterCreatorControls";
+import LetterHeaderInputs from "./ui/LetterHeaderInputs";
+import FileAttachmentInput from "./ui/FileAttachmentInput";
+import LetterBodyInput from "./ui/LetterBodyInput";
+import LetterCreatorControls from "./ui/LetterCreatorControls";
 import { z } from "zod";
 import {
   CreatedLetter,
   letterCreatorSchema,
-} from "../../entities/letter/letterCreatorSchema";
+} from "../../entities/letter/schemas/letterCreatorSchema";
 
 export default function LetterCreator() {
   const toggleLetterCreatorOpen = useMenuStore(

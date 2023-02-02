@@ -1,8 +1,8 @@
 import { ReactNode, useState } from "react";
-import useTranslation from "../../shared/translation/useTranslation";
-import CrossIcon from "../../shared/icons/controls/CrossIcon";
+import useTranslation from "../../../shared/translation/useTranslation";
+import CrossIcon from "../../../shared/icons/controls/CrossIcon";
 import LetterCreatorInput from "./LetterCreatorInput";
-import { CreatedLetter } from "../../entities/letter/letterCreatorSchema";
+import { CreatedLetter } from "../../../entities/letter/schemas/letterCreatorSchema";
 
 export default function LetterHeaderInputs({
   widgetControls,

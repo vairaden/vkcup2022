@@ -1,4 +1,4 @@
-import { CreatedLetter } from "../../entities/letter/letterCreatorSchema";
+import { CreatedLetter } from "../../../entities/letter/schemas/letterCreatorSchema";
 
 export default function LetterBodyInput({
   letter,

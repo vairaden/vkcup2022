@@ -19,7 +19,7 @@ export default function useTranslation() {
   document.documentElement.lang = language;
 
   return {
-    text: (text[language] || text.ru) as typeof text.ru,
-    alt: (alt[language] || alt.ru) as typeof alt.ru,
+    text: text[language] || text.ru,
+    alt: alt[language] || alt.ru,
   };
 }

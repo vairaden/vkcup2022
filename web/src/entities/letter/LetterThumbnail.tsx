@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Letter } from "./letterSchema";
+import { Letter } from "./schemas/letterSchema";
 import useTranslation from "../../shared/translation/useTranslation";
-import AttachmentsPreview from "./AttachmentsPreview";
+import AttachmentsPreview from "./ui/AttachmentsPreview";
 import ShoppingCartIcon from "../../shared/icons/letter-indicators/ShoppingCartIcon";
 import MoneyIcon from "../../shared/icons/letter-indicators/MoneyIcon";
 import KeyIcon from "../../shared/icons/letter-indicators/KeyIcon";
@@ -16,7 +16,7 @@ import { useDrag } from "react-dnd";
 import { LetterContextMenu } from "./LetterContextMenu";
 import MenuList from "../../shared/ui/MenuList";
 import MenuListItem from "../../shared/ui/MenuListItem";
-import folderList from "../folder/folderList";
+import folderList, { StandardFolderIcons } from "../folder/folderList";
 import ChevronDownIcon from "../../shared/icons/controls/ChevronDownIcon";
 
 export default function LetterThumbnail({
@@ -72,28 +72,40 @@ export default function LetterThumbnail({
           closeCallback={() => setContextMenu({ isOpen: false, x: 0, y: 0 })}
         >
           <MenuList>
-            <MenuListItem className="group/folderList w-40" onClick={() => {}}>
-              Move{" "}
-              {selectedLetterIds && selectedLetterIds.length > 0 && selected
-                ? selectedLetterIds.length + " Items"
-                : ""}
-              <ChevronDownIcon className="ml-auto -rotate-90" />
-              <MenuList className="absolute top-0 left-0 w-full translate-x-full hidden group-hover/folderList:block">
+            <MenuListItem className="group/folderList w-60" onClick={() => {}}>
+              {`${text.move} ${
+                selectedLetterIds && selectedLetterIds.length > 0 && selected
+                  ? selectedLetterIds.length +
+                    " " +
+                    text.letter(selectedLetterIds.length)
+                  : ""
+              }`}
+              <ChevronDownIcon className="ml-auto -rotate-90 fill-primaryText" />
+              <MenuList className="absolute top-0 left-0 w-40 translate-x-60 hidden group-hover/folderList:block">
                 {folderList.map((folder) => (
-                  <MenuListItem onClick={() => {}}>
-                    {folder.icon}
-                    <p className="text-menuText ml-2">
-                      {text[(folder.name + "Folder") as keyof typeof text]}
+                  <MenuListItem onClick={() => {}} key={folder.name}>
+                    <StandardFolderIcons
+                      folderName={folder.name}
+                      className="fill-primaryText"
+                    />
+                    <p className="text-primaryText ml-2">
+                      {
+                        text[
+                          (folder.name + "Folder") as keyof typeof text
+                        ] as string
+                      }
                     </p>
                   </MenuListItem>
                 ))}
               </MenuList>
             </MenuListItem>
             {selectAll && (
-              <MenuListItem onClick={selectAll}>Select all</MenuListItem>
+              <MenuListItem onClick={selectAll}>{text.selectAll}</MenuListItem>
             )}
             {deselectAll && (
-              <MenuListItem onClick={deselectAll}>Deselect all</MenuListItem>
+              <MenuListItem onClick={deselectAll}>
+                {text.deselectAll}
+              </MenuListItem>
             )}
           </MenuList>
         </LetterContextMenu>

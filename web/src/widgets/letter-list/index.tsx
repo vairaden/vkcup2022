@@ -26,13 +26,24 @@ export default function LetterList() {
 
   const { isLoading, letters, hasMore, loadItems } = useLetterList({
     folderName,
-    pageSize: 10,
+    pageSize: 20,
     unread: filterUnread,
     bookmarked: filterBookmarked,
     withAttachments: filterWithAttachments,
     sortOption,
     sortDirection,
   });
+
+  useEffect(() => {
+    setSelectedLetterIds([]);
+  }, [
+    folderName,
+    filterUnread,
+    filterBookmarked,
+    filterWithAttachments,
+    sortOption,
+    sortDirection,
+  ]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -92,7 +103,7 @@ export default function LetterList() {
                   selectedLetterIds.includes(letterData.id),
               })}
             />
-            {index === letters.length - 2 ? (
+            {index === letters.length - 11 ? (
               <div
                 ref={lastPostRef}
                 className={clsx("h-px mx-auto", {

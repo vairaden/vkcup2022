@@ -1,6 +1,8 @@
 import Button from "../../shared/ui/Button";
 import FolderThumbnail from "../../entities/folder/FolderThumbnail";
-import folderList from "../../entities/folder/folderList";
+import folderList, {
+  StandardFolderIcons,
+} from "../../entities/folder/folderList";
 import useTranslation from "../../shared/translation/useTranslation";
 import { useParams } from "react-router-dom";
 import useMenuStore from "../../shared/store/useMenuStore";
@@ -40,9 +42,12 @@ export default function Navbar() {
               flag={folder.flag}
               selected={folder.name === activeFolder}
             >
-              {folder.icon}
+              <StandardFolderIcons
+                className="fill-menuText"
+                folderName={folder.name}
+              />
               <p className="ml-2 hidden md:block text-menuText">
-                {text[(folder.name + "Folder") as keyof typeof text]}
+                {text[(folder.name + "Folder") as keyof typeof text] as string}
               </p>
             </FolderThumbnail>
           ))}

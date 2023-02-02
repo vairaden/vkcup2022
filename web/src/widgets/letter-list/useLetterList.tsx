@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
-import { Letter, letterSchema } from "../../entities/letter/letterSchema";
+import {
+  Letter,
+  letterSchema,
+} from "../../entities/letter/schemas/letterSchema";
 
 interface IParams {
   folderName: string;

@@ -10,14 +10,14 @@ export default function MenuListItem({
   className?: string;
 }) {
   return (
-    <button
+    <div
       onClick={onClick}
       className={clsx(
-        "flex w-full items-center p-2 hover:bg-hover transition-colors",
+        "flex w-full items-center p-2 hover:bg-hover transition-colors cursor-pointer",
         className
       )}
     >
       {children}
-    </button>
+    </div>
   );
 }

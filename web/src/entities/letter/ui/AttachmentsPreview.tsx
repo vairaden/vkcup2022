@@ -1,7 +1,7 @@
-import AttachmentIcon from "../../shared/icons/AttachmentIcon";
-import DownloadIcon from "../../shared/icons/controls/DownloadIcon";
-import useTranslation from "../../shared/translation/useTranslation";
-import { calculateRawFileSize } from "../../shared/utils/calculateFileSize";
+import AttachmentIcon from "../../../shared/icons/AttachmentIcon";
+import DownloadIcon from "../../../shared/icons/controls/DownloadIcon";
+import useTranslation from "../../../shared/translation/useTranslation";
+import { calculateRawFileSize } from "../../../shared/utils/calculateFileSize";
 
 export default function AttachmentsPreview({ doc }: { doc: { img: string } }) {
   const { text, alt } = useTranslation();

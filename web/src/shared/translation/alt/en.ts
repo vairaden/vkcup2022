@@ -1,4 +1,6 @@
-const enAlt = {
+import { TranslationAlt } from "./ru";
+
+const enAlt: TranslationAlt = {
   // common
   filterActive: "Filter active",
   mailRuLogo: "Mail.ru logo",
