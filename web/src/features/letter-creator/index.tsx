@@ -29,8 +29,6 @@ export default function LetterCreator() {
     signature: "",
   });
 
-  const { text } = useTranslation();
-
   function handleSend(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = {

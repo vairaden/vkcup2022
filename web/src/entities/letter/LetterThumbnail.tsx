@@ -14,10 +14,6 @@ import GovernmentIcon from "../../shared/icons/letter-indicators/GovernmentIcon"
 import ImportantIcon from "../../shared/icons/letter-indicators/ImportantIcon";
 import { useDrag } from "react-dnd";
 import { LetterContextMenu } from "./LetterContextMenu";
-import MenuList from "../../shared/ui/MenuList";
-import MenuListItem from "../../shared/ui/MenuListItem";
-import folderList, { StandardFolderIcons } from "../folder/folderList";
-import ChevronDownIcon from "../../shared/icons/controls/ChevronDownIcon";
 
 export default function LetterThumbnail({
   className,
@@ -33,10 +29,10 @@ export default function LetterThumbnail({
   data: Letter;
   to: string;
   selected: boolean;
-  selectedLetterIds?: number[];
+  selectedLetterIds: number[];
   setSelected: (id: number, selected: boolean) => void;
-  selectAll?: () => void;
-  deselectAll?: () => void;
+  selectAll: () => void;
+  deselectAll: () => void;
 }) {
   const [contextMenu, setContextMenu] = useState({ isOpen: false, x: 0, y: 0 });
 
@@ -70,45 +66,11 @@ export default function LetterThumbnail({
           x={contextMenu.x}
           y={contextMenu.y}
           closeCallback={() => setContextMenu({ isOpen: false, x: 0, y: 0 })}
-        >
-          <MenuList>
-            <MenuListItem className="group/folderList w-60" onClick={() => {}}>
-              {`${text.move} ${
-                selectedLetterIds && selectedLetterIds.length > 0 && selected
-                  ? selectedLetterIds.length +
-                    " " +
-                    text.letter(selectedLetterIds.length)
-                  : ""
-              }`}
-              <ChevronDownIcon className="ml-auto -rotate-90 fill-primaryText" />
-              <MenuList className="absolute top-0 left-0 w-40 translate-x-60 hidden group-hover/folderList:block">
-                {folderList.map((folder) => (
-                  <MenuListItem onClick={() => {}} key={folder.name}>
-                    <StandardFolderIcons
-                      folderName={folder.name}
-                      className="fill-primaryText"
-                    />
-                    <p className="text-primaryText ml-2">
-                      {
-                        text[
-                          (folder.name + "Folder") as keyof typeof text
-                        ] as string
-                      }
-                    </p>
-                  </MenuListItem>
-                ))}
-              </MenuList>
-            </MenuListItem>
-            {selectAll && (
-              <MenuListItem onClick={selectAll}>{text.selectAll}</MenuListItem>
-            )}
-            {deselectAll && (
-              <MenuListItem onClick={deselectAll}>
-                {text.deselectAll}
-              </MenuListItem>
-            )}
-          </MenuList>
-        </LetterContextMenu>
+          selected={selected}
+          selectedLetterIds={selectedLetterIds}
+          selectAll={selectAll}
+          deselectAll={deselectAll}
+        />
       )}
       <article
         ref={drag}
