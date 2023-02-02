@@ -1,4 +1,5 @@
 import { CreatedLetter } from "../../../entities/letter/schemas/letterCreatorSchema";
+import useTranslation from "../../../shared/translation/useTranslation";
 
 export default function LetterBodyInput({
   letter,
@@ -7,6 +8,7 @@ export default function LetterBodyInput({
   letter: CreatedLetter;
   setLetter: (fn: (prev: CreatedLetter) => CreatedLetter) => void;
 }) {
+  const { text } = useTranslation();
   return (
     <div className="bg-white h-full w-full p-6">
       <label className="text-primaryText">
@@ -21,7 +23,7 @@ export default function LetterBodyInput({
         ></textarea>
       </label>
       <label className="flex flex-col text-textGray">
-        Подпись
+        {text.signature}
         <textarea
           onChange={(e) => {
             e.target.style.height = "auto";

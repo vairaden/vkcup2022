@@ -21,6 +21,7 @@ const textRu = {
   subject: "Тема",
   cc: "Копия",
   bcc: "Скрытая",
+  signature: "Подпись",
   file: (count: number): string => {
     if (count === 1) {
       return "Файл";
@@ -39,6 +40,7 @@ const textRu = {
       return "Писем";
     }
   },
+  folderName: "Название папки",
   // controls
   send: "Отправить",
   save: "Сохранить",
@@ -48,6 +50,7 @@ const textRu = {
   move: "Переместить",
   selectAll: "Выбрать все",
   deselectAll: "Снять выбор",
+  addFolder: "Добавить папку",
   // filters
   filter: "Фильтр",
   filterAll: "Все письма",

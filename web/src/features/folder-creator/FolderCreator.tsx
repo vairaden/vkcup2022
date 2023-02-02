@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
@@ -7,6 +8,7 @@ export default function FolderCreator() {
   const toggleFolderCreatorOpen = useMenuStore(
     (state) => state.toggleFolderCreatorOpen
   );
+  const [newFolderName, setNewFolderName] = useState("");
   const { text } = useTranslation();
 
   return (
@@ -20,28 +22,35 @@ export default function FolderCreator() {
       >
         <label className="w-full">
           <div className="flex justify-between items-center">
-            <h2>New folder</h2>
-            <button type="button" onClick={() => {}}>
+            <h2 className="text-2xl text-primaryText">{text.newFolder}</h2>
+            <button type="button" onClick={toggleFolderCreatorOpen}>
               <CrossIcon className="stroke-primaryText" width={16} hight={16} />
             </button>
           </div>
           <input
-            className="w-full border-[2px] border-separator rounded-lg"
-            placeholder="name"
+            className="w-full border-[2px] border-textGray text-primaryText rounded-lg my-6 p-2 outline-none bg-elementBg"
+            placeholder={text.folderName}
+            value={newFolderName}
+            onChange={(e) => setNewFolderName(e.target.value)}
           ></input>
         </label>
         <div className="w-full">
           <Button
             type="submit"
-            onClick={() => {}}
-            className="bg-electricBlue text-white border-none w-min px-6 mr-2"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+            className="bg-electricBlue text-white border-none px-6 mr-2"
           >
-            {text.send}
+            {text.addFolder}
           </Button>
           <Button
             type="button"
-            onClick={() => {}}
-            className="bg-selected text-primaryText border-none w-min px-6"
+            onClick={() => {
+              toggleFolderCreatorOpen();
+              setNewFolderName("");
+            }}
+            className="bg-selected text-primaryText border-none px-6"
           >
             {text.cancel}
           </Button>

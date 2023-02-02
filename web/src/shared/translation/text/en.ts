@@ -23,6 +23,7 @@ const textEn: TranslationText = {
   subject: "Subject",
   cc: "Cc",
   bcc: "Bcc",
+  signature: "Signature",
   file: (count: number) => {
     if (count === 1) {
       return "File";
@@ -41,6 +42,7 @@ const textEn: TranslationText = {
       return "Letters";
     }
   },
+  folderName: "Folder name",
   // controls
   send: "Send",
   save: "Save",
@@ -50,6 +52,7 @@ const textEn: TranslationText = {
   move: "Move",
   selectAll: "Select all",
   deselectAll: "Deselect all",
+  addFolder: "Add folder",
   // filters
   filter: "Filter",
   filterAll: "All letters",
