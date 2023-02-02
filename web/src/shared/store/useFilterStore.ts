@@ -13,6 +13,7 @@ interface FilterStore {
   setSortOption: (option: "date" | "author" | "title" | "none") => void;
   setSortDirection: (direction: "asc" | "desc") => void;
   resetFilters: () => void;
+  resetAll: () => void;
 }
 
 const useFilterStore = create<FilterStore>()((set) => ({
@@ -87,6 +88,13 @@ const useFilterStore = create<FilterStore>()((set) => ({
     }),
   setSortDirection: (direction) => set(() => ({ sortDirection: direction })),
   resetFilters: () =>
+    set(() => ({
+      filtersApplied: false,
+      filterUnread: false,
+      filterBookmarked: false,
+      filterWithAttachments: false,
+    })),
+  resetAll: () =>
     set(() => ({
       filtersApplied: false,
       filterUnread: false,

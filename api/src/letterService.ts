@@ -54,10 +54,10 @@ export function filterLetters(url: string) {
   switch (sortOption) {
     case "date":
       filteredData = filteredData.sort((a, b) => {
-        if (a.date > b.date) {
+        if (a.date < b.date) {
           return sortDirection === "asc" ? 1 : -1;
         }
-        if (a.date < b.date) {
+        if (a.date > b.date) {
           return sortDirection === "asc" ? -1 : 1;
         }
         return 0;
@@ -65,10 +65,10 @@ export function filterLetters(url: string) {
       break;
     case "author":
       filteredData = filteredData.sort((a, b) => {
-        if (a.author.name < b.author.name) {
+        if (a.author.name > b.author.name) {
           return sortDirection === "asc" ? 1 : -1;
         }
-        if (a.author.name > b.author.name) {
+        if (a.author.name < b.author.name) {
           return sortDirection === "asc" ? -1 : 1;
         }
         return 0;
@@ -76,10 +76,10 @@ export function filterLetters(url: string) {
       break;
     case "title":
       filteredData = filteredData.sort((a, b) => {
-        if (a.title < b.title) {
+        if (a.title > b.title) {
           return sortDirection === "asc" ? 1 : -1;
         }
-        if (a.title > b.title) {
+        if (a.title < b.title) {
           return sortDirection === "asc" ? -1 : 1;
         }
         return 0;

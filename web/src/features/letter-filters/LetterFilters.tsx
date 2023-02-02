@@ -1,10 +1,13 @@
+import clsx from "clsx";
 import { useState } from "react";
 import AttachmentIcon from "../../shared/icons/AttachmentIcon";
+import CheckmarkIcon from "../../shared/icons/CheckmarkIcon";
 import ChevronLeftIcon from "../../shared/icons/controls/ChevronLeftIcon";
 import BookmarkIcon from "../../shared/icons/letter-indicators/BookmarkIcon";
 import useFilterStore from "../../shared/store/useFilterStore";
 import useTranslation from "../../shared/translation/useTranslation";
-import FilterButton from "./FilterButton";
+import MenuList from "../../shared/ui/MenuList";
+import MenuListItem from "../../shared/ui/MenuListItem";
 import SortingMenu from "./SortingMenu";
 
 export default function LetterFilters({
@@ -23,6 +26,7 @@ export default function LetterFilters({
   );
   const filtersApplied = useFilterStore((state) => state.filtersApplied);
   const resetFilters = useFilterStore((state) => state.resetFilters);
+  const resetAll = useFilterStore((state) => state.resetAll);
 
   const filterUnread = useFilterStore((state) => state.filterUnread);
   const filterBookmarked = useFilterStore((state) => state.filterBookmarked);
@@ -39,57 +43,79 @@ export default function LetterFilters({
       onClick={closeCallback}
       className="fixed top-0 left-0 w-full h-full z-50"
     >
-      <div
-        className="flex flex-col fixed top-12 right-6 w-60 py-2 bg-elementBg text-primaryText shadow-md rounded-xl"
+      <MenuList
+        className="w-60 absolute top-12 right-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <FilterButton
-          active={!filterUnread && !filterBookmarked && !filterWithAttachments}
-          onClick={resetFilters}
-        >
+        <MenuListItem onClick={resetFilters}>
+          <CheckmarkIcon
+            className={clsx("w-6", {
+              "fill-primaryText":
+                !filterUnread && !filterBookmarked && !filterWithAttachments,
+              "fill-none":
+                filterUnread || filterBookmarked || filterWithAttachments,
+            })}
+          />
           {text.filterAll}
-        </FilterButton>
-        <FilterButton active={filterUnread} onClick={toggleFilterUnread}>
-          <div className="w-6">
+        </MenuListItem>
+        <MenuListItem onClick={toggleFilterUnread}>
+          <CheckmarkIcon
+            className={clsx("w-6", {
+              "fill-primaryText": filterUnread,
+              "fill-none": !filterUnread,
+            })}
+          />
+          <div className="w-6 mr-1">
             <div
               className={`mx-2 h-[6px] w-[6px] rounded-md bg-electricBlue`}
             ></div>
           </div>
           {text.filterUnread}
-        </FilterButton>
-        <FilterButton
-          active={filterBookmarked}
-          onClick={toggleFilterBookmarked}
-        >
-          <BookmarkIcon className="mr-1" />
+        </MenuListItem>
+        <MenuListItem onClick={toggleFilterBookmarked}>
+          <CheckmarkIcon
+            className={clsx("w-6", {
+              "fill-primaryText": filterBookmarked,
+              "fill-none": !filterBookmarked,
+            })}
+          />
+          <BookmarkIcon className="mr-2" />
           {text.filterBookmarked}
-        </FilterButton>
-        <FilterButton
-          active={filterWithAttachments}
-          onClick={toggleFilterWithAttachments}
-        >
-          <AttachmentIcon className="fill-primaryText" />
+        </MenuListItem>
+        <MenuListItem onClick={toggleFilterWithAttachments}>
+          <CheckmarkIcon
+            className={clsx("w-6", {
+              "fill-primaryText": filterWithAttachments,
+              "fill-none": !filterWithAttachments,
+            })}
+          />
+          <AttachmentIcon className="fill-primaryText mr-1" />
           {text.filterWithAttachments}
-        </FilterButton>
+        </MenuListItem>
         <button
-          className="flex items-center text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
-          onClick={() => setSortingMenuOpen(!sortingMenuOpen)}
+          className="relative flex items-center text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
+          onClick={() => {
+            setSortingMenuOpen(!sortingMenuOpen);
+          }}
         >
           <ChevronLeftIcon className="fill-primaryText" />
           {text.sort}
+          {sortingMenuOpen && (
+            <SortingMenu
+              className="absolute top-0 left-0 -translate-x-full"
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
         </button>
-        {sortingMenuOpen && (
-          <SortingMenu className="absolute top-40 left-0 translate-x-[-100%]" />
-        )}
         {filtersApplied && (
           <button
             className="text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
-            onClick={resetFilters}
+            onClick={resetAll}
           >
             {text.resetAll}
           </button>
         )}
-      </div>
+      </MenuList>
     </div>
   );
 }
