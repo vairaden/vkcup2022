@@ -67,6 +67,7 @@ export default function LetterList() {
               to={`/${folderName}/${letterData.id}`}
               data={letterData}
               selected={selectedLetterIds.includes(letterData.id)}
+              selectedLetterIds={selectedLetterIds}
               setSelected={(id: number, selected: boolean) => {
                 if (selected) {
                   setSelectedLetterIds((prev) => [...prev, id]);
@@ -75,6 +76,12 @@ export default function LetterList() {
                     prev.filter((letterId) => letterId !== id)
                   );
                 }
+              }}
+              selectAll={() => {
+                setSelectedLetterIds(array.map((letter) => letter.id));
+              }}
+              deselectAll={() => {
+                setSelectedLetterIds([]);
               }}
               className={clsx("rounded-xl", {
                 "rounded-t-none":

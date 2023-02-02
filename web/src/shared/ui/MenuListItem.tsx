@@ -1,12 +1,11 @@
 import clsx from "clsx";
 
-export default function FilterButton({
+export default function MenuListItem({
   children,
   onClick,
   className,
 }: {
   children: React.ReactNode;
-  active: boolean;
   onClick: () => void;
   className?: string;
 }) {
