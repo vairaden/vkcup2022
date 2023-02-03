@@ -48,7 +48,13 @@ export function LetterContextMenu({
             {/* Folder list */}
             <MenuList className="absolute top-0 left-0 w-40 translate-x-60 hidden group-hover/folderList:block">
               {folderList.map((folder) => (
-                <MenuListItem onClick={() => {}} key={folder.name}>
+                <MenuListItem
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    console.log(selectedLetterIds, folder.name);
+                  }}
+                  key={folder.name}
+                >
                   <StandardFolderIcons
                     folderName={folder.name}
                     className="fill-primaryText"

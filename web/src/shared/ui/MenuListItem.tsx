@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { MouseEventHandler } from "react";
 
 export default function MenuListItem({
   children,
@@ -6,7 +7,7 @@ export default function MenuListItem({
   className,
 }: {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLDivElement>;
   className?: string;
 }) {
   return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
 import useMenuStore from "../../shared/store/useMenuStore";
 import useTranslation from "../../shared/translation/useTranslation";
@@ -10,6 +10,13 @@ export default function FolderCreator() {
   );
   const [newFolderName, setNewFolderName] = useState("");
   const { text } = useTranslation();
+
+  function handleCreateFolder(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log("Create folder with name: ", newFolderName);
+    toggleFolderCreatorOpen();
+    setNewFolderName("");
+  }
 
   return (
     <div
@@ -38,9 +45,7 @@ export default function FolderCreator() {
         <div className="w-full flex">
           <Button
             type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
+            onClick={handleCreateFolder}
             className="bg-electricBlue text-white border-none px-6 mr-2"
           >
             {text.addFolder}

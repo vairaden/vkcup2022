@@ -12,7 +12,7 @@ export default function LetterCreatorControls({
   const { text } = useTranslation();
 
   return (
-    <div className="flex items-center px-5 h-[70px] border-t-[1px] border-separator">
+    <div className="flex items-center px-5 py-4 h-[70px] border-t-[1px] border-separator">
       <Button
         type="submit"
         onClick={sendClick}

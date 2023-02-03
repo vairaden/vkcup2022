@@ -1,6 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
 import useMenuStore from "../../shared/store/useMenuStore";
-import useTranslation from "../../shared/translation/useTranslation";
 import clsx from "clsx";
 import CrossIcon from "../../shared/icons/controls/CrossIcon";
 import ExpandIcon from "../../shared/icons/controls/ExpandIcon";
