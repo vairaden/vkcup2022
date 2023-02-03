@@ -47,6 +47,7 @@ export default function LetterFilters({
         className="w-60 absolute top-12 right-6"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Filters */}
         <MenuListItem onClick={resetFilters}>
           <CheckmarkIcon
             className={clsx("w-6", {
@@ -92,6 +93,7 @@ export default function LetterFilters({
           <AttachmentIcon className="fill-primaryText mr-1" />
           {text.filterWithAttachments}
         </MenuListItem>
+        {/* Sorting menu */}
         <button
           className="relative flex items-center text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"
           onClick={() => {
@@ -107,6 +109,7 @@ export default function LetterFilters({
             />
           )}
         </button>
+        {/* Reset All button */}
         {filtersApplied && (
           <button
             className="text-primaryText hover:bg-hover transition-colors text-left pl-8 border-t border-separator h-10"

@@ -10,7 +10,7 @@ export default function LetterBodyInput({
 }) {
   const { text } = useTranslation();
   return (
-    <div className="bg-white h-full w-full p-6">
+    <div className="bg-white w-full p-6">
       <label className="text-primaryText">
         <textarea
           onChange={(e) => {

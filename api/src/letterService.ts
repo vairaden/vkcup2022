@@ -12,7 +12,9 @@ export const folders = new Map([
 ]);
 
 export function filterLetters(url: string) {
-  const folderName = url.split("/")[2].split("?")[0];
+  // inbox/1?unread=false&bookmarked=false&withAttachments=false
+
+  const folderName = url.split("/")[0].split("?")[0];
   const unread = url.split("unread=")[1].split("&")[0] ?? "false";
   const bookmarked = url.split("bookmarked=")[1].split("&")[0] ?? "false";
   const withAttachments =

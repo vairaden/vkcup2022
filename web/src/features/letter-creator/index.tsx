@@ -119,7 +119,7 @@ export default function LetterCreator() {
           letter={letter}
           setLetter={setLetter}
         />
-        <div className="overflow-scroll h-full bg-white">
+        <div className="overflow-auto h-full bg-white">
           <FileAttachmentInput letter={letter} setLetter={setLetter} />
           <LetterBodyInput letter={letter} setLetter={setLetter} />
         </div>

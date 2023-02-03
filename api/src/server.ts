@@ -33,7 +33,7 @@ http
 
     // Serving letter by id (.../api/:folderName/:letterId?...)
     if (
-      req.url.includes("/api/") &&
+      req.url.split("/api/")[1] &&
       req.url.split("/")[3] &&
       req.method === "GET"
     ) {
@@ -42,7 +42,7 @@ http
 
     // Move letter to folder (.../api/:folderName/:letterId?...)
     if (
-      req.url.includes("/api/") &&
+      req.url.split("/api/")[1] &&
       req.url.split("/")[3] &&
       req.method === "UPDATE"
     ) {
@@ -51,7 +51,7 @@ http
 
     // Post letter (.../api/:folderName/:letterId?...)
     if (
-      req.url.includes("/api/") &&
+      req.url.split("/api/")[1] &&
       req.url.split("/")[3] &&
       req.method === "POST"
     ) {
@@ -60,7 +60,7 @@ http
 
     // Serving letters in folder (.../api/:folderName?...)
     if (
-      req.url.includes("/api/") &&
+      req.url.split("/api/")[1] &&
       req.url.split("/")[2] &&
       req.method === "GET"
     ) {

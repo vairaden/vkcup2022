@@ -103,6 +103,7 @@ export default function LetterList() {
                   selectedLetterIds.includes(letterData.id),
               })}
             />
+            {/* Separators */}
             {index === letters.length - 11 ? (
               <div
                 ref={lastPostRef}

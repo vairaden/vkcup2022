@@ -13,7 +13,7 @@ export function getLettersByFolderName(
     req.url.split("pageSize=")[1].split("&")[0] ?? "30"
   );
 
-  const filteredData: Letter[] = filterLetters(req.url);
+  const filteredData: Letter[] = filterLetters(req.url.split("api/")[1]);
 
   res.writeHead(200, { "Content-Type": "application/json" });
   const pageData = filteredData.slice(
@@ -30,7 +30,7 @@ export function getLetterById(req: IncomingMessage, res: ServerResponse) {
 
   const letterId = req.url.split("/api/")[1].split("/")[1].split("?")[0];
 
-  const filteredData: Letter[] = filterLetters(req.url);
+  const filteredData: Letter[] = filterLetters(req.url.split("api/")[1]);
 
   const letter = filteredData.find((l) => l.id === parseInt(letterId));
   res.writeHead(200, { "Content-Type": "application/json" });

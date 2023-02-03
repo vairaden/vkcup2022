@@ -34,7 +34,8 @@ export default function FolderCreator() {
             onChange={(e) => setNewFolderName(e.target.value)}
           ></input>
         </label>
-        <div className="w-full">
+        {/* Controls */}
+        <div className="w-full flex">
           <Button
             type="submit"
             onClick={(e) => {

@@ -96,7 +96,6 @@ export default function LetterHeaderInputs({
           )}
         </div>
       </LetterCreatorInput>
-      <div className="overflow-scroll"></div>
     </div>
   );
 }
